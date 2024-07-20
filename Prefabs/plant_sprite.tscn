@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d315ccu2p5a0f"]
-
-[ext_resource type="Texture2D" uid="uid://b177gixqql81e" path="res://emoji.png" id="1_v84be"]
-
-[node name="PlantSprite" type="Sprite2D"]
-texture = ExtResource("1_v84be")
