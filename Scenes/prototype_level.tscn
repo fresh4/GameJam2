@@ -62,6 +62,7 @@ texture = ExtResource("1_hh70o")
 
 [node name="RigidBody2D" parent="." instance=ExtResource("1_iiofd")]
 position = Vector2(608, 592)
+tooltip_text = "A red pepper"
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 position = Vector2(640, 696)

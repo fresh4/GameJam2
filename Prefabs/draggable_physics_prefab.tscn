@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://by1oxtiv55xwi"]
+[gd_scene load_steps=6 format=3 uid="uid://by1oxtiv55xwi"]
 
 [ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_6m7sh"]
 [ext_resource type="Texture2D" uid="uid://dbj5oayyh27ai" path="res://icon.svg" id="1_xgsc6"]
 [ext_resource type="Script" path="res://Scripts/draggable.gd" id="2_k1eq2"]
-[ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="2_weyru"]
 [ext_resource type="Script" path="res://Scripts/tooltip.gd" id="3_ui2nt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3t1n"]
@@ -12,8 +11,8 @@ size = Vector2(128, 128)
 [node name="DraggableObject" type="RigidBody2D"]
 z_index = 1
 collision_layer = 2
+contact_monitor = true
 script = ExtResource("1_6m7sh")
-properties = ExtResource("2_weyru")
 
 [node name="Icon" type="Sprite2D" parent="."]
 unique_name_in_owner = true

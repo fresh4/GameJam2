@@ -12,7 +12,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if dragging:
-		parent.apply_central_impulse((parent.get_viewport().get_mouse_position()-parent.get_position())*8-parent.linear_velocity/2)
+		parent.apply_central_force((parent.get_viewport().get_mouse_position() - parent.get_position()) * 50 - parent.linear_velocity*6)
+		# I don't actually know a damn thing about how the above works
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") and hovered:
