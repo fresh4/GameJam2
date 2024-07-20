@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PepperTemplate" load_steps=2 format=3 uid="uid://ywxrxgue1bq3"]
+
+[ext_resource type="Script" path="res://Resources/pepper_template.gd" id="1_md7ux"]
+
+[resource]
+script = ExtResource("1_md7ux")
+max_scoville = 30000
+required_light = 100
+recipe = Array[ExtResource("1_md7ux")]([])
+tooltip_text = "A red pepper"
+is_pepper = true
