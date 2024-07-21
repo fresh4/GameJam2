@@ -2,10 +2,10 @@ extends Node
 
 const MAX_ROUNDS = 5
 
-var current_round: int = 0
-var day: int = 0
+var current_round: int = 0 ## The time of day, ranges from 0-5
+var day: int = 0 ## The current day
 var plots: Array[Plot]
-#TODO: Variable to get a list of plots and their matrix position (create type Plot)
+var current_sunlight: int ## Sunlight value, between 1 and 100?
 
 func _ready() -> void:
 	for plot in $Plots.get_children() as Array[Plot]:

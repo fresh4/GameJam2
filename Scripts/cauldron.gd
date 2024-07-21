@@ -1,6 +1,8 @@
 extends Node
 class_name Cauldron
 
+const YEET_STRENGTH: int = 750
+
 @onready var ingredients_added_sprites: Node2D = $IngredientsAdded
 
 var ingredients: Array[Pepper]
@@ -13,12 +15,23 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _on_ingredient_detection_area_body_entered(body: Pepper) -> void:
-	if len(ingredients) >= 3 or not body.is_pepper:
-		body.apply_central_impulse(Vector2(-1000, -1000))
+func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
+	# Stop momentum to ensure launch
+	body.linear_velocity = Vector2.ZERO
+	
+	# Break the dragging state to disconnect from cursor and ensure launch
+	for child in body.get_children():
+		if child is DraggableObject:
+			child.dragging = false
+	
+	# If the item is invalid or cauldron is full, YEET the item
+	if not body is Pepper or (len(ingredients) >= 3 or not body.is_pepper): 
+		body.apply_central_impulse(Vector2(-YEET_STRENGTH, -YEET_STRENGTH))
 		return
+	
+	# Add to the current ingredients to track what's in the cauldron
 	ingredients.append(body)
+	# Delete the draggable instance of the ingredient
 	body.queue_free()
-	# We want a reference to the current ingredients ui element
-	# When a pepper is placed in the cauldron, show the pepper on it to see what has been added
+	# Add a sprite of the ingredient to the cauldron for visual keeping track
 	ingredients_sprites[len(ingredients) - 1].texture = body.sprite.texture

@@ -15,10 +15,9 @@ func _ready() -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released("click") and is_hovered:
+	if event.is_action_released("click") and is_hovered and pepper:
 		is_occupied = true
 		is_hovered = false
-		#plant_sprite.texture = plant_growth_progress_sprite # Need to store plant sprite values somewhere, maybe a global array/spritesheet
 		plant_sprite.frame = 1
 		pepper.queue_free()
 
