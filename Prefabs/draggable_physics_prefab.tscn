@@ -8,9 +8,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3t1n"]
 size = Vector2(128, 128)
 
-[node name="DraggableObject" type="RigidBody2D"]
+[node name="Pepper" type="RigidBody2D"]
 z_index = 1
 collision_layer = 2
+collision_mask = 3
 contact_monitor = true
 script = ExtResource("1_6m7sh")
 
@@ -25,9 +26,9 @@ visibility_layer = 0
 shape = SubResource("RectangleShape2D_j3t1n")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("2_k1eq2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 visible = false
@@ -45,10 +46,5 @@ text = "Blah"
 horizontal_alignment = 1
 script = ExtResource("3_ui2nt")
 
-[node name="Draggable" type="Node2D" parent="."]
-script = ExtResource("2_k1eq2")
-
 [connection signal="mouse_entered" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_entered" from="DetectionArea" to="Draggable" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_exited" from="DetectionArea" to="Draggable" method="_on_area_2d_mouse_exited"]

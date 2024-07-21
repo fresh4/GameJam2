@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=24 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://5dtdqb17076v" path="res://Assets/Art/Plants/grown.png" id="7_48noe"]
 [ext_resource type="Texture2D" uid="uid://bts0l4ljkdpb8" path="res://Assets/Art/Furniture/cauldron.png" id="10_0xebp"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
+[ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
+[ext_resource type="Script" path="res://Scripts/draggable.gd" id="13_mxw4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6ltq"]
 size = Vector2(1312, 52)
@@ -58,8 +60,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
 size = Vector2(204, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yca1l"]
+size = Vector2(104, 76)
+
 [node name="PrototypeLevel" type="Node2D"]
 script = ExtResource("1_326k8")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_hh70o")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 32.0
@@ -67,10 +76,6 @@ offset_top = 16.0
 offset_right = 160.0
 offset_bottom = 56.0
 text = "Progress Time"
-
-[node name="Foreground" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
-texture = ExtResource("1_hh70o")
 
 [node name="RigidBody2D" parent="." instance=ExtResource("1_iiofd")]
 position = Vector2(608, 592)
@@ -141,7 +146,7 @@ texture = ExtResource("10_0xebp")
 [node name="IngredientDetectionArea" type="Area2D" parent="Cauldron"]
 visible = false
 collision_layer = 8
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/IngredientDetectionArea"]
 position = Vector2(-3, -90)
@@ -161,6 +166,27 @@ position = Vector2(-9, -14)
 
 [node name="Ingredient3" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
 position = Vector2(55, -14)
+
+[node name="Notice" type="RigidBody2D" parent="."]
+position = Vector2(232, 424)
+collision_mask = 3
+contact_monitor = true
+
+[node name="Notice" type="Sprite2D" parent="Notice"]
+texture = ExtResource("12_ah4ji")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Notice"]
+visible = false
+polygon = PackedVector2Array(-56, -40, 56, -42, 58, 43, -49, 44)
+
+[node name="DetectionArea" type="Area2D" parent="Notice"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("13_mxw4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Notice/DetectionArea"]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_yca1l")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Plots/Plot/Area2D" to="Plots/Plot" method="_on_area_2d_body_entered"]
