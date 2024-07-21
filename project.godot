@@ -48,6 +48,7 @@ click={
 2d_physics/layer_1="World Objects"
 2d_physics/layer_2="Pepper"
 2d_physics/layer_3="Plot"
+2d_physics/layer_4="Cauldron"
 
 [rendering]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=21 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b63rbtfkshxf7" path="res://Assets/Art/Plants/sapling.png" id="5_ldq3f"]
 [ext_resource type="Texture2D" uid="uid://bq8c6nvb8jopl" path="res://Assets/Art/Plants/stalk.png" id="6_34jmo"]
 [ext_resource type="Texture2D" uid="uid://5dtdqb17076v" path="res://Assets/Art/Plants/grown.png" id="7_48noe"]
+[ext_resource type="Texture2D" uid="uid://bts0l4ljkdpb8" path="res://Assets/Art/Furniture/cauldron.png" id="10_0xebp"]
+[ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6ltq"]
 size = Vector2(1312, 52)
@@ -23,7 +25,7 @@ size = Vector2(42, 723)
 size = Vector2(42, 723)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcolh"]
-size = Vector2(512, 16)
+size = Vector2(512, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgtae"]
 size = Vector2(292, 32)
@@ -53,8 +55,18 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
+size = Vector2(204, 20)
+
 [node name="PrototypeLevel" type="Node2D"]
 script = ExtResource("1_326k8")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 160.0
+offset_bottom = 56.0
+text = "Progress Time"
 
 [node name="Foreground" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
@@ -84,7 +96,7 @@ position = Vector2(653, -337.5)
 shape = SubResource("RectangleShape2D_m8jre")
 
 [node name="StorageCollider" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(24, -16)
+position = Vector2(24, -4)
 shape = SubResource("RectangleShape2D_wcolh")
 
 [node name="ShelfCollider" type="CollisionShape2D" parent="Bounds"]
@@ -116,13 +128,41 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plots/Plot/Area2D"]
 polygon = PackedVector2Array(-37, -4, 0, -25, 34, -6, 37, 3, -1, 25, -36, 3)
 
-[node name="Button" type="Button" parent="."]
-offset_left = 32.0
-offset_top = 16.0
-offset_right = 160.0
-offset_bottom = 56.0
-text = "Progress Time"
+[node name="Cauldron" type="StaticBody2D" parent="."]
+z_index = 1
+position = Vector2(1097, 718)
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("10_3prk6")
 
+[node name="CauldronSprite" type="Sprite2D" parent="Cauldron"]
+texture = ExtResource("10_0xebp")
+
+[node name="IngredientDetectionArea" type="Area2D" parent="Cauldron"]
+visible = false
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/IngredientDetectionArea"]
+position = Vector2(-3, -90)
+shape = SubResource("RectangleShape2D_cxyhx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cauldron"]
+visible = false
+polygon = PackedVector2Array(-128, -140, -131, -125, -121, -116, -113, -104, -115, -92, -133, -77, -149, -70, -165, -60, -171, -44, -171, -30, -166, -17, -167, 10, -166, 25, -160, 49, -148, 71, -131, 100, -117, 114, -77, 134, -40, 143, -11, 145, 31, 142, 55, 139, 81, 132, 114, 116, 133, 99, 151, 69, 160, 36, 162, 1, 164, -15, 172, -28, 171, -46, 167, -58, 149, -69, 132, -78, 118, -84, 113, -92, 114, -105, 124, -121, 126, -138, 114, -140, 97, -55, -104, -57, -110, -105)
+
+[node name="IngredientsAdded" type="Node2D" parent="Cauldron"]
+
+[node name="Ingredient1" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
+position = Vector2(-73, -14)
+
+[node name="Ingredient2" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
+position = Vector2(-9, -14)
+
+[node name="Ingredient3" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
+position = Vector2(55, -14)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Plots/Plot/Area2D" to="Plots/Plot" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Plots/Plot/Area2D" to="Plots/Plot" method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="Cauldron/IngredientDetectionArea" to="Cauldron" method="_on_ingredient_detection_area_body_entered"]

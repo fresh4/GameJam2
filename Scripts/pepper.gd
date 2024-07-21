@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends RigidBody2D
 class_name Pepper
 
@@ -7,15 +7,14 @@ class_name Pepper
 @export var recipe: Array[PepperTemplate] ## What peppers combined can create this pepper; empty if base pepper
 @export var tooltip_text: String = "" ## Description to show in tooltip
 @export var is_pepper: bool = true ## Is this object a pepper? No for generic draggable physics objects
-@export var sprite_texture: Texture2D : set = editor_set_sprite ## Texture to use for this pepper
+@export var sprite_texture: Texture2D ## Texture to use for this pepper
 
 @onready var tooltip: Label = %Tooltip
 @onready var sprite: Sprite2D = %Icon
+
+# TODO: Probably remove redundant 'sprite_texture', if we're making custom prefabs for each pepper anyway
 
 func _ready() -> void:
 	tooltip.text = tooltip_text
 	if sprite_texture:
 		sprite.texture = sprite_texture
-
-func editor_set_sprite(value: Texture2D) -> void:
-	sprite.texture = value
