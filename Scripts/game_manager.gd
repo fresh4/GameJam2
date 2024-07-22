@@ -3,6 +3,7 @@ extends Node
 const MAX_ROUNDS = 5
 
 @export var gradient_texture: GradientTexture1D
+@export var pepper_spawn_point: Node2D
 
 @onready var outside: Node2D = $Outside
 @onready var inside: Node2D = $Inside
@@ -14,6 +15,9 @@ var current_sunlight: int ## Sunlight value, between 1 and 100?
 var step: int = 1
 
 func _ready() -> void:
+	Globals.outside = outside
+	Globals.inside = inside
+	Globals.pepper_spawn_point = pepper_spawn_point.position
 	outside.modulate = gradient_texture.gradient.sample(calculate_gradient_value())
 	for plot in %Plots.get_children() as Array[Plot]:
 		plots.append(plot)

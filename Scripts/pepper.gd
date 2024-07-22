@@ -1,6 +1,7 @@
 extends RigidBody2D
 class_name Pepper
 
+@export var pepper_name: String ## Name/identifier for this pepper
 @export_range(0, 15000000) var max_scoville: int = 1000 ## Maximum potential Scoville value for the pepper
 @export_range(0, 100) var required_light: int = 100 ## Optimal light levels for this pepper's growth
 @export var recipe: Array[Pepper] ## What peppers combined can create this pepper; empty if base pepper

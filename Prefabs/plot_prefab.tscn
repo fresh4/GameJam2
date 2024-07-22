@@ -1,13 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcq8rhm4my4js"]
+[gd_scene load_steps=11 format=3 uid="uid://dcq8rhm4my4js"]
 
 [ext_resource type="Script" path="res://Scripts/plot.gd" id="1_nlt1y"]
-[ext_resource type="Texture2D" uid="uid://7h1lptnwkyi3" path="res://Assets/Art/Dirt/tile_1_DT.png" id="2_ssc8h"]
+[ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="2_7hgw5"]
 [ext_resource type="Texture2D" uid="uid://bn4gs258xrhcx" path="res://Assets/Art/Plants/seedling.png" id="3_le6h1"]
 [ext_resource type="Texture2D" uid="uid://b63rbtfkshxf7" path="res://Assets/Art/Plants/sapling.png" id="4_c8gvt"]
 [ext_resource type="Texture2D" uid="uid://bq8c6nvb8jopl" path="res://Assets/Art/Plants/stalk.png" id="5_ucol3"]
 [ext_resource type="Texture2D" uid="uid://5dtdqb17076v" path="res://Assets/Art/Plants/grown.png" id="6_ovcoa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2bi8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xycb"]
+resource_local_to_scene = true
+shader = ExtResource("2_7hgw5")
+shader_parameter/color = Color(0.306377, 0.871094, 0.1259, 1)
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 2
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8g3oq"]
+load_path = "res://.godot/imported/tile_1_DT.png-cd84689ea874f04e01b9671006ecde88.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xucn6"]
 animations = [{
@@ -37,8 +51,9 @@ script = ExtResource("1_nlt1y")
 plant_growth_progress_sprite = SubResource("CompressedTexture2D_2bi8g")
 
 [node name="PlotSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8xycb")
 scale = Vector2(0.03, 0.03)
-texture = ExtResource("2_ssc8h")
+texture = SubResource("CompressedTexture2D_8g3oq")
 
 [node name="PlantSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -47,12 +62,12 @@ scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_xucn6")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-37, -4, 0, -25, 34, -6, 37, 3, -1, 25, -36, 3)
+visible = false
+polygon = PackedVector2Array(0, -25, 34, -7, 37, 2, -1, 24, -35, 4, -37, -5)
 
 [node name="PepperPositions" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -68,3 +83,5 @@ position = Vector2(4, -110)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

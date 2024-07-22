@@ -32,7 +32,8 @@ folder_colors={
 "res://Prefabs/": "purple",
 "res://Resources/": "yellow",
 "res://Scenes/": "pink",
-"res://Scripts/": "green"
+"res://Scripts/": "green",
+"res://Shaders/": "blue"
 }
 
 [input]

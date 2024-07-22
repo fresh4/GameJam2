@@ -40,9 +40,10 @@ size = Vector2(199, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yca1l"]
 size = Vector2(104, 76)
 
-[node name="PrototypeLevel" type="Node2D"]
+[node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point")]
 script = ExtResource("1_326k8")
 gradient_texture = ExtResource("2_s4o85")
+pepper_spawn_point = NodePath("Inside/PepperSpawnPoint")
 
 [node name="Outside" type="Node2D" parent="."]
 
@@ -179,6 +180,9 @@ script = ExtResource("13_mxw4m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Notice/DetectionArea"]
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_yca1l")
+
+[node name="PepperSpawnPoint" type="Node2D" parent="Inside"]
+position = Vector2(665, 496)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Cauldron/IngredientDetectionArea" to="Inside/Cauldron" method="_on_ingredient_detection_area_body_entered"]
