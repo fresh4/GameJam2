@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://by1oxtiv55xwi"]
+
+[ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_sl7i1"]
+[ext_resource type="Texture2D" uid="uid://hxuhomy4rbsh" path="res://Assets/Art/Peppers/pepper_red.png" id="2_f8d7w"]
+[ext_resource type="Script" path="res://Scripts/draggable.gd" id="3_uu8bq"]
+[ext_resource type="Script" path="res://Scripts/tooltip.gd" id="4_yjrkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oqie"]
+size = Vector2(29, 50)
+
+[node name="Pepper" type="RigidBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+contact_monitor = true
+script = ExtResource("1_sl7i1")
+
+[node name="Icon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_f8d7w")
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(-11, -18, -15, -11, -14, -3, -11, 9, -5, 16, 2, 23, 10, 29, 14, 29, 15, 26, 12, 19, 11, 12, 10, 4, 13, -8, 13, -14, 6, -19, 3, -20, 3, -26, 6, -31, 5, -34, 1, -34, -3, -34, -5, -32, -3, -27, -2, -21)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_uu8bq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_0oqie")
+
+[node name="Tooltip" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -55.0
+offset_top = -92.0
+offset_right = 56.0
+offset_bottom = -69.0
+text = "Blah"
+horizontal_alignment = 1
+script = ExtResource("4_yjrkc")
+
+[connection signal="mouse_entered" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_exited"]

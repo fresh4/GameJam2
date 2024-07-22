@@ -1,18 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=22 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
-[ext_resource type="PackedScene" uid="uid://by1oxtiv55xwi" path="res://Prefabs/draggable_physics_prefab.tscn" id="1_iiofd"]
-[ext_resource type="Script" path="res://Scripts/plot.gd" id="2_7s06t"]
-[ext_resource type="Texture2D" uid="uid://7h1lptnwkyi3" path="res://Assets/Art/Dirt/tile_1_DT.png" id="3_187il"]
-[ext_resource type="Texture2D" uid="uid://bn4gs258xrhcx" path="res://Assets/Art/Plants/seedling.png" id="4_75pss"]
-[ext_resource type="Texture2D" uid="uid://b63rbtfkshxf7" path="res://Assets/Art/Plants/sapling.png" id="5_ldq3f"]
-[ext_resource type="Texture2D" uid="uid://bq8c6nvb8jopl" path="res://Assets/Art/Plants/stalk.png" id="6_34jmo"]
-[ext_resource type="Texture2D" uid="uid://5dtdqb17076v" path="res://Assets/Art/Plants/grown.png" id="7_48noe"]
+[ext_resource type="PackedScene" uid="uid://by1oxtiv55xwi" path="res://Prefabs/Peppers/pepper_red_prefab.tscn" id="1_iiofd"]
+[ext_resource type="Texture2D" uid="uid://dbmp03xix420" path="res://Assets/Art/paper_texture.jpg" id="2_7dd4a"]
+[ext_resource type="Texture2D" uid="uid://m7eh4y3nfq08" path="res://Resources/daynightcycle-gradient-texture.tres" id="2_s4o85"]
+[ext_resource type="PackedScene" uid="uid://dcq8rhm4my4js" path="res://Prefabs/plot_prefab.tscn" id="4_me6pj"]
 [ext_resource type="Texture2D" uid="uid://bts0l4ljkdpb8" path="res://Assets/Art/Furniture/cauldron.png" id="10_0xebp"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
 [ext_resource type="Script" path="res://Scripts/draggable.gd" id="13_mxw4m"]
+[ext_resource type="PackedScene" uid="uid://b5xmxlsinrtc2" path="res://Prefabs/Peppers/pepper_green_prefab.tscn" id="16_aeofj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_okuf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6ltq"]
 size = Vector2(1312, 52)
@@ -32,163 +34,152 @@ size = Vector2(512, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgtae"]
 size = Vector2(292, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2bi8g"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xucn6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_75pss")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ldq3f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_34jmo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_48noe")
-}],
-"loop": false,
-"name": &"default",
-"speed": 1.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
-size = Vector2(204, 20)
+size = Vector2(199, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yca1l"]
 size = Vector2(104, 76)
 
 [node name="PrototypeLevel" type="Node2D"]
 script = ExtResource("1_326k8")
+gradient_texture = ExtResource("2_s4o85")
 
-[node name="Foreground" type="Sprite2D" parent="."]
+[node name="Outside" type="Node2D" parent="."]
+
+[node name="PaperTexture" type="Sprite2D" parent="Outside"]
+position = Vector2(673, 352)
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("2_7dd4a")
+
+[node name="Plots" type="Node2D" parent="Outside"]
+unique_name_in_owner = true
+position = Vector2(672, 352)
+
+[node name="Plot" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+
+[node name="Plot2" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(-48, 32)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_4iy5j")
+
+[node name="Plot3" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(48, 32)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot4" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(0, 64)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Inside" type="Node2D" parent="."]
+
+[node name="Foreground" type="Sprite2D" parent="Inside"]
 position = Vector2(640, 360)
 texture = ExtResource("1_hh70o")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="Inside"]
 offset_left = 32.0
 offset_top = 16.0
 offset_right = 160.0
 offset_bottom = 56.0
 text = "Progress Time"
 
-[node name="RigidBody2D" parent="." instance=ExtResource("1_iiofd")]
+[node name="Pepper" parent="Inside" instance=ExtResource("16_aeofj")]
+position = Vector2(527, 548)
+
+[node name="RigidBody2D" parent="Inside" instance=ExtResource("1_iiofd")]
 position = Vector2(608, 592)
 tooltip_text = "A red pepper"
 
-[node name="Bounds" type="StaticBody2D" parent="."]
+[node name="Bounds" type="StaticBody2D" parent="Inside"]
 position = Vector2(640, 696)
 
-[node name="TopCollider" type="CollisionShape2D" parent="Bounds"]
+[node name="TopCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(0, -720)
 shape = SubResource("RectangleShape2D_o6ltq")
 
-[node name="BottomCollider" type="CollisionShape2D" parent="Bounds"]
+[node name="BottomCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(0, 21)
 shape = SubResource("RectangleShape2D_pdxkt")
 
-[node name="LeftCollider" type="CollisionShape2D" parent="Bounds"]
+[node name="LeftCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(-659, -337.5)
 shape = SubResource("RectangleShape2D_vujse")
 
-[node name="RightCollider" type="CollisionShape2D" parent="Bounds"]
+[node name="RightCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(653, -337.5)
 shape = SubResource("RectangleShape2D_m8jre")
 
-[node name="StorageCollider" type="CollisionShape2D" parent="Bounds"]
+[node name="StorageCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(24, -4)
 shape = SubResource("RectangleShape2D_wcolh")
 
-[node name="ShelfCollider" type="CollisionShape2D" parent="Bounds"]
+[node name="ShelfCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(-486, -8)
 shape = SubResource("RectangleShape2D_rgtae")
 
-[node name="Plots" type="Node2D" parent="."]
-position = Vector2(672, 352)
-
-[node name="Plot" type="Node2D" parent="Plots"]
-script = ExtResource("2_7s06t")
-plant_growth_progress_sprite = SubResource("CompressedTexture2D_2bi8g")
-
-[node name="PlotSprite" type="Sprite2D" parent="Plots/Plot"]
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_187il")
-
-[node name="PlantSprite" type="AnimatedSprite2D" parent="Plots/Plot"]
-unique_name_in_owner = true
-position = Vector2(0, -56)
-scale = Vector2(0.05, 0.05)
-sprite_frames = SubResource("SpriteFrames_xucn6")
-
-[node name="Area2D" type="Area2D" parent="Plots/Plot"]
-visible = false
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plots/Plot/Area2D"]
-polygon = PackedVector2Array(-37, -4, 0, -25, 34, -6, 37, 3, -1, 25, -36, 3)
-
-[node name="Cauldron" type="StaticBody2D" parent="."]
+[node name="Cauldron" type="StaticBody2D" parent="Inside"]
 z_index = 1
 position = Vector2(1097, 718)
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("10_3prk6")
 
-[node name="CauldronSprite" type="Sprite2D" parent="Cauldron"]
+[node name="CauldronSprite" type="Sprite2D" parent="Inside/Cauldron"]
 texture = ExtResource("10_0xebp")
 
-[node name="IngredientDetectionArea" type="Area2D" parent="Cauldron"]
+[node name="IngredientDetectionArea" type="Area2D" parent="Inside/Cauldron"]
 visible = false
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/IngredientDetectionArea"]
-position = Vector2(-3, -90)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Cauldron/IngredientDetectionArea"]
+position = Vector2(-3.5, -60)
 shape = SubResource("RectangleShape2D_cxyhx")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cauldron"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Cauldron"]
 visible = false
 polygon = PackedVector2Array(-128, -140, -131, -125, -121, -116, -113, -104, -115, -92, -133, -77, -149, -70, -165, -60, -171, -44, -171, -30, -166, -17, -167, 10, -166, 25, -160, 49, -148, 71, -131, 100, -117, 114, -77, 134, -40, 143, -11, 145, 31, 142, 55, 139, 81, 132, 114, 116, 133, 99, 151, 69, 160, 36, 162, 1, 164, -15, 172, -28, 171, -46, 167, -58, 149, -69, 132, -78, 118, -84, 113, -92, 114, -105, 124, -121, 126, -138, 114, -140, 97, -55, -104, -57, -110, -105)
 
-[node name="IngredientsAdded" type="Node2D" parent="Cauldron"]
+[node name="IngredientsAdded" type="Node2D" parent="Inside/Cauldron"]
+position = Vector2(0, -44)
 
-[node name="Ingredient1" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
+[node name="Ingredient1" type="Sprite2D" parent="Inside/Cauldron/IngredientsAdded"]
 position = Vector2(-73, -14)
 
-[node name="Ingredient2" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
+[node name="Ingredient2" type="Sprite2D" parent="Inside/Cauldron/IngredientsAdded"]
 position = Vector2(-9, -14)
 
-[node name="Ingredient3" type="Sprite2D" parent="Cauldron/IngredientsAdded"]
+[node name="Ingredient3" type="Sprite2D" parent="Inside/Cauldron/IngredientsAdded"]
 position = Vector2(55, -14)
 
-[node name="Notice" type="RigidBody2D" parent="."]
+[node name="MixButton" type="Button" parent="Inside/Cauldron"]
+offset_left = 127.0
+offset_top = -118.0
+offset_right = 164.0
+offset_bottom = -87.0
+disabled = true
+text = "Mix"
+
+[node name="Notice" type="RigidBody2D" parent="Inside"]
 position = Vector2(232, 424)
 collision_mask = 3
 contact_monitor = true
 
-[node name="Notice" type="Sprite2D" parent="Notice"]
+[node name="Notice" type="Sprite2D" parent="Inside/Notice"]
 texture = ExtResource("12_ah4ji")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Notice"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Notice"]
 visible = false
 polygon = PackedVector2Array(-56, -40, 56, -42, 58, 43, -49, 44)
 
-[node name="DetectionArea" type="Area2D" parent="Notice"]
+[node name="DetectionArea" type="Area2D" parent="Inside/Notice"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("13_mxw4m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Notice/DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Notice/DetectionArea"]
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_yca1l")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="body_entered" from="Plots/Plot/Area2D" to="Plots/Plot" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Plots/Plot/Area2D" to="Plots/Plot" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="Cauldron/IngredientDetectionArea" to="Cauldron" method="_on_ingredient_detection_area_body_entered"]
+[connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="Inside/Cauldron/IngredientDetectionArea" to="Inside/Cauldron" method="_on_ingredient_detection_area_body_entered"]
+[connection signal="pressed" from="Inside/Cauldron/MixButton" to="Inside/Cauldron" method="_on_mix_button_pressed"]

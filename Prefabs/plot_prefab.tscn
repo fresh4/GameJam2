@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcq8rhm4my4js"]
+
+[ext_resource type="Script" path="res://Scripts/plot.gd" id="1_nlt1y"]
+[ext_resource type="Texture2D" uid="uid://7h1lptnwkyi3" path="res://Assets/Art/Dirt/tile_1_DT.png" id="2_ssc8h"]
+[ext_resource type="Texture2D" uid="uid://bn4gs258xrhcx" path="res://Assets/Art/Plants/seedling.png" id="3_le6h1"]
+[ext_resource type="Texture2D" uid="uid://b63rbtfkshxf7" path="res://Assets/Art/Plants/sapling.png" id="4_c8gvt"]
+[ext_resource type="Texture2D" uid="uid://bq8c6nvb8jopl" path="res://Assets/Art/Plants/stalk.png" id="5_ucol3"]
+[ext_resource type="Texture2D" uid="uid://5dtdqb17076v" path="res://Assets/Art/Plants/grown.png" id="6_ovcoa"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2bi8g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xucn6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_le6h1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c8gvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ucol3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ovcoa")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Plot" type="Node2D"]
+script = ExtResource("1_nlt1y")
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_2bi8g")
+
+[node name="PlotSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_ssc8h")
+
+[node name="PlantSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -56)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_xucn6")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-37, -4, 0, -25, 34, -6, 37, 3, -1, 25, -36, 3)
+
+[node name="PepperPositions" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Position1" type="Node2D" parent="PepperPositions"]
+position = Vector2(-16, -64)
+
+[node name="Position2" type="Node2D" parent="PepperPositions"]
+position = Vector2(18, -38)
+
+[node name="Position3" type="Node2D" parent="PepperPositions"]
+position = Vector2(4, -110)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
