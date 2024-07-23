@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="PepperTemplate" load_steps=2 format=3 uid="uid://ywxrxgue1bq3"]
+[gd_resource type="Resource" script_class="PepperTemplate" load_steps=3 format=3 uid="uid://ywxrxgue1bq3"]
 
+[ext_resource type="Texture2D" uid="uid://hxuhomy4rbsh" path="res://Assets/Art/Peppers/pepper_red.png" id="1_ebf7d"]
 [ext_resource type="Script" path="res://Resources/pepper_template.gd" id="1_md7ux"]
 
 [resource]
@@ -9,3 +10,5 @@ required_light = 100
 recipe = Array[ExtResource("1_md7ux")]([])
 tooltip_text = "A red pepper"
 is_pepper = true
+path_to_prefab = "res://Prefabs/Peppers/pepper_red_prefab.tscn"
+pepper_texture = ExtResource("1_ebf7d")

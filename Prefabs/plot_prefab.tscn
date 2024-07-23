@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/plot.gd" id="1_nlt1y"]
 [ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="2_7hgw5"]
-[ext_resource type="Texture2D" uid="uid://bn4gs258xrhcx" path="res://Assets/Art/Plants/seedling.png" id="3_le6h1"]
-[ext_resource type="Texture2D" uid="uid://b63rbtfkshxf7" path="res://Assets/Art/Plants/sapling.png" id="4_c8gvt"]
-[ext_resource type="Texture2D" uid="uid://bq8c6nvb8jopl" path="res://Assets/Art/Plants/stalk.png" id="5_ucol3"]
-[ext_resource type="Texture2D" uid="uid://5dtdqb17076v" path="res://Assets/Art/Plants/grown.png" id="6_ovcoa"]
+[ext_resource type="Texture2D" uid="uid://cipqjgb1lqkjq" path="res://Assets/Art/Dirt/dirt_crayon.png" id="3_3hewb"]
+[ext_resource type="Texture2D" uid="uid://cllwmxnhwedx5" path="res://Assets/Art/Plants/seedling_crayon.png" id="3_i4l8l"]
+[ext_resource type="Texture2D" uid="uid://cwflfqp04lvt0" path="res://Assets/Art/Plants/sapling_crayon.png" id="4_r2r8p"]
+[ext_resource type="Texture2D" uid="uid://c5xnl6anu5mvo" path="res://Assets/Art/Plants/stalk_crayon.png" id="5_j6ngi"]
+[ext_resource type="Texture2D" uid="uid://6wj7ewsv6rqc" path="res://Assets/Art/Plants/grown_crayon.png" id="6_0x6px"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2bi8g"]
 
@@ -20,9 +21,6 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 shader_parameter/number_of_images = Vector2(1, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8g3oq"]
-load_path = "res://.godot/imported/tile_1_DT.png-cd84689ea874f04e01b9671006ecde88.ctex"
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_xucn6"]
 animations = [{
 "frames": [{
@@ -30,16 +28,16 @@ animations = [{
 "texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_le6h1")
+"texture": ExtResource("3_i4l8l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_c8gvt")
+"texture": ExtResource("4_r2r8p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ucol3")
+"texture": ExtResource("5_j6ngi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ovcoa")
+"texture": ExtResource("6_0x6px")
 }],
 "loop": false,
 "name": &"default",
@@ -51,14 +49,14 @@ script = ExtResource("1_nlt1y")
 plant_growth_progress_sprite = SubResource("CompressedTexture2D_2bi8g")
 
 [node name="PlotSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_8xycb")
-scale = Vector2(0.03, 0.03)
-texture = SubResource("CompressedTexture2D_8g3oq")
+texture = ExtResource("3_3hewb")
 
 [node name="PlantSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -56)
-scale = Vector2(0.05, 0.05)
+texture_filter = 1
+position = Vector2(0, -73)
 sprite_frames = SubResource("SpriteFrames_xucn6")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -73,13 +71,13 @@ polygon = PackedVector2Array(0, -25, 34, -7, 37, 2, -1, 24, -35, 4, -37, -5)
 unique_name_in_owner = true
 
 [node name="Position1" type="Node2D" parent="PepperPositions"]
-position = Vector2(-16, -64)
+position = Vector2(-17, -56)
 
 [node name="Position2" type="Node2D" parent="PepperPositions"]
-position = Vector2(18, -38)
+position = Vector2(19, -31)
 
 [node name="Position3" type="Node2D" parent="PepperPositions"]
-position = Vector2(4, -110)
+position = Vector2(9, -89)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

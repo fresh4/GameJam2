@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dbmp03xix420" path="res://Assets/Art/paper_texture.jpg" id="2_7dd4a"]
 [ext_resource type="Texture2D" uid="uid://m7eh4y3nfq08" path="res://Resources/daynightcycle-gradient-texture.tres" id="2_s4o85"]
 [ext_resource type="PackedScene" uid="uid://dcq8rhm4my4js" path="res://Prefabs/plot_prefab.tscn" id="4_me6pj"]
-[ext_resource type="Texture2D" uid="uid://bts0l4ljkdpb8" path="res://Assets/Art/Furniture/cauldron.png" id="10_0xebp"]
+[ext_resource type="Texture2D" uid="uid://c7828f4hjhfry" path="res://Assets/Art/Furniture/cauldron_white.png" id="9_bu2e7"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
 [ext_resource type="Script" path="res://Scripts/draggable.gd" id="13_mxw4m"]
@@ -57,17 +57,18 @@ unique_name_in_owner = true
 position = Vector2(672, 352)
 
 [node name="Plot" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(0, -8)
 
 [node name="Plot2" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
-position = Vector2(-48, 32)
+position = Vector2(-56, 32)
 plant_growth_progress_sprite = SubResource("CompressedTexture2D_4iy5j")
 
 [node name="Plot3" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
-position = Vector2(48, 32)
+position = Vector2(56, 32)
 plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 
 [node name="Plot4" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
-position = Vector2(0, 64)
+position = Vector2(0, 72)
 plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 
 [node name="Inside" type="Node2D" parent="."]
@@ -88,7 +89,6 @@ position = Vector2(527, 548)
 
 [node name="RigidBody2D" parent="Inside" instance=ExtResource("1_iiofd")]
 position = Vector2(608, 592)
-tooltip_text = "A red pepper"
 
 [node name="Bounds" type="StaticBody2D" parent="Inside"]
 position = Vector2(640, 696)
@@ -118,14 +118,14 @@ position = Vector2(-486, -8)
 shape = SubResource("RectangleShape2D_rgtae")
 
 [node name="Cauldron" type="StaticBody2D" parent="Inside"]
-z_index = 1
+z_index = 2
 position = Vector2(1097, 718)
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("10_3prk6")
 
 [node name="CauldronSprite" type="Sprite2D" parent="Inside/Cauldron"]
-texture = ExtResource("10_0xebp")
+texture = ExtResource("9_bu2e7")
 
 [node name="IngredientDetectionArea" type="Area2D" parent="Inside/Cauldron"]
 visible = false

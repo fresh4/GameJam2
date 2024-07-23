@@ -1,8 +1,9 @@
 extends Node
 
-var PEPPER_RECIPES = [
-	preload("res://Prefabs/Peppers/pepper_green_prefab.tscn"),
-	preload("res://Prefabs/Peppers/pepper_red_prefab.tscn")
+var PEPPERS: Array[PepperTemplate] = [
+	preload("res://Resources/Peppers/brown_pepper.tres"),
+	preload("res://Resources/Peppers/green_pepper.tres"),
+	preload("res://Resources/Peppers/red_pepper.tres")
 ]
 
 var SAUCE_RECIPES = [

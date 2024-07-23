@@ -12,8 +12,13 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if dragging:
-		parent.apply_central_force((parent.get_viewport().get_mouse_position() - parent.get_position()) * 100 - parent.linear_velocity*12)
-		# I don't actually know a damn thing about how the above works
+		# I don't actually know a damn thing about how this works
+		var force = (parent.get_viewport().get_mouse_position() - parent.get_position()) * 100 - parent.linear_velocity*12
+		parent.apply_central_force(force)
+		
+		var limit = 2500
+		parent.linear_velocity.x = clampf(parent.linear_velocity.x, -limit, limit)
+		parent.linear_velocity.y = clampf(parent.linear_velocity.y, -limit, limit)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") and hovered:

@@ -12,7 +12,6 @@ var current_round: int = 0 ## The time of day, ranges from 0-5
 var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
-var step: int = 1
 
 func _ready() -> void:
 	Globals.outside = outside
@@ -23,15 +22,11 @@ func _ready() -> void:
 		plots.append(plot)
 
 func progress_time() -> void:
-	# TODO: Refactor
 	if current_round < MAX_ROUNDS:
 		current_round += 1
-		#if current_round == 0: step *= -1
 	else:
 		current_round = 0
-		#step *= -1
 		day += 1
-		#current_round += step
 	var value = calculate_gradient_value()
 	print("Day: day ", day, " | round: ", current_round, " | gradient light value: ", value)
 	var tween = get_tree().create_tween()

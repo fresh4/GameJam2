@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://by1oxtiv55xwi"]
+[gd_scene load_steps=7 format=3 uid="uid://by1oxtiv55xwi"]
 
 [ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_sl7i1"]
+[ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="2_bvtu7"]
 [ext_resource type="Texture2D" uid="uid://hxuhomy4rbsh" path="res://Assets/Art/Peppers/pepper_red.png" id="2_f8d7w"]
 [ext_resource type="Script" path="res://Scripts/draggable.gd" id="3_uu8bq"]
 [ext_resource type="Script" path="res://Scripts/tooltip.gd" id="4_yjrkc"]
@@ -12,8 +13,10 @@ size = Vector2(29, 50)
 z_index = 1
 collision_layer = 2
 collision_mask = 3
+continuous_cd = 1
 contact_monitor = true
 script = ExtResource("1_sl7i1")
+properties = ExtResource("2_bvtu7")
 
 [node name="Icon" type="Sprite2D" parent="."]
 unique_name_in_owner = true

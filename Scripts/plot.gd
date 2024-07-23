@@ -17,38 +17,49 @@ var harvest_yield: int = 0 ## How many peppers does this plant currently have
 var pepper_scale_factor: float = 0.4 ## How much to scale down the pepper when on the flower
 var flower_points: Array[Node2D] ## List of possible positions to grow peppers on the plant
 
-var pepper_texture: Texture2D
+## Storing values for the original pepper placed in the plot
+var pepper_texture: Texture2D 
 var pepper_scale: Vector2
 var pepper_prefab_path: String
+var original_pepper: Pepper
 
 func _ready() -> void:
 	for node in pepper_positions.get_children():
 		flower_points.append(node)
 
 func _input(event: InputEvent) -> void:
+	if not is_hovered: return
 	# Plant pepper if released over plot, under certain logical conditions
-	if event.is_action_released("click") and is_hovered and pepper and not is_occupied:
+	if event.is_action_released("click") and pepper and not is_occupied:
 		is_occupied = true
 		is_hovered = false
 		plant_sprite.frame = 1
 		pepper_texture = pepper.sprite.texture
 		pepper_scale = pepper.sprite.scale
 		pepper_prefab_path = pepper.scene_file_path
+		original_pepper = load(pepper_prefab_path).instantiate()
 		pepper.queue_free()
 	# Harvest pepper if harvestable
-	elif event.is_action_pressed("click") and is_occupied and is_hovered and growth_stage == 3:
+	elif event.is_action_pressed("click") and is_occupied and growth_stage == 3:
 		growth_stage = 0
 		is_occupied = false
 		plant_sprite.frame = 0
 		for x in pepper_positions.get_children(): x.queue_free()
 		var prefab = load(pepper_prefab_path)
+		var offset: Vector2 = Vector2(25,0)
 		for idx in harvest_yield:
 			var instance: Pepper = prefab.instantiate() as Pepper
-			instance.position = Globals.pepper_spawn_point
+			instance.position = Globals.pepper_spawn_point + idx*offset
 			Globals.inside.add_child(instance)
-			await get_tree().create_timer(0.05).timeout
-		# Reset the growth stage to 0 and set is_occupied to false
-		# Instantiate a number of peppers equal to the harvest yield of the same pepper type
+			await get_tree().create_timer(0.75).timeout
+	# Handle crossbreeding if a flowering plant is applied a pepper
+	elif event.is_action_released("click") and pepper and is_occupied and growth_stage == 2:
+		for pepper_item in Globals.PEPPERS:
+			if pepper.properties in pepper_item.recipe and original_pepper.properties in pepper_item.recipe:
+				pepper_prefab_path = pepper_item.path_to_prefab
+				pepper_texture = pepper_item.pepper_texture
+				pepper.queue_free()
+				break
 
 func progress_growth() -> void:
 	var growth_stages_count = plant_sprite.sprite_frames.get_frame_count("default")
@@ -60,7 +71,7 @@ func progress_growth() -> void:
 	harvest_yield = 2 # Calculate ^, max 3
 	if plant_sprite.frame == growth_stages_count - 1:
 		for idx in harvest_yield:
-			if idx > len(pepper_positions.get_children()): break
+			if idx > len(pepper_positions.get_children()) - 1: break
 			var new_sprite: Sprite2D = Sprite2D.new()
 			new_sprite.texture = pepper_texture
 			new_sprite.scale = pepper_scale * pepper_scale_factor
@@ -73,7 +84,7 @@ func _on_area_2d_body_exited(_body: Pepper) -> void:
 	pepper = null
 
 func _on_area_2d_mouse_entered() -> void:
-	plot_sprite.material.set_shader_parameter("width", 80)
+	plot_sprite.material.set_shader_parameter("width", 2)
 	is_hovered = true
 
 func _on_area_2d_mouse_exited() -> void:
