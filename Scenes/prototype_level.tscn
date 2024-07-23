@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=49 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bf8s8mk21u7ya" path="res://Prefabs/Peppers/pepper_yellow_prefab.tscn" id="19_un27w"]
 [ext_resource type="PackedScene" uid="uid://cshxev1010rce" path="res://Prefabs/Peppers/pepper_black_prefab.tscn" id="20_ukipr"]
 [ext_resource type="PackedScene" uid="uid://cwetu0gpjql45" path="res://Prefabs/Peppers/pepper_brown_prefab.tscn" id="21_egy4y"]
+[ext_resource type="PackedScene" uid="uid://b8evs7c0sfjyp" path="res://Prefabs/coin_prefab.tscn" id="22_030br"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -220,6 +221,7 @@ position = Vector2(527, 548)
 position = Vector2(576, 544)
 
 [node name="Bounds" type="StaticBody2D" parent="Inside"]
+visible = false
 position = Vector2(640, 696)
 
 [node name="TopCollider" type="CollisionShape2D" parent="Inside/Bounds"]
@@ -269,10 +271,12 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Cauldron/IngredientDetectionArea"]
+visible = false
 position = Vector2(-8, -64)
 shape = SubResource("RectangleShape2D_cxyhx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Cauldron"]
+visible = false
 polygon = PackedVector2Array(-128, -140, -131, -125, -121, -116, -113, -104, -115, -92, -133, -77, -149, -70, -165, -60, -171, -44, -171, -30, -166, -17, -167, 10, -166, 25, -160, 49, -148, 71, -131, 100, -117, 114, -77, 134, -40, 143, -11, 145, 31, 142, 55, 139, 81, 132, 114, 116, 133, 99, 151, 69, 160, 36, 162, 1, 164, -15, 172, -28, 171, -46, 167, -58, 149, -69, 132, -78, 118, -84, 113, -92, 114, -105, 124, -121, 126, -138, 114, -140, 97, -55, -104, -57, -110, -105)
 
 [node name="IngredientsAdded" type="Node2D" parent="Inside/Cauldron"]
@@ -313,6 +317,7 @@ collision_mask = 0
 script = ExtResource("13_mxw4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Notice/DetectionArea"]
+visible = false
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_yca1l")
 
@@ -342,6 +347,9 @@ position = Vector2(136, 512)
 
 [node name="Pepper9" parent="Inside" instance=ExtResource("21_egy4y")]
 position = Vector2(192, 512)
+
+[node name="CoinPrefab" parent="." instance=ExtResource("22_030br")]
+position = Vector2(760, 568)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Cauldron/IngredientDetectionArea" to="Inside/Cauldron" method="_on_ingredient_detection_area_body_entered"]

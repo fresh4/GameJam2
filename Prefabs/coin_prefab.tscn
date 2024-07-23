@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8evs7c0sfjyp"]
+
+[ext_resource type="Texture2D" uid="uid://bxr2deqi0y1ga" path="res://Assets/Art/Misc/coin.png" id="1_80120"]
+[ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="2_0f284"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4yn3p"]
+radius = 7.0
+height = 38.0
+
+[node name="CoinPrefab" type="RigidBody2D"]
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_80120")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(8, -7, 15, -5, 18, -1, 17, 2, 13, 5, 8, 7, -10, 7, -15, 5, -18, 3, -19, 0, -18, -3, -15, -6, -9, -7)
+
+[node name="DetectionArea" parent="." instance=ExtResource("2_0f284")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4yn3p")
