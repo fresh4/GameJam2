@@ -50,6 +50,7 @@ func _input(event: InputEvent) -> void:
 		for idx in harvest_yield:
 			var instance: Pepper = prefab.instantiate() as Pepper
 			instance.position = Globals.pepper_spawn_point + idx*offset
+			instance.rotation = PI * randf_range(0, 2)
 			Globals.inside.add_child(instance)
 			await get_tree().create_timer(0.085).timeout
 	# Handle crossbreeding if a flowering plant is applied a pepper

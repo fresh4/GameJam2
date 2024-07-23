@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://18r43rnq3a4w"]
+
+[ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_1ln57"]
+[ext_resource type="Resource" uid="uid://ds0oc74vbl0kv" path="res://Resources/Peppers/blue_pepper.tres" id="2_wgpoc"]
+[ext_resource type="Texture2D" uid="uid://bj2vekklj3phc" path="res://Assets/Art/Peppers/pepper_blue_chalk.png" id="3_nteff"]
+[ext_resource type="Script" path="res://Scripts/draggable.gd" id="4_vi6sw"]
+[ext_resource type="Script" path="res://Scripts/tooltip.gd" id="5_mtpi1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oqie"]
+size = Vector2(35.5, 32)
+
+[node name="Pepper" type="RigidBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+continuous_cd = 1
+contact_monitor = true
+script = ExtResource("1_1ln57")
+properties = ExtResource("2_wgpoc")
+
+[node name="Icon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_nteff")
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(-1, 1)
+polygon = PackedVector2Array(9, -18, 16, -15, 19, -10, 20, 0, 19, 7, 16, 13, 10, 14, 5, 11, -4, 13, -7, 9, -12, 3, -17, -6, -19, -11, -15, -17, -8, -18, -2, -18, 0, -20, -1, -25, -4, -28, -1, -33, 5, -33, 10, -32, 11, -28, 8, -26, 7, -22)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_vi6sw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+position = Vector2(1.25, 0)
+shape = SubResource("RectangleShape2D_0oqie")
+
+[node name="Tooltip" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -55.0
+offset_top = -92.0
+offset_right = 56.0
+offset_bottom = -69.0
+text = "Blah"
+horizontal_alignment = 1
+script = ExtResource("5_mtpi1")
+
+[connection signal="mouse_entered" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_exited"]

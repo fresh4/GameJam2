@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=48 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -12,7 +12,15 @@
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
 [ext_resource type="Script" path="res://Scripts/draggable.gd" id="13_mxw4m"]
+[ext_resource type="PackedScene" uid="uid://18r43rnq3a4w" path="res://Prefabs/Peppers/pepper_blue_prefab.tscn" id="14_2lq2j"]
+[ext_resource type="PackedScene" uid="uid://bnwrm2tptwr7b" path="res://Prefabs/Peppers/pepper_orange_prefab.tscn" id="15_2t1g6"]
 [ext_resource type="PackedScene" uid="uid://b5xmxlsinrtc2" path="res://Prefabs/Peppers/pepper_green_prefab.tscn" id="16_aeofj"]
+[ext_resource type="PackedScene" uid="uid://dcw00oywkbrob" path="res://Prefabs/Peppers/pepper_purple_prefab.tscn" id="16_vq104"]
+[ext_resource type="PackedScene" uid="uid://mc1b6q72y3tb" path="res://Prefabs/Peppers/pepper_rainbow_prefab.tscn" id="17_eq17a"]
+[ext_resource type="PackedScene" uid="uid://cjrwj8dd28vny" path="res://Prefabs/Peppers/pepper_white_prefab.tscn" id="18_ou18d"]
+[ext_resource type="PackedScene" uid="uid://bf8s8mk21u7ya" path="res://Prefabs/Peppers/pepper_yellow_prefab.tscn" id="19_un27w"]
+[ext_resource type="PackedScene" uid="uid://cshxev1010rce" path="res://Prefabs/Peppers/pepper_black_prefab.tscn" id="20_ukipr"]
+[ext_resource type="PackedScene" uid="uid://cwetu0gpjql45" path="res://Prefabs/Peppers/pepper_brown_prefab.tscn" id="21_egy4y"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -310,6 +318,30 @@ shape = SubResource("RectangleShape2D_yca1l")
 
 [node name="PepperSpawnPoint" type="Node2D" parent="Inside"]
 position = Vector2(665, 496)
+
+[node name="Pepper2" parent="Inside" instance=ExtResource("14_2lq2j")]
+position = Vector2(72, 600)
+
+[node name="Pepper3" parent="Inside" instance=ExtResource("15_2t1g6")]
+position = Vector2(136, 584)
+
+[node name="Pepper4" parent="Inside" instance=ExtResource("16_vq104")]
+position = Vector2(184, 584)
+
+[node name="Pepper5" parent="Inside" instance=ExtResource("17_eq17a")]
+position = Vector2(224, 584)
+
+[node name="Pepper6" parent="Inside" instance=ExtResource("18_ou18d")]
+position = Vector2(280, 592)
+
+[node name="Pepper7" parent="Inside" instance=ExtResource("19_un27w")]
+position = Vector2(96, 520)
+
+[node name="Pepper8" parent="Inside" instance=ExtResource("20_ukipr")]
+position = Vector2(136, 512)
+
+[node name="Pepper9" parent="Inside" instance=ExtResource("21_egy4y")]
+position = Vector2(192, 512)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Cauldron/IngredientDetectionArea" to="Inside/Cauldron" method="_on_ingredient_detection_area_body_entered"]

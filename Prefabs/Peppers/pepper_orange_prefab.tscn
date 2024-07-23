@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnwrm2tptwr7b"]
+
+[ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_hertc"]
+[ext_resource type="Resource" uid="uid://cqisun2qsfbpv" path="res://Resources/Peppers/orange_pepper.tres" id="2_gptex"]
+[ext_resource type="Texture2D" uid="uid://cek25pbyn3dwv" path="res://Assets/Art/Peppers/pepper_orange_chalk.png" id="3_ivcg0"]
+[ext_resource type="Script" path="res://Scripts/draggable.gd" id="4_7u2oj"]
+[ext_resource type="Script" path="res://Scripts/tooltip.gd" id="5_aashc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oqie"]
+size = Vector2(29, 50)
+
+[node name="Pepper" type="RigidBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+continuous_cd = 1
+contact_monitor = true
+script = ExtResource("1_hertc")
+properties = ExtResource("2_gptex")
+
+[node name="Icon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_ivcg0")
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+polygon = PackedVector2Array(-1, -28, -5, -29, -8, -27, -8, -23, -5, -17, -5, -13, -11, -12, -15, -12, -18, -8, -20, -4, -20, 3, -18, 11, -15, 20, -12, 25, -4, 25, 1, 27, 4, 25, 8, 24, 14, 24, 16, 20, 18, 14, 19, 8, 18, 2, 20, -2, 17, -8, 15, -12, 9, -14, 4, -15, 2, -14, 3, -19, 5, -24, 5, -29, 3, -31)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_7u2oj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_0oqie")
+
+[node name="Tooltip" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -55.0
+offset_top = -92.0
+offset_right = 56.0
+offset_bottom = -69.0
+text = "Blah"
+horizontal_alignment = 1
+script = ExtResource("5_aashc")
+
+[connection signal="mouse_entered" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_exited"]

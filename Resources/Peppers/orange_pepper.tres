@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PepperTemplate" load_steps=5 format=3 uid="uid://cqisun2qsfbpv"]
+
+[ext_resource type="Texture2D" uid="uid://cek25pbyn3dwv" path="res://Assets/Art/Peppers/pepper_orange_chalk.png" id="1_fm4ho"]
+[ext_resource type="Script" path="res://Resources/pepper_template.gd" id="2_cjnq0"]
+[ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="2_ttpqw"]
+[ext_resource type="Resource" uid="uid://ccpigr2fw5tas" path="res://Resources/Peppers/yellow_pepper.tres" id="3_kyrwv"]
+
+[resource]
+script = ExtResource("2_cjnq0")
+max_scoville = 30000
+required_light = 100
+recipe = Array[ExtResource("2_cjnq0")]([ExtResource("2_ttpqw"), ExtResource("3_kyrwv")])
+tooltip_text = ""
+is_pepper = true
+path_to_prefab = "res://Prefabs/Peppers/pepper_orange_prefab.tscn"
+pepper_texture = ExtResource("1_fm4ho")
+cost = 1

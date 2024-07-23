@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PepperTemplate" load_steps=3 format=3 uid="uid://ccpigr2fw5tas"]
+
+[ext_resource type="Texture2D" uid="uid://3yh4p8k28gvj" path="res://Assets/Art/Peppers/pepper_white_chalk.png" id="1_jm4ve"]
+[ext_resource type="Script" path="res://Resources/pepper_template.gd" id="2_6k5q1"]
+
+[resource]
+script = ExtResource("2_6k5q1")
+max_scoville = 30000
+required_light = 100
+recipe = Array[ExtResource("2_6k5q1")]([])
+tooltip_text = ""
+is_pepper = true
+path_to_prefab = "res://Prefabs/Peppers/pepper_white_prefab.tscn"
+pepper_texture = ExtResource("1_jm4ve")
+cost = 1

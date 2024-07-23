@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://mc1b6q72y3tb"]
+
+[ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_v2mdw"]
+[ext_resource type="Resource" uid="uid://bhfooibxsadkw" path="res://Resources/Peppers/rainbow_pepper.tres" id="2_2dq48"]
+[ext_resource type="Texture2D" uid="uid://42day47cqjlu" path="res://Assets/Art/Peppers/pepper_rainbow_chalk.png" id="3_jl2t6"]
+[ext_resource type="Script" path="res://Scripts/draggable.gd" id="4_r0y1a"]
+[ext_resource type="Script" path="res://Scripts/tooltip.gd" id="5_xximr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oqie"]
+size = Vector2(27, 51.5)
+
+[node name="Pepper" type="RigidBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+continuous_cd = 1
+contact_monitor = true
+script = ExtResource("1_v2mdw")
+properties = ExtResource("2_2dq48")
+
+[node name="Icon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_jl2t6")
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(-1, 1)
+polygon = PackedVector2Array(-14, -18, -16, -11, -16, -3, -14, 7, -7, 19, -1, 26, 10, 31, 15, 31, 17, 28, 9, 23, 6, 13, 6, 3, 6, -4, 10, -13, 10, -17, 7, -22, 0, -22, 0, -27, 4, -33, 0, -35, -4, -35, -5, -32, -6, -29, -7, -23)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_r0y1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+position = Vector2(-3.5, 4.75)
+shape = SubResource("RectangleShape2D_0oqie")
+
+[node name="Tooltip" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -55.0
+offset_top = -92.0
+offset_right = 56.0
+offset_bottom = -69.0
+text = "Blah"
+horizontal_alignment = 1
+script = ExtResource("5_xximr")
+
+[connection signal="mouse_entered" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="DetectionArea" to="Tooltip" method="_on_area_2d_mouse_exited"]
