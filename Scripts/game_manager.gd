@@ -7,11 +7,13 @@ const MAX_ROUNDS = 5
 
 @onready var outside: Node2D = $Outside
 @onready var inside: Node2D = $Inside
+@onready var daynight_gradient: Sprite2D = %DaynightGradient
 
 var current_round: int = 0 ## The time of day, ranges from 0-5
 var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
+var progress_delay: int = 3 ## Time in seconds to run the time change animation
 
 func _ready() -> void:
 	Globals.outside = outside
@@ -27,10 +29,18 @@ func progress_time() -> void:
 	else:
 		current_round = 0
 		day += 1
+	
 	var value = calculate_gradient_value()
+	var radians = (PI * current_round * (1 / float(MAX_ROUNDS)))
+	
+	if daynight_gradient.rotation >= 2 * PI: daynight_gradient.rotation = 0
+	if current_round == 0: radians = 2 * PI
+	
 	print("Day: day ", day, " | round: ", current_round, " | gradient light value: ", value)
-	var tween = get_tree().create_tween()
-	tween.tween_property(outside, "modulate", gradient_texture.gradient.sample(value), 1)
+	
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(outside, "modulate", gradient_texture.gradient.sample(value), progress_delay).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(daynight_gradient, "rotation", radians, progress_delay).set_ease(Tween.EASE_IN_OUT)
 
 func calculate_gradient_value() -> float:
 	var x: float = PI * current_round * (1 / float(MAX_ROUNDS))
