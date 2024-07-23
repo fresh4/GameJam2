@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 			var instance: Pepper = prefab.instantiate() as Pepper
 			instance.position = Globals.pepper_spawn_point + idx*offset
 			Globals.inside.add_child(instance)
-			await get_tree().create_timer(0.75).timeout
+			await get_tree().create_timer(0.085).timeout
 	# Handle crossbreeding if a flowering plant is applied a pepper
 	elif event.is_action_released("click") and pepper and is_occupied and growth_stage == 2:
 		for pepper_item in Globals.PEPPERS:

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PepperTemplate" load_steps=5 format=3 uid="uid://4t4uqserpda8"]
 
-[ext_resource type="Texture2D" uid="uid://5arghegchyh2" path="res://Assets/Art/Peppers/pepper_brown.png" id="1_3njbu"]
+[ext_resource type="Texture2D" uid="uid://bgh88xu1kp6iw" path="res://Assets/Art/Peppers/pepper_brown_chalk.png" id="1_5urm6"]
 [ext_resource type="Resource" uid="uid://csh8y60vjtlow" path="res://Resources/Peppers/green_pepper.tres" id="1_8gjhr"]
 [ext_resource type="Script" path="res://Resources/pepper_template.gd" id="1_ng28k"]
 [ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="2_f0ul6"]
@@ -13,4 +13,5 @@ recipe = Array[ExtResource("1_ng28k")]([ExtResource("1_8gjhr"), ExtResource("2_f
 tooltip_text = ""
 is_pepper = true
 path_to_prefab = "res://Prefabs/Peppers/pepper_brown_prefab.tscn"
-pepper_texture = ExtResource("1_3njbu")
+pepper_texture = ExtResource("1_5urm6")
+cost = 1

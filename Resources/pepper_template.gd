@@ -12,5 +12,6 @@ class_name PepperTemplate
 @export var recipe: Array[PepperTemplate] ## What peppers combined can create this pepper; empty if base pepper
 @export var tooltip_text: String = "" ## Description to show in tooltip
 @export var is_pepper: bool = true ## Is this object a pepper? No for generic draggable physics objects
-@export var path_to_prefab: String
-@export var pepper_texture: Texture2D
+@export var path_to_prefab: String ## The hardcoded path to the instantiatable prefab related to this resource
+@export var pepper_texture: Texture2D ## Texture to use for this pepper
+@export var cost: int = 1 ## Buying price for this pepper

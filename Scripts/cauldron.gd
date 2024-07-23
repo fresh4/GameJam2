@@ -5,6 +5,7 @@ const YEET_STRENGTH: int = 750
 
 @onready var ingredients_added_sprites: Node2D = $IngredientsAdded
 @onready var mix_button: Button = $MixButton
+@onready var animated_splash_sprite: AnimatedSprite2D = %AnimatedSplashSprite
 
 var ingredients: Array[Pepper]
 var ingredients_sprites: Array[Sprite2D]
@@ -26,7 +27,7 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 			child.dragging = false
 	
 	# If the item is invalid or cauldron is full, YEET the item
-	if not body is Pepper or (len(ingredients) >= 3 or not body.is_pepper): 
+	if not body is Pepper or (len(ingredients) >= 3 or not body.properties.is_pepper): 
 		body.apply_central_impulse(Vector2(-YEET_STRENGTH, -YEET_STRENGTH))
 		return
 	if len(ingredients) >= 2: mix_button.disabled = false
@@ -37,6 +38,7 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 	# Add a sprite of the ingredient to the cauldron for visual keeping track
 	ingredients_sprites[len(ingredients) - 1].texture = body.sprite.texture
 	ingredients_sprites[len(ingredients) - 1].scale = body.sprite.scale
+	animated_splash_sprite.play("default")
 
 func _on_mix_button_pressed() -> void:
 	# Get the peppers in the ingredients array

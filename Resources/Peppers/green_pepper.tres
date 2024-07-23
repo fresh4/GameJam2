@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PepperTemplate" load_steps=3 format=3 uid="uid://csh8y60vjtlow"]
 
 [ext_resource type="Script" path="res://Resources/pepper_template.gd" id="1_2nw5i"]
-[ext_resource type="Texture2D" uid="uid://u7kguh0ipg4l" path="res://Assets/Art/Peppers/pepper_green.png" id="1_l6j74"]
+[ext_resource type="Texture2D" uid="uid://c35bnevyqrorn" path="res://Assets/Art/Peppers/pepper_green_chalk.png" id="1_itt8d"]
 
 [resource]
 script = ExtResource("1_2nw5i")
@@ -11,4 +11,5 @@ recipe = Array[ExtResource("1_2nw5i")]([])
 tooltip_text = ""
 is_pepper = true
 path_to_prefab = "res://Prefabs/Peppers/pepper_green_prefab.tscn"
-pepper_texture = ExtResource("1_l6j74")
+pepper_texture = ExtResource("1_itt8d")
+cost = 1
