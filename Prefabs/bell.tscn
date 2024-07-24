@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://7lei4j2ue8oi"]
+[gd_scene load_steps=9 format=3 uid="uid://7lei4j2ue8oi"]
 
 [ext_resource type="Script" path="res://Scripts/bell.gd" id="1_8cofr"]
 [ext_resource type="Texture2D" uid="uid://dppu0xxgxim84" path="res://Assets/Art/Misc/Bell/bell_top.png" id="1_nndmn"]
@@ -8,6 +8,92 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2ux"]
 size = Vector2(72, 67)
 
+[sub_resource type="Animation" id="Animation_kb1e0"]
+resource_name = "ring"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BellTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BellMiddle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(0, -10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BellMiddle:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0872665, -0.0872665, 0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rqpn2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BellTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BellMiddle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BellMiddle:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8lq2"]
+_data = {
+"RESET": SubResource("Animation_rqpn2"),
+"ring": SubResource("Animation_kb1e0")
+}
+
 [node name="Bell" type="Node2D"]
 script = ExtResource("1_8cofr")
 
@@ -15,7 +101,9 @@ script = ExtResource("1_8cofr")
 texture = ExtResource("1_nndmn")
 
 [node name="BellMiddle" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
 texture = ExtResource("2_svqc2")
+offset = Vector2(0, 10)
 
 [node name="BellBottom" type="Sprite2D" parent="."]
 texture = ExtResource("3_wt2xn")
@@ -23,8 +111,14 @@ texture = ExtResource("3_wt2xn")
 [node name="BellArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BellArea"]
+visible = false
 position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_mo2ux")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p8lq2")
+}
 
 [connection signal="mouse_entered" from="BellArea" to="." method="_on_bell_area_mouse_entered"]
 [connection signal="mouse_exited" from="BellArea" to="." method="_on_bell_area_mouse_exited"]
