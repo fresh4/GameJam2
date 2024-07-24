@@ -24,6 +24,8 @@ Globals="*res://Scripts/Globals/globals.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://Assets/Art/Cursors/pointer_c.png"
+mouse_cursor/custom_image_hotspot=Vector2(4, 4)
 
 [file_customization]
 

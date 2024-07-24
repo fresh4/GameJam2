@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		plant_sprite.frame = 0
 		for x in pepper_positions.get_children(): x.queue_free()
 		var prefab = load(pepper_prefab_path)
-		var offset: Vector2 = Vector2(25,0)
+		var offset: Vector2 = Vector2(50,0)
 		for idx in harvest_yield:
 			var instance: Pepper = prefab.instantiate() as Pepper
 			instance.position = Globals.pepper_spawn_point + idx*offset

@@ -1,9 +1,10 @@
 extends Area2D
 class_name DraggableObject
 
-const DRAGGER = preload("res://Assets/Art/Cursors/dragger.png")
 const POINTER = preload("res://Assets/Art/Cursors/pointer.png")
-const GRABBER = preload("res://Assets/Art/Cursors/grabber.png")
+const HAND_OPEN = preload("res://Assets/Art/Cursors/hand_open.png")
+const HAND_CLOSED = preload("res://Assets/Art/Cursors/hand_closed.png")
+const DEFAULT = preload("res://Assets/Art/Cursors/pointer_c.png")
 
 var parent: RigidBody2D
 var hovered: bool = false
@@ -30,8 +31,10 @@ func _physics_process(_delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") and hovered:
 		dragging = true
+		set_cursor()
 	elif Input.is_action_just_released("click"):
 		dragging = false
+		set_cursor()
 	if Input.is_action_pressed("scroll_up") and dragging:
 		rotate_object(3500)
 	elif Input.is_action_pressed("scroll_down") and dragging:
@@ -40,8 +43,20 @@ func _input(_event: InputEvent) -> void:
 func rotate_object(force: float) -> void:
 	parent.apply_torque(force * parent.mass)
 
+# TODO: Insufficient. Need a single source of truth instead of doing this in this
+# script which has many instanced objects running the same code
+func set_cursor() -> void:
+	if dragging:
+		Input.set_custom_mouse_cursor(HAND_CLOSED, Input.CURSOR_ARROW, Vector2(32,32))
+	elif hovered and not dragging:
+		Input.set_custom_mouse_cursor(HAND_OPEN, Input.CURSOR_ARROW, Vector2(32,32))
+	elif not hovered and not dragging:
+		Input.set_custom_mouse_cursor(DEFAULT, Input.CURSOR_ARROW, Vector2(4,4))
+	
 func _on_mouse_entered() -> void:
 	hovered = true
+	set_cursor()
 
 func _on_mouse_exited() -> void:
 	hovered = false
+	set_cursor()
