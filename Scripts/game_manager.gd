@@ -12,6 +12,7 @@ const MAX_ROUNDS = 6
 @onready var button: Button = %Button
 @onready var calendar_label: Label = %CalendarLabel
 @onready var market: Shop = %Market
+@onready var tooltips: Hint = %Tooltips
 
 var wage: int = 1 ## How much gold to pay per day
 var current_round: int = 0 ## The time of day, ranges from 0-6

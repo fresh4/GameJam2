@@ -4,6 +4,7 @@ class_name Shop
 @onready var baskets_node: Node2D = %Baskets
 @onready var button: Button = %Button
 
+var summoned: bool = false
 var baskets: Array[Basket]
 var starting_pos: Vector2 = Vector2(673, 800)
 var selling_pos: Vector2 = Vector2(673, 500)
@@ -14,10 +15,12 @@ func _ready() -> void:
 		if basket is Basket: baskets.append(basket)
 
 func summon() -> void:
+	summoned = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", selling_pos, 0.25)
 	
 func unsummon() -> void:
+	summoned = false
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", starting_pos, 0.25)
 
