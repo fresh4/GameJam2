@@ -10,9 +10,9 @@
 size = Vector2(23.25, 57)
 
 [node name="Pepper" type="RigidBody2D"]
-z_index = 1
 collision_layer = 2
 collision_mask = 3
+can_sleep = false
 continuous_cd = 1
 contact_monitor = true
 script = ExtResource("1_2ie8p")

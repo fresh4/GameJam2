@@ -9,6 +9,8 @@ height = 38.0
 
 [node name="CoinPrefab" type="RigidBody2D"]
 collision_mask = 3
+mass = 0.2
+can_sleep = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_80120")

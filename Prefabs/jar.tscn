@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpgk7sd08y3fy"]
+
+[ext_resource type="Texture2D" uid="uid://bxahnfb4hssm" path="res://Assets/Art/Misc/jar.png" id="1_lr8c7"]
+[ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="2_jvjlc"]
+[ext_resource type="Texture2D" uid="uid://dl72pul036264" path="res://Assets/Art/Misc/jar_back.png" id="2_xkdf5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2ti7"]
+size = Vector2(73, 32.5)
+
+[node name="Jar" type="RigidBody2D"]
+z_index = 1
+position = Vector2(664, 606)
+collision_mask = 3
+mass = 3.0
+
+[node name="JarFront" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("1_lr8c7")
+
+[node name="JarBack" type="Sprite2D" parent="."]
+z_as_relative = false
+texture = ExtResource("2_xkdf5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-48, -32, -49, 10, -41, 53, -39, 60, -31, 64, 25, 60, 35, 57, 42, 46, 43, 21, 39, -6, 35, -21, 36, -33, 28, -41, 31, -54, 25, -58, 28, -50, 26, -40, 31, -33, 30, -22, 34, -9, 38, 20, 37, 44, 34, 50, 16, 58, -8, 61, -25, 60, -34, 57, -40, 47, -46, 10, -44, -31, -37, -36, -45, -48, -37, -58, -49, -49, -42, -37)
+
+[node name="DetectionArea" parent="." instance=ExtResource("2_jvjlc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+position = Vector2(-7, -48)
+shape = SubResource("RectangleShape2D_s2ti7")

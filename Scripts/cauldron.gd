@@ -28,7 +28,7 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 	
 	# If the item is invalid or cauldron is full, YEET the item
 	if not body is Pepper or (len(ingredients) >= 3 or not body.properties.is_pepper): 
-		body.apply_central_impulse(Vector2(-YEET_STRENGTH, -YEET_STRENGTH))
+		body.apply_central_impulse(Vector2(-YEET_STRENGTH * body.mass, -YEET_STRENGTH * body.mass))
 		return
 	if len(ingredients) >= 2: mix_button.disabled = false
 	# Add to the current ingredients to track what's in the cauldron

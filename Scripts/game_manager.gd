@@ -1,4 +1,5 @@
 extends Node
+class_name GameManager
 
 const MAX_ROUNDS = 5
 
@@ -9,6 +10,7 @@ const MAX_ROUNDS = 5
 @onready var inside: Node2D = $Inside
 @onready var daynight_gradient: Sprite2D = %DaynightGradient
 
+var wage: int = 1 ## How much gold to pay per day
 var current_round: int = 0 ## The time of day, ranges from 0-5
 var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
@@ -16,6 +18,7 @@ var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
 
 func _ready() -> void:
+	Globals.game_manager = self
 	Globals.outside = outside
 	Globals.inside = inside
 	Globals.pepper_spawn_point = pepper_spawn_point.position

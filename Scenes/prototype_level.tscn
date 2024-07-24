@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=50 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cshxev1010rce" path="res://Prefabs/Peppers/pepper_black_prefab.tscn" id="20_ukipr"]
 [ext_resource type="PackedScene" uid="uid://cwetu0gpjql45" path="res://Prefabs/Peppers/pepper_brown_prefab.tscn" id="21_egy4y"]
 [ext_resource type="PackedScene" uid="uid://b8evs7c0sfjyp" path="res://Prefabs/coin_prefab.tscn" id="22_030br"]
+[ext_resource type="PackedScene" uid="uid://bpgk7sd08y3fy" path="res://Prefabs/jar.tscn" id="23_lq5y0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -171,11 +172,13 @@ pepper_spawn_point = NodePath("Inside/PepperSpawnPoint")
 
 [node name="DaynightGradient" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = -2
 position = Vector2(640, 688)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_pouth")
 
 [node name="Outside" type="Node2D" parent="."]
+z_index = -1
 
 [node name="PaperTexture" type="Sprite2D" parent="Outside"]
 position = Vector2(656, 672)
@@ -207,6 +210,12 @@ plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 position = Vector2(640, 360)
 texture = ExtResource("1_hh70o")
 
+[node name="Jar" parent="Inside" instance=ExtResource("23_lq5y0")]
+position = Vector2(781, 607)
+
+[node name="CoinPrefab" parent="Inside" instance=ExtResource("22_030br")]
+position = Vector2(775, 464)
+
 [node name="Button" type="Button" parent="Inside"]
 offset_left = 32.0
 offset_top = 16.0
@@ -214,14 +223,7 @@ offset_right = 160.0
 offset_bottom = 56.0
 text = "Progress Time"
 
-[node name="Pepper" parent="Inside" instance=ExtResource("16_aeofj")]
-position = Vector2(527, 548)
-
-[node name="RigidBody2D" parent="Inside" instance=ExtResource("1_iiofd")]
-position = Vector2(576, 544)
-
 [node name="Bounds" type="StaticBody2D" parent="Inside"]
-visible = false
 position = Vector2(640, 696)
 
 [node name="TopCollider" type="CollisionShape2D" parent="Inside/Bounds"]
@@ -321,6 +323,12 @@ visible = false
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_yca1l")
 
+[node name="Pepper" parent="Inside" instance=ExtResource("16_aeofj")]
+position = Vector2(527, 548)
+
+[node name="RigidBody2D" parent="Inside" instance=ExtResource("1_iiofd")]
+position = Vector2(576, 544)
+
 [node name="PepperSpawnPoint" type="Node2D" parent="Inside"]
 position = Vector2(665, 496)
 
@@ -347,9 +355,6 @@ position = Vector2(136, 512)
 
 [node name="Pepper9" parent="Inside" instance=ExtResource("21_egy4y")]
 position = Vector2(192, 512)
-
-[node name="CoinPrefab" parent="." instance=ExtResource("22_030br")]
-position = Vector2(760, 568)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Cauldron/IngredientDetectionArea" to="Inside/Cauldron" method="_on_ingredient_detection_area_body_entered"]
