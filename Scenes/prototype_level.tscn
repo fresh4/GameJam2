@@ -181,6 +181,7 @@ size = Vector2(111, 81)
 script = ExtResource("1_326k8")
 gradient_texture = ExtResource("2_s4o85")
 pepper_spawn_point = NodePath("Inside/PepperSpawnPoint")
+coin_prefab = ExtResource("22_030br")
 
 [node name="DaynightGradient" type="Sprite2D" parent="."]
 unique_name_in_owner = true

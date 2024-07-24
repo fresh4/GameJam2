@@ -129,7 +129,10 @@ func _on_area_2d_body_exited(_body: Pepper) -> void:
 func _on_area_2d_mouse_entered() -> void:
 	plot_sprite.material.set_shader_parameter("width", 2)
 	is_hovered = true
+	if growth_stage == 3:
+		Globals.game_manager.tooltips.toggle_hint(0, true, "Harvest")
 
 func _on_area_2d_mouse_exited() -> void:
 	plot_sprite.material.set_shader_parameter("width", 0)
 	is_hovered = false
+	Globals.game_manager.tooltips.toggle_hint(0, false, "")

@@ -17,12 +17,20 @@ func _ready() -> void:
 func summon() -> void:
 	summoned = true
 	var tween = get_tree().create_tween()
+	
+	toggle_basket_collider(false)
 	tween.tween_property(self, "position", selling_pos, 0.25)
+	await tween.finished
+	toggle_basket_collider(true)
 	
 func unsummon() -> void:
 	summoned = false
 	var tween = get_tree().create_tween()
+	
+	toggle_basket_collider(false)
 	tween.tween_property(self, "position", starting_pos, 0.25)
+	await tween.finished
+	toggle_basket_collider(true)
 
 @warning_ignore("integer_division")
 func purchase() -> void:
@@ -38,6 +46,10 @@ func purchase() -> void:
 				Globals.inside.add_child(pepper)
 			for idx in total_cost:
 				basket.basket_area.get_overlapping_bodies()[0].queue_free()
+
+func toggle_basket_collider(value: bool) -> void:
+	for basket in baskets:
+		basket.collider.disabled = not value
 
 func _on_button_pressed() -> void:
 	purchase()

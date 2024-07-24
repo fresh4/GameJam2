@@ -8,15 +8,15 @@ radius = 7.0
 height = 38.0
 
 [node name="CoinPrefab" type="RigidBody2D"]
-collision_layer = 17
-collision_mask = 3
+collision_layer = 49
+collision_mask = 35
 mass = 0.2
 can_sleep = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_80120")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Collider" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(8, -7, 15, -5, 18, -1, 17, 2, 13, 5, 8, 7, -10, 7, -15, 5, -18, 3, -19, 0, -18, -3, -15, -6, -9, -7)
 

@@ -5,6 +5,7 @@ const MAX_ROUNDS = 6
 
 @export var gradient_texture: GradientTexture1D
 @export var pepper_spawn_point: Node2D
+@export var coin_prefab: PackedScene
 
 @onready var outside: Node2D = $Outside
 @onready var inside: Node2D = $Inside
@@ -37,7 +38,7 @@ func progress_time() -> void:
 	else:
 		current_round = 0
 		day += 1
-		calendar_label.text = str(day)
+		handle_new_day()
 	
 	var value = calculate_gradient_value()
 	var radians = (PI * current_round * (1 / float(MAX_ROUNDS)))
@@ -55,6 +56,21 @@ func progress_time() -> void:
 	
 	await tween.finished
 	button.disabled = false
+
+func handle_new_day() -> void:
+	# Set the calendar to match the current new day
+	calendar_label.text = str(day)
+	
+	# Spawn a number of coins equal to the value of the wage
+	for idx in wage:
+		# TODO: Set position equal to some node where coins will spawn?
+		var coin_node: Node2D = coin_prefab.instantiate() as Node2D
+		coin_node.position = Vector2(640, 450)
+		coin_node.position.y -= idx * 20 
+		inside.add_child(coin_node)
+		await get_tree().create_timer(0.1).timeout
+	
+	# Spawn a letter for the day
 
 func calculate_gradient_value() -> float:
 	var x: float = PI * current_round * (1 / float(MAX_ROUNDS))

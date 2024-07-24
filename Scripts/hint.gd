@@ -7,9 +7,12 @@ class_name Hint
 @onready var right_label: Label = $right_click/Label
 
 var clicks: Array[Sprite2D]
+var labels: Array[Label]
 
 func _ready() -> void:
 	clicks = [left_click, right_click]
+	labels = [left_label, right_label]
 
-func toggle_hint(side: int) -> void:
-		clicks[side].visible = not clicks[side].visible
+func toggle_hint(side: int, hint_visible: bool, text: String = "") -> void:
+	clicks[side].visible = hint_visible
+	if text != "": labels[side].text = text
