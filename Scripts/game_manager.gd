@@ -10,6 +10,8 @@ const MAX_ROUNDS = 6
 @onready var inside: Node2D = $Inside
 @onready var daynight_gradient: Sprite2D = %DaynightGradient
 @onready var button: Button = %Button
+@onready var calendar_label: Label = %CalendarLabel
+@onready var market: Shop = %Market
 
 var wage: int = 1 ## How much gold to pay per day
 var current_round: int = 0 ## The time of day, ranges from 0-6
@@ -24,6 +26,7 @@ func _ready() -> void:
 	Globals.inside = inside
 	Globals.pepper_spawn_point = pepper_spawn_point.position
 	outside.modulate = gradient_texture.gradient.sample(calculate_gradient_value())
+	calendar_label.text = "0"
 	for plot in %Plots.get_children() as Array[Plot]:
 		plots.append(plot)
 
@@ -33,6 +36,7 @@ func progress_time() -> void:
 	else:
 		current_round = 0
 		day += 1
+		calendar_label.text = str(day)
 	
 	var value = calculate_gradient_value()
 	var radians = (PI * current_round * (1 / float(MAX_ROUNDS)))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=57 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -7,11 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://m7eh4y3nfq08" path="res://Resources/daynightcycle-gradient-texture.tres" id="2_s4o85"]
 [ext_resource type="Texture2D" uid="uid://dbtbync1l7owp" path="res://Assets/Art/daynight_gradient.png" id="3_pouth"]
 [ext_resource type="PackedScene" uid="uid://dcq8rhm4my4js" path="res://Prefabs/plot_prefab.tscn" id="4_me6pj"]
+[ext_resource type="PackedScene" uid="uid://c3k4s7e0as7yh" path="res://Prefabs/market.tscn" id="6_5j3qs"]
 [ext_resource type="PackedScene" uid="uid://c5ijkm3ufqoua" path="res://Prefabs/Furniture/shelf.tscn" id="7_gg2fo"]
 [ext_resource type="Texture2D" uid="uid://c7828f4hjhfry" path="res://Assets/Art/Furniture/cauldron_white.png" id="9_bu2e7"]
 [ext_resource type="Texture2D" uid="uid://d2htbp6q6mi47" path="res://Assets/Art/Misc/splash.png" id="9_dk2dq"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
+[ext_resource type="Texture2D" uid="uid://bymg01au1m1fc" path="res://Assets/Art/Misc/calendar.png" id="11_2py5e"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
+[ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="12_q31b7"]
 [ext_resource type="PackedScene" uid="uid://18r43rnq3a4w" path="res://Prefabs/Peppers/pepper_blue_prefab.tscn" id="14_2lq2j"]
 [ext_resource type="PackedScene" uid="uid://sgf1mrx7htle" path="res://Prefabs/readable_area.tscn" id="14_xmhaq"]
 [ext_resource type="PackedScene" uid="uid://bnwrm2tptwr7b" path="res://Prefabs/Peppers/pepper_orange_prefab.tscn" id="15_2t1g6"]
@@ -25,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b8evs7c0sfjyp" path="res://Prefabs/coin_prefab.tscn" id="22_030br"]
 [ext_resource type="PackedScene" uid="uid://bpgk7sd08y3fy" path="res://Prefabs/jar.tscn" id="23_lq5y0"]
 [ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="24_kpn4k"]
+[ext_resource type="PackedScene" uid="uid://7lei4j2ue8oi" path="res://Prefabs/bell.tscn" id="29_27qd7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -211,6 +215,10 @@ plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 
 [node name="Inside" type="Node2D" parent="."]
 
+[node name="Market" parent="Inside" instance=ExtResource("6_5j3qs")]
+unique_name_in_owner = true
+position = Vector2(687, 785)
+
 [node name="Foreground" type="Sprite2D" parent="Inside"]
 position = Vector2(640, 360)
 texture = ExtResource("1_hh70o")
@@ -310,10 +318,33 @@ offset_bottom = -87.0
 disabled = true
 text = "Mix"
 
+[node name="Calendar" type="Sprite2D" parent="Inside/Furniture"]
+position = Vector2(1139, 100)
+texture = ExtResource("11_2py5e")
+
+[node name="CalendarLabel" type="Label" parent="Inside/Furniture/Calendar"]
+unique_name_in_owner = true
+offset_left = -27.0
+offset_top = -23.0
+offset_right = 31.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.56195, 0.457001, 0.40065, 1)
+theme_override_fonts/font = ExtResource("12_q31b7")
+theme_override_font_sizes/font_size = 51
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bell" parent="Inside/Furniture" instance=ExtResource("29_27qd7")]
+position = Vector2(467, 633)
+
 [node name="Draggables" type="Node2D" parent="Inside"]
 
+[node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
+position = Vector2(225, 521)
+
 [node name="Notice" type="RigidBody2D" parent="Inside/Draggables"]
-position = Vector2(470, 607)
+position = Vector2(72, 614)
 collision_mask = 3
 contact_monitor = true
 
@@ -337,11 +368,8 @@ shape = SubResource("RectangleShape2D_627a8")
 position = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_4lgaa")
 
-[node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
-position = Vector2(775, 464)
-
 [node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
-position = Vector2(781, 607)
+position = Vector2(228, 601)
 
 [node name="Peppers" type="Node2D" parent="Inside"]
 

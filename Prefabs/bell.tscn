@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://7lei4j2ue8oi"]
+
+[ext_resource type="Script" path="res://Scripts/bell.gd" id="1_8cofr"]
+[ext_resource type="Texture2D" uid="uid://dppu0xxgxim84" path="res://Assets/Art/Misc/Bell/bell_top.png" id="1_nndmn"]
+[ext_resource type="Texture2D" uid="uid://yu3xoqsafww1" path="res://Assets/Art/Misc/Bell/bell_center.png" id="2_svqc2"]
+[ext_resource type="Texture2D" uid="uid://kfdqb5ukjw3b" path="res://Assets/Art/Misc/Bell/bell_bottom.png" id="3_wt2xn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2ux"]
+size = Vector2(72, 67)
+
+[node name="Bell" type="Node2D"]
+script = ExtResource("1_8cofr")
+
+[node name="BellTop" type="Sprite2D" parent="."]
+texture = ExtResource("1_nndmn")
+
+[node name="BellMiddle" type="Sprite2D" parent="."]
+texture = ExtResource("2_svqc2")
+
+[node name="BellBottom" type="Sprite2D" parent="."]
+texture = ExtResource("3_wt2xn")
+
+[node name="BellArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BellArea"]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_mo2ux")
+
+[connection signal="mouse_entered" from="BellArea" to="." method="_on_bell_area_mouse_entered"]
+[connection signal="mouse_exited" from="BellArea" to="." method="_on_bell_area_mouse_exited"]

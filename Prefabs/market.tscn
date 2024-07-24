@@ -1,3 +1,104 @@
-[gd_scene format=3 uid="uid://c3k4s7e0as7yh"]
+[gd_scene load_steps=11 format=3 uid="uid://c3k4s7e0as7yh"]
+
+[ext_resource type="Script" path="res://Scripts/market.gd" id="1_e7sx6"]
+[ext_resource type="Texture2D" uid="uid://bf5yop7ijvoy8" path="res://Assets/Art/Misc/shop.png" id="1_m17ro"]
+[ext_resource type="Texture2D" uid="uid://ungcw82r1xs6" path="res://Assets/Art/Peppers/pepper_red_chalk.png" id="3_304uh"]
+[ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="4_7iqog"]
+[ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="4_swaap"]
+[ext_resource type="Texture2D" uid="uid://bj2vekklj3phc" path="res://Assets/Art/Peppers/pepper_blue_chalk.png" id="5_x6vro"]
+[ext_resource type="Texture2D" uid="uid://b7fhugu3arr86" path="res://Assets/Art/Peppers/pepper_yellow_chalk.png" id="6_kxaxd"]
+[ext_resource type="PackedScene" uid="uid://c5sxcj0oeoro8" path="res://Prefabs/basket.tscn" id="7_oy3g8"]
+[ext_resource type="Resource" uid="uid://ds0oc74vbl0kv" path="res://Resources/Peppers/blue_pepper.tres" id="9_dxd0b"]
+[ext_resource type="Resource" uid="uid://ccpigr2fw5tas" path="res://Resources/Peppers/yellow_pepper.tres" id="10_5hfjy"]
 
 [node name="Market" type="Node2D"]
+script = ExtResource("1_e7sx6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -197.0
+offset_top = -247.0
+offset_right = 195.0
+offset_bottom = 165.0
+
+[node name="MarketSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_m17ro")
+
+[node name="Board" type="Node2D" parent="."]
+
+[node name="Red" type="Sprite2D" parent="Board"]
+position = Vector2(-91, -90)
+rotation = -0.563741
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_304uh")
+
+[node name="Label" type="Label" parent="Board"]
+offset_left = -108.0
+offset_top = -82.0
+offset_right = -68.0
+offset_bottom = -45.0
+theme_override_colors/font_color = Color(0.863281, 0.722703, 0.0809326, 1)
+theme_override_colors/font_outline_color = Color(0.462745, 0.341176, 0.270588, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_7iqog")
+theme_override_font_sizes/font_size = 35
+text = "1¢"
+
+[node name="Blue" type="Sprite2D" parent="Board"]
+position = Vector2(0.339622, -90)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_x6vro")
+
+[node name="Label2" type="Label" parent="Board"]
+offset_left = -16.6604
+offset_top = -82.0
+offset_right = 23.3396
+offset_bottom = -45.0
+theme_override_colors/font_color = Color(0.863281, 0.722703, 0.0809326, 1)
+theme_override_colors/font_outline_color = Color(0.462745, 0.341176, 0.270588, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_7iqog")
+theme_override_font_sizes/font_size = 35
+text = "1¢"
+
+[node name="Yellow" type="Sprite2D" parent="Board"]
+position = Vector2(77.3396, -90)
+rotation = 0.644027
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_kxaxd")
+
+[node name="Label3" type="Label" parent="Board"]
+offset_left = 60.3396
+offset_top = -82.0
+offset_right = 100.34
+offset_bottom = -45.0
+theme_override_colors/font_color = Color(0.863281, 0.722703, 0.0809326, 1)
+theme_override_colors/font_outline_color = Color(0.462745, 0.341176, 0.270588, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_7iqog")
+theme_override_font_sizes/font_size = 35
+text = "1¢"
+
+[node name="Baskets" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="RedBasket" parent="Baskets" instance=ExtResource("7_oy3g8")]
+position = Vector2(-121, 31)
+pepper_sold = ExtResource("4_swaap")
+
+[node name="BlueBasket" parent="Baskets" instance=ExtResource("7_oy3g8")]
+position = Vector2(-7, 30)
+pepper_sold = ExtResource("9_dxd0b")
+
+[node name="YellowBasket" parent="Baskets" instance=ExtResource("7_oy3g8")]
+position = Vector2(105, 30)
+pepper_sold = ExtResource("10_5hfjy")
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = -19.0
+offset_top = 65.0
+offset_right = 19.0
+offset_bottom = 96.0
+text = "Buy"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
