@@ -8,4 +8,5 @@ class_name SauceTemplate
 
 @export_range(0,15000000) var scoville_value: int = 0 ## Scoville heat value for the sauce
 @export var recipe: Array[PepperTemplate] ## Recipe for the sauce. Includes things other than peppers.
-@export var sprite: Texture2D ## Sprite to use for this sauce
+@export var texture: Texture2D ## Sprite to use for this sauce
+@export var value: int = 1

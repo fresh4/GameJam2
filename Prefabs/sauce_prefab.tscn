@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2a2lsa4l620s"]
+
+[ext_resource type="Script" path="res://Scripts/sauce.gd" id="1_rxl1m"]
+[ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="3_xpmkt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7hm"]
+size = Vector2(22, 83)
+
+[node name="SaucePrefab" type="RigidBody2D"]
+script = ExtResource("1_rxl1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, 42, 13, 41, 13, 1, 9, -25, 13, -28, 12, -37, 9, -40, 1, -42, -4, -40, -8, -37, -9, -27, -7, -25, -13, -3)
+
+[node name="DraggableArea" parent="." instance=ExtResource("3_xpmkt")]
+position = Vector2(-29.2402, 20.5652)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableArea"]
+visible = false
+position = Vector2(29.2402, -19.5652)
+shape = SubResource("RectangleShape2D_fh7hm")
