@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PepperTemplate" load_steps=3 format=3 uid="uid://deg5g8bg8kwxy"]
 
-[ext_resource type="Texture2D" uid="uid://dj3wnthf7jdd1" path="res://Assets/Art/Peppers/pepper_black_chalk.png" id="1_aryhp"]
+[ext_resource type="Texture2D" uid="uid://3yh4p8k28gvj" path="res://Assets/Art/Peppers/pepper_white_chalk.png" id="1_gdl53"]
 [ext_resource type="Script" path="res://Resources/pepper_template.gd" id="2_gj75k"]
 
 [resource]
@@ -10,6 +10,8 @@ required_light = 100
 recipe = Array[ExtResource("2_gj75k")]([])
 tooltip_text = ""
 is_pepper = true
-path_to_prefab = "res://Prefabs/Peppers/pepper_black_prefab.tscn"
-pepper_texture = ExtResource("1_aryhp")
+path_to_prefab = "res://Prefabs/Peppers/pepper_white_prefab.tscn"
+pepper_texture = ExtResource("1_gdl53")
 cost = 1
+growth_rate = 0
+growth_times = Array[int]([3])

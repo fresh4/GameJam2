@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/draggable.gd" id="1_dpea3"]
 
-[node name="DetectionArea" type="Area2D"]
+[node name="DraggableArea" type="Area2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_dpea3")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ReadableTemplate" load_steps=3 format=3 uid="uid://na008tjb8qpw"]
+
+[ext_resource type="Script" path="res://Resources/readable_template.gd" id="1_xxb6r"]
+[ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="2_rd26y"]
+
+[resource]
+script = ExtResource("1_xxb6r")
+texture = ExtResource("2_rd26y")

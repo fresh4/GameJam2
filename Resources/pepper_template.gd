@@ -15,3 +15,5 @@ class_name PepperTemplate
 @export var path_to_prefab: String ## The hardcoded path to the instantiatable prefab related to this resource
 @export var pepper_texture: Texture2D ## Texture to use for this pepper
 @export var cost: int = 1 ## Buying price for this pepper
+@export var growth_rate: int = 0 ## The rate at which a pepper grows (every round, two rounds, etc). Ignored if 0
+@export var growth_times: Array[int] ## The time(s) of day a pepper will grow during 

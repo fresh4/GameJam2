@@ -2,22 +2,26 @@ extends Node
 class_name Plot
 
 @export var plant_growth_progress_sprite: Texture2D
+@export var flower_sprite_texture: Texture2D
 
 @onready var plant_sprite: AnimatedSprite2D = %PlantSprite
 @onready var plot_sprite: Sprite2D = $PlotSprite
 @onready var pepper_positions: Node2D = %PepperPositions
+@onready var flower_positions: Node2D = $FlowerPositions
 
-var sunlight: int = 0 ## How much light is currently shining on the spot
+var is_crossbred: bool = false ## If the plant has been crossbred already
 var is_occupied: bool = false ## If this plot is occupied with a plant 
+var is_hovered: bool = false ## If a pepper is hovering over the empty plot
 var pepper: Pepper ## Reference to the specific pepper object growing in this plot 
 var growth_stage: int = 0 ## The current growth stage of the plant
-var is_hovered: bool = false ## If a pepper is hovering over the empty plot
-var harvest_yield: int = 0 ## How many peppers does this plant currently have
+var harvest_yield: int = 2 ## How many peppers does this plant currently have
+var rounds_since_growth: int = 0 ## How many rounds has passed since the last growth
 
 var pepper_scale_factor: float = 0.4 ## How much to scale down the pepper when on the flower
 var flower_points: Array[Node2D] ## List of possible positions to grow peppers on the plant
 
 ## Storing values for the original pepper placed in the plot
+var pepper_properties: PepperTemplate
 var pepper_texture: Texture2D 
 var pepper_scale: Vector2
 var pepper_prefab_path: String
@@ -38,13 +42,15 @@ func _input(event: InputEvent) -> void:
 		pepper_scale = pepper.sprite.scale
 		pepper_prefab_path = pepper.scene_file_path
 		original_pepper = load(pepper_prefab_path).instantiate()
+		pepper_properties = pepper.properties
 		pepper.queue_free()
 	# Harvest pepper if harvestable
 	elif event.is_action_pressed("click") and is_occupied and growth_stage == 3:
 		growth_stage = 0
 		is_occupied = false
+		is_crossbred = false
 		plant_sprite.frame = 0
-		for x in pepper_positions.get_children(): x.queue_free()
+		clean_up()
 		var prefab = load(pepper_prefab_path)
 		var offset: Vector2 = Vector2(50,0)
 		for idx in harvest_yield:
@@ -54,29 +60,56 @@ func _input(event: InputEvent) -> void:
 			Globals.inside.add_child(instance)
 			await get_tree().create_timer(0.085).timeout
 	# Handle crossbreeding if a flowering plant is applied a pepper
-	elif event.is_action_released("click") and pepper and is_occupied and growth_stage == 2:
+	elif event.is_action_released("click") and pepper and is_occupied and growth_stage == 2 and not is_crossbred:
 		for pepper_item in Globals.PEPPERS:
 			if pepper.properties in pepper_item.recipe and original_pepper.properties in pepper_item.recipe:
 				pepper_prefab_path = pepper_item.path_to_prefab
 				pepper_texture = pepper_item.pepper_texture
-				pepper.queue_free()
+				harvest_yield = 1 # Only yield one pepper of the new pepper if crossbreeding
+				pepper.queue_free() # Delete the held pepper
+				is_crossbred = true
 				break
 
 func progress_growth() -> void:
+	if pepper_properties.growth_rate and rounds_since_growth != pepper_properties.growth_rate: 
+		rounds_since_growth += 1
+		return
+	elif not pepper_properties.growth_rate and pepper_properties.growth_times:
+		if not Globals.game_manager.current_round in pepper_properties.growth_times:
+			return
 	var growth_stages_count = plant_sprite.sprite_frames.get_frame_count("default")
 	if plant_sprite.frame < growth_stages_count - 1:
 		plant_sprite.frame += 1
 		growth_stage += 1
+		rounds_since_growth = 0
 	else: return
-	# TODO: Depending on certain factors (quality of plant), grow X number of peppers when flowering
-	harvest_yield = 2 # Calculate ^, max 3
+
+	if harvest_yield > 1:
+		harvest_yield = 3 if randi_range(0, 10) <= 0.1 else 2
+	if plant_sprite.frame == growth_stages_count - 2:
+		add_flower(flower_sprite_texture)
 	if plant_sprite.frame == growth_stages_count - 1:
+		clean_up()
 		for idx in harvest_yield:
 			if idx > len(pepper_positions.get_children()) - 1: break
 			var new_sprite: Sprite2D = Sprite2D.new()
 			new_sprite.texture = pepper_texture
 			new_sprite.scale = pepper_scale * pepper_scale_factor
 			pepper_positions.get_children()[idx - 1].add_child(new_sprite)
+
+func add_flower(texture: Texture2D) -> void:
+	for idx in 2:
+		var new_sprite: Sprite2D = Sprite2D.new()
+		new_sprite.texture = texture
+		flower_positions.get_children()[idx - 1].add_child(new_sprite)
+
+func clean_up() -> void:
+	for position_node in pepper_positions.get_children():
+		for child in position_node.get_children():
+			child.queue_free()
+	for position_node in flower_positions.get_children():
+		for child in position_node.get_children():
+			child.queue_free()
 
 func _on_area_2d_body_entered(body: Pepper) -> void:
 	pepper = body

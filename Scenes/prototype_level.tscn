@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=53 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://m7eh4y3nfq08" path="res://Resources/daynightcycle-gradient-texture.tres" id="2_s4o85"]
 [ext_resource type="Texture2D" uid="uid://dbtbync1l7owp" path="res://Assets/Art/daynight_gradient.png" id="3_pouth"]
 [ext_resource type="PackedScene" uid="uid://dcq8rhm4my4js" path="res://Prefabs/plot_prefab.tscn" id="4_me6pj"]
+[ext_resource type="PackedScene" uid="uid://c5ijkm3ufqoua" path="res://Prefabs/Furniture/shelf.tscn" id="7_gg2fo"]
 [ext_resource type="Texture2D" uid="uid://c7828f4hjhfry" path="res://Assets/Art/Furniture/cauldron_white.png" id="9_bu2e7"]
 [ext_resource type="Texture2D" uid="uid://d2htbp6q6mi47" path="res://Assets/Art/Misc/splash.png" id="9_dk2dq"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
-[ext_resource type="Script" path="res://Scripts/draggable.gd" id="13_mxw4m"]
 [ext_resource type="PackedScene" uid="uid://18r43rnq3a4w" path="res://Prefabs/Peppers/pepper_blue_prefab.tscn" id="14_2lq2j"]
+[ext_resource type="PackedScene" uid="uid://sgf1mrx7htle" path="res://Prefabs/readable_area.tscn" id="14_xmhaq"]
 [ext_resource type="PackedScene" uid="uid://bnwrm2tptwr7b" path="res://Prefabs/Peppers/pepper_orange_prefab.tscn" id="15_2t1g6"]
 [ext_resource type="PackedScene" uid="uid://b5xmxlsinrtc2" path="res://Prefabs/Peppers/pepper_green_prefab.tscn" id="16_aeofj"]
 [ext_resource type="PackedScene" uid="uid://dcw00oywkbrob" path="res://Prefabs/Peppers/pepper_purple_prefab.tscn" id="16_vq104"]
@@ -23,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://cwetu0gpjql45" path="res://Prefabs/Peppers/pepper_brown_prefab.tscn" id="21_egy4y"]
 [ext_resource type="PackedScene" uid="uid://b8evs7c0sfjyp" path="res://Prefabs/coin_prefab.tscn" id="22_030br"]
 [ext_resource type="PackedScene" uid="uid://bpgk7sd08y3fy" path="res://Prefabs/jar.tscn" id="23_lq5y0"]
+[ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="24_kpn4k"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -162,8 +164,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
 size = Vector2(199, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yca1l"]
-size = Vector2(104, 76)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_627a8"]
+size = Vector2(108, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
+size = Vector2(111, 81)
 
 [node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point")]
 script = ExtResource("1_326k8")
@@ -210,19 +215,6 @@ plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 position = Vector2(640, 360)
 texture = ExtResource("1_hh70o")
 
-[node name="Jar" parent="Inside" instance=ExtResource("23_lq5y0")]
-position = Vector2(781, 607)
-
-[node name="CoinPrefab" parent="Inside" instance=ExtResource("22_030br")]
-position = Vector2(775, 464)
-
-[node name="Button" type="Button" parent="Inside"]
-offset_left = 32.0
-offset_top = 16.0
-offset_right = 160.0
-offset_bottom = 56.0
-text = "Progress Time"
-
 [node name="Bounds" type="StaticBody2D" parent="Inside"]
 position = Vector2(640, 696)
 
@@ -250,50 +242,67 @@ shape = SubResource("RectangleShape2D_wcolh")
 position = Vector2(-486, -8)
 shape = SubResource("RectangleShape2D_rgtae")
 
-[node name="Cauldron" type="StaticBody2D" parent="Inside"]
+[node name="PepperSpawnPoint" type="Node2D" parent="Inside"]
+position = Vector2(665, 496)
+
+[node name="Button" type="Button" parent="Inside"]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 160.0
+offset_bottom = 56.0
+text = "Progress Time"
+
+[node name="Furniture" type="Node2D" parent="Inside"]
+
+[node name="Shelf" parent="Inside/Furniture" instance=ExtResource("7_gg2fo")]
+position = Vector2(165, 203)
+
+[node name="Shelf2" parent="Inside/Furniture" instance=ExtResource("7_gg2fo")]
+position = Vector2(165, 351)
+
+[node name="Cauldron" type="StaticBody2D" parent="Inside/Furniture"]
 z_index = 2
 position = Vector2(1097, 718)
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("10_3prk6")
 
-[node name="AnimatedSplashSprite" type="AnimatedSprite2D" parent="Inside/Cauldron"]
+[node name="AnimatedSplashSprite" type="AnimatedSprite2D" parent="Inside/Furniture/Cauldron"]
 unique_name_in_owner = true
 position = Vector2(-1, -206)
 sprite_frames = SubResource("SpriteFrames_m25pg")
 frame = 14
 frame_progress = 1.0
 
-[node name="CauldronSprite" type="Sprite2D" parent="Inside/Cauldron"]
+[node name="CauldronSprite" type="Sprite2D" parent="Inside/Furniture/Cauldron"]
 texture = ExtResource("9_bu2e7")
 
-[node name="IngredientDetectionArea" type="Area2D" parent="Inside/Cauldron"]
+[node name="IngredientDetectionArea" type="Area2D" parent="Inside/Furniture/Cauldron"]
 position = Vector2(7, -30)
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Cauldron/IngredientDetectionArea"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Cauldron/IngredientDetectionArea"]
 position = Vector2(-8, -64)
 shape = SubResource("RectangleShape2D_cxyhx")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Cauldron"]
-visible = false
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Furniture/Cauldron"]
 polygon = PackedVector2Array(-128, -140, -131, -125, -121, -116, -113, -104, -115, -92, -133, -77, -149, -70, -165, -60, -171, -44, -171, -30, -166, -17, -167, 10, -166, 25, -160, 49, -148, 71, -131, 100, -117, 114, -77, 134, -40, 143, -11, 145, 31, 142, 55, 139, 81, 132, 114, 116, 133, 99, 151, 69, 160, 36, 162, 1, 164, -15, 172, -28, 171, -46, 167, -58, 149, -69, 132, -78, 118, -84, 113, -92, 114, -105, 124, -121, 126, -138, 114, -140, 97, -55, -104, -57, -110, -105)
 
-[node name="IngredientsAdded" type="Node2D" parent="Inside/Cauldron"]
+[node name="IngredientsAdded" type="Node2D" parent="Inside/Furniture/Cauldron"]
 position = Vector2(0, -44)
 
-[node name="Ingredient1" type="Sprite2D" parent="Inside/Cauldron/IngredientsAdded"]
+[node name="Ingredient1" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
 position = Vector2(-73, -14)
 
-[node name="Ingredient2" type="Sprite2D" parent="Inside/Cauldron/IngredientsAdded"]
+[node name="Ingredient2" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
 position = Vector2(-9, -14)
 
-[node name="Ingredient3" type="Sprite2D" parent="Inside/Cauldron/IngredientsAdded"]
+[node name="Ingredient3" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
 position = Vector2(55, -14)
 
-[node name="MixButton" type="Button" parent="Inside/Cauldron"]
+[node name="MixButton" type="Button" parent="Inside/Furniture/Cauldron"]
 offset_left = 127.0
 offset_top = -118.0
 offset_right = 164.0
@@ -301,61 +310,71 @@ offset_bottom = -87.0
 disabled = true
 text = "Mix"
 
-[node name="Notice" type="RigidBody2D" parent="Inside"]
-position = Vector2(232, 424)
+[node name="Draggables" type="Node2D" parent="Inside"]
+
+[node name="Notice" type="RigidBody2D" parent="Inside/Draggables"]
+position = Vector2(470, 607)
 collision_mask = 3
 contact_monitor = true
 
-[node name="Notice" type="Sprite2D" parent="Inside/Notice"]
+[node name="Notice" type="Sprite2D" parent="Inside/Draggables/Notice"]
 texture = ExtResource("12_ah4ji")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Notice"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Draggables/Notice"]
 visible = false
 polygon = PackedVector2Array(-56, -40, 56, -42, 58, 43, -49, 44)
 
-[node name="DetectionArea" type="Area2D" parent="Inside/Notice"]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("13_mxw4m")
+[node name="DraggableArea" parent="Inside/Draggables/Notice" instance=ExtResource("24_kpn4k")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Notice/DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Draggables/Notice/DraggableArea"]
 visible = false
-position = Vector2(1, 2)
-shape = SubResource("RectangleShape2D_yca1l")
+position = Vector2(2, 2.5)
+shape = SubResource("RectangleShape2D_627a8")
 
-[node name="Pepper" parent="Inside" instance=ExtResource("16_aeofj")]
-position = Vector2(527, 548)
+[node name="ReadableArea" parent="Inside/Draggables/Notice" instance=ExtResource("14_xmhaq")]
 
-[node name="RigidBody2D" parent="Inside" instance=ExtResource("1_iiofd")]
-position = Vector2(576, 544)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Draggables/Notice/ReadableArea"]
+position = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_4lgaa")
 
-[node name="PepperSpawnPoint" type="Node2D" parent="Inside"]
-position = Vector2(665, 496)
+[node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
+position = Vector2(775, 464)
 
-[node name="Pepper2" parent="Inside" instance=ExtResource("14_2lq2j")]
-position = Vector2(72, 600)
+[node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
+position = Vector2(781, 607)
 
-[node name="Pepper3" parent="Inside" instance=ExtResource("15_2t1g6")]
-position = Vector2(136, 584)
+[node name="Peppers" type="Node2D" parent="Inside"]
 
-[node name="Pepper4" parent="Inside" instance=ExtResource("16_vq104")]
-position = Vector2(184, 584)
+[node name="Pepper" parent="Inside/Peppers" instance=ExtResource("16_aeofj")]
+position = Vector2(144, 302)
 
-[node name="Pepper5" parent="Inside" instance=ExtResource("17_eq17a")]
-position = Vector2(224, 584)
+[node name="RigidBody2D" parent="Inside/Peppers" instance=ExtResource("1_iiofd")]
+position = Vector2(97, 306)
 
-[node name="Pepper6" parent="Inside" instance=ExtResource("18_ou18d")]
-position = Vector2(280, 592)
+[node name="Pepper2" parent="Inside/Peppers" instance=ExtResource("14_2lq2j")]
+position = Vector2(50, 318)
 
-[node name="Pepper7" parent="Inside" instance=ExtResource("19_un27w")]
-position = Vector2(96, 520)
+[node name="Pepper3" parent="Inside/Peppers" instance=ExtResource("15_2t1g6")]
+position = Vector2(265, 162)
 
-[node name="Pepper8" parent="Inside" instance=ExtResource("20_ukipr")]
-position = Vector2(136, 512)
+[node name="Pepper4" parent="Inside/Peppers" instance=ExtResource("16_vq104")]
+position = Vector2(221, 151)
 
-[node name="Pepper9" parent="Inside" instance=ExtResource("21_egy4y")]
-position = Vector2(192, 512)
+[node name="Pepper5" parent="Inside/Peppers" instance=ExtResource("17_eq17a")]
+position = Vector2(205, 301)
+
+[node name="Pepper6" parent="Inside/Peppers" instance=ExtResource("18_ou18d")]
+position = Vector2(142, 151)
+
+[node name="Pepper7" parent="Inside/Peppers" instance=ExtResource("19_un27w")]
+position = Vector2(185, 155)
+
+[node name="Pepper8" parent="Inside/Peppers" instance=ExtResource("20_ukipr")]
+position = Vector2(96, 154)
+
+[node name="Pepper9" parent="Inside/Peppers" instance=ExtResource("21_egy4y")]
+position = Vector2(42, 155)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
-[connection signal="body_entered" from="Inside/Cauldron/IngredientDetectionArea" to="Inside/Cauldron" method="_on_ingredient_detection_area_body_entered"]
-[connection signal="pressed" from="Inside/Cauldron/MixButton" to="Inside/Cauldron" method="_on_mix_button_pressed"]
+[connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]
+[connection signal="pressed" from="Inside/Furniture/Cauldron/MixButton" to="Inside/Furniture/Cauldron" method="_on_mix_button_pressed"]

@@ -1,7 +1,7 @@
 extends Node
 class_name GameManager
 
-const MAX_ROUNDS = 5
+const MAX_ROUNDS = 6
 
 @export var gradient_texture: GradientTexture1D
 @export var pepper_spawn_point: Node2D
@@ -9,9 +9,10 @@ const MAX_ROUNDS = 5
 @onready var outside: Node2D = $Outside
 @onready var inside: Node2D = $Inside
 @onready var daynight_gradient: Sprite2D = %DaynightGradient
+@onready var button: Button = %Button
 
 var wage: int = 1 ## How much gold to pay per day
-var current_round: int = 0 ## The time of day, ranges from 0-5
+var current_round: int = 0 ## The time of day, ranges from 0-6
 var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
@@ -41,9 +42,14 @@ func progress_time() -> void:
 	
 	print("Day: day ", day, " | round: ", current_round, " | gradient light value: ", value)
 	
+	button.disabled = true
+	
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(outside, "modulate", gradient_texture.gradient.sample(value), progress_delay).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(daynight_gradient, "rotation", radians, progress_delay).set_ease(Tween.EASE_IN_OUT)
+	
+	await tween.finished
+	button.disabled = false
 
 func calculate_gradient_value() -> float:
 	var x: float = PI * current_round * (1 / float(MAX_ROUNDS))
@@ -52,7 +58,7 @@ func calculate_gradient_value() -> float:
 
 # WARNING: Temporary debug button to progress time
 func _on_button_pressed() -> void:
+	progress_time()
 	for plot in plots:
 		if plot.is_occupied:
 			plot.progress_growth()
-	progress_time()

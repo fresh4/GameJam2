@@ -1,5 +1,11 @@
 extends Node
 
+enum READABLE_TYPE { LETTER }
+
+const readables: Dictionary = {
+	0: "res://Prefabs/Readables/Templates/letter.tscn"
+}
+
 var PEPPERS: Array[PepperTemplate]
 var SAUCE_RECIPES: Array[SauceTemplate]
 

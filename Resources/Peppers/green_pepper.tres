@@ -15,3 +15,5 @@ is_pepper = true
 path_to_prefab = "res://Prefabs/Peppers/pepper_green_prefab.tscn"
 pepper_texture = ExtResource("1_itt8d")
 cost = 1
+growth_rate = 0
+growth_times = Array[int]([1])
