@@ -15,3 +15,4 @@ pepper_texture = ExtResource("1_bvidw")
 cost = 1
 growth_rate = 1
 growth_times = Array[int]([])
+flower_color = Color(0.733333, 0.0509804, 0.0509804, 1)

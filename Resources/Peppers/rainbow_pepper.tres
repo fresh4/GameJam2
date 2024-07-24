@@ -13,3 +13,6 @@ is_pepper = true
 path_to_prefab = "res://Prefabs/Peppers/pepper_rainbow_prefab.tscn"
 pepper_texture = ExtResource("1_ihjfj")
 cost = 1
+growth_rate = 0
+growth_times = Array[int]([])
+flower_color = Color(1, 0.601563, 0.993774, 1)

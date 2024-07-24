@@ -8,6 +8,7 @@ class_name Plot
 @onready var plot_sprite: Sprite2D = $PlotSprite
 @onready var pepper_positions: Node2D = %PepperPositions
 @onready var flower_positions: Node2D = $FlowerPositions
+@onready var particles: CPUParticles2D = $Particles
 
 var is_crossbred: bool = false ## If the plant has been crossbred already
 var is_occupied: bool = false ## If this plot is occupied with a plant 
@@ -18,7 +19,8 @@ var harvest_yield: int = 2 ## How many peppers does this plant currently have
 var rounds_since_growth: int = 0 ## How many rounds has passed since the last growth
 
 var pepper_scale_factor: float = 0.4 ## How much to scale down the pepper when on the flower
-var flower_points: Array[Node2D] ## List of possible positions to grow peppers on the plant
+var pepper_points: Array[Node2D] ## List of possible positions to grow peppers on the plant
+var flower_points: Array[Node2D] ## List of possible positions to grow flowers on the plant
 
 ## Storing values for the original pepper placed in the plot
 var pepper_properties: PepperTemplate
@@ -29,6 +31,8 @@ var original_pepper: Pepper
 
 func _ready() -> void:
 	for node in pepper_positions.get_children():
+		pepper_points.append(node)
+	for node in flower_positions.get_children():
 		flower_points.append(node)
 
 func _input(event: InputEvent) -> void:
@@ -66,6 +70,9 @@ func _input(event: InputEvent) -> void:
 				pepper_prefab_path = pepper_item.path_to_prefab
 				pepper_texture = pepper_item.pepper_texture
 				harvest_yield = 1 # Only yield one pepper of the new pepper if crossbreeding
+				for child in flower_points[0].get_children():
+					if child is Sprite2D:
+						child.modulate = pepper.properties.flower_color
 				pepper.queue_free() # Delete the held pepper
 				is_crossbred = true
 				break
@@ -82,6 +89,7 @@ func progress_growth() -> void:
 		plant_sprite.frame += 1
 		growth_stage += 1
 		rounds_since_growth = 0
+		particles.emitting = true
 	else: return
 
 	if harvest_yield > 1:
@@ -101,6 +109,7 @@ func add_flower(texture: Texture2D) -> void:
 	for idx in 2:
 		var new_sprite: Sprite2D = Sprite2D.new()
 		new_sprite.texture = texture
+		new_sprite.modulate = pepper_properties.flower_color
 		flower_positions.get_children()[idx - 1].add_child(new_sprite)
 
 func clean_up() -> void:

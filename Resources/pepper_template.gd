@@ -17,3 +17,4 @@ class_name PepperTemplate
 @export var cost: int = 1 ## Buying price for this pepper
 @export var growth_rate: int = 0 ## The rate at which a pepper grows (every round, two rounds, etc). Ignored if 0
 @export var growth_times: Array[int] ## The time(s) of day a pepper will grow during 
+@export var flower_color: Color ## The color to make the flower
