@@ -63,4 +63,11 @@ func _on_mix_button_pressed() -> void:
 		ingredients = []
 		mix_button.disabled = true
 		AudioManager.play_random(AudioManager.SFX_BREWS)
-		break
+		return
+	# If the recipe is invalid
+	for i in ingredients:
+		print(i.name)
+		var pepper_prefab: Pepper = load(i.path_to_prefab).instantiate()
+		pepper_prefab.global_position = ingredient_detection_area.global_position
+		Globals.inside.add_child(pepper_prefab)
+		await get_tree().create_timer(0.5).timeout
