@@ -61,9 +61,12 @@ func progress_time() -> void:
 	await tween.finished
 	button.disabled = false
 
+@warning_ignore("integer_division")
 func handle_new_day() -> void:
 	# Set the calendar to match the current new day
 	calendar_label.text = str(day)
+	
+	wage = 1 + len(Globals.discovered_sauces) / 2
 	
 	# Spawn a number of coins equal to the value of the wage
 	for idx in wage:
@@ -91,15 +94,13 @@ func handle_new_day() -> void:
 		
 		letter.position = Vector2(640, 360)
 		readable.properties = ReadableTemplate.new()
-		readable.properties.texture = load("res://Assets/Art/Letters/day_1.png")
+		readable.properties.texture = Globals.unread_letters[0]
 		readable.properties.has_recipe = true
 		readable.properties.sauce = chosen_sauce
 		Globals.discovered_sauces.append(chosen_sauce)
+		Globals.unread_letters.pop_front()
 		
 		inside.add_child(letter)
-	# If we want to give a recipe, get a random valid one from the list of all sauces
-	# that isn't already in their discovered list and set the recipe_card.properties to it
-	# Then add it to the list
 
 func calculate_gradient_value() -> float:
 	var x: float = PI * current_round * (1 / float(MAX_ROUNDS))

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://blhxcyopw51fc"]
+[gd_scene load_steps=16 format=3 uid="uid://blhxcyopw51fc"]
 
 [ext_resource type="Texture2D" uid="uid://jo6wkeaijuyh" path="res://Assets/Art/Casette/casette_button.png" id="1_h5op2"]
 [ext_resource type="Script" path="res://Scripts/casette_player.gd" id="1_ucm2n"]
 [ext_resource type="Texture2D" uid="uid://c32bhcxjcu5xt" path="res://Assets/Art/Casette/casette_body.png" id="2_st30h"]
 [ext_resource type="Texture2D" uid="uid://benfnxc6kllby" path="res://Assets/Art/Casette/wheel_1.png" id="3_xqp36"]
 [ext_resource type="Texture2D" uid="uid://cbh561tytgt2a" path="res://Assets/Art/Casette/wheel_2.png" id="4_dmq11"]
+[ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="6_v6vv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x5f7"]
 size = Vector2(146, 89)
@@ -110,7 +111,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upaac"]
 size = Vector2(18, 25)
 
-[node name="CasettePlayer" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijalu"]
+size = Vector2(149, 90)
+
+[node name="CasettePlayer" type="RigidBody2D"]
+mass = 3.0
 script = ExtResource("1_ucm2n")
 
 [node name="Button" type="Sprite2D" parent="."]
@@ -145,8 +150,17 @@ libraries = {
 }
 
 [node name="ButtonArea" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea"]
 visible = false
 position = Vector2(76, 1)
 shape = SubResource("RectangleShape2D_upaac")
+
+[node name="DraggableArea" parent="." instance=ExtResource("6_v6vv6")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DraggableArea"]
+position = Vector2(-6.5, 21)
+shape = SubResource("RectangleShape2D_ijalu")
+
+[connection signal="body_entered" from="ButtonArea" to="." method="_on_button_area_body_entered"]

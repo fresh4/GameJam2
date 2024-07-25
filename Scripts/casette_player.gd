@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends RigidBody2D
 
 @onready var button_area: Area2D = $ButtonArea
 @onready var wheels_animation_player: AnimationPlayer = $WheelsAnimationPlayer
@@ -34,3 +34,6 @@ func button_hover():
 	
 func button_exit():
 	hovered = false
+
+func _on_button_area_body_entered(_body: Node2D) -> void:
+	toggle_player()

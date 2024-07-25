@@ -8,6 +8,10 @@ const HAND_OPEN = preload("res://Assets/Art/Cursors/hand_open.png")
 const HAND_CLOSED = preload("res://Assets/Art/Cursors/hand_closed.png")
 const DEFAULT = preload("res://Assets/Art/Cursors/pointer_c.png")
 
+var unread_letters: Array = [
+	preload("res://Assets/Art/Letters/day_1.png")
+]
+
 const readables: Dictionary = {
 	0: "res://Prefabs/Readables/Templates/letter.tscn"
 }

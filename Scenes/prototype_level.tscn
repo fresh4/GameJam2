@@ -449,18 +449,18 @@ texture = ExtResource("17_l7yy5")
 position = Vector2(467, 633)
 
 [node name="CasettePlayer" parent="Inside/Furniture" instance=ExtResource("20_ph76f")]
-position = Vector2(681, 600)
+position = Vector2(99, 601)
 
 [node name="Draggables" type="Node2D" parent="Inside"]
 
 [node name="CoinPrefab2" parent="Inside/Draggables" instance=ExtResource("22_030br")]
-position = Vector2(227, 488)
+position = Vector2(821, 502)
 
 [node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
-position = Vector2(225, 521)
+position = Vector2(828, 527)
 
 [node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
-position = Vector2(228, 601)
+position = Vector2(820, 603)
 
 [node name="Peppers" type="Node2D" parent="Inside"]
 
@@ -497,7 +497,7 @@ position = Vector2(42, 155)
 [node name="Tutorials" type="Node2D" parent="Inside"]
 
 [node name="Notice" type="RigidBody2D" parent="Inside/Tutorials"]
-position = Vector2(95, 614)
+position = Vector2(585, 610)
 collision_mask = 3
 contact_monitor = true
 
@@ -606,6 +606,9 @@ autoplay = true
 attenuation = 1.41421
 panning_strength = 0.3
 bus = &"SFX"
+
+[node name="Shelf" parent="." instance=ExtResource("7_gg2fo")]
+position = Vector2(1115, 348)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]
