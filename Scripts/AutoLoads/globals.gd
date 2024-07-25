@@ -3,6 +3,10 @@ extends Node
 enum READABLE_TYPE { LETTER }
 
 const SAUCE_PREFAB = preload("res://Prefabs/sauce_prefab.tscn")
+const POINTER = preload("res://Assets/Art/Cursors/hand_point.png")
+const HAND_OPEN = preload("res://Assets/Art/Cursors/hand_open.png")
+const HAND_CLOSED = preload("res://Assets/Art/Cursors/hand_closed.png")
+const DEFAULT = preload("res://Assets/Art/Cursors/pointer_c.png")
 
 const readables: Dictionary = {
 	0: "res://Prefabs/Readables/Templates/letter.tscn"

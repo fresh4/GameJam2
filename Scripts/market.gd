@@ -40,12 +40,12 @@ func purchase() -> void:
 		if coins >= basket.pepper_sold.cost:
 			var num_of_peppers_to_sell = int(coins/basket.pepper_sold.cost)
 			var total_cost = num_of_peppers_to_sell * basket.pepper_sold.cost
-			var pepper: Pepper = load(basket.pepper_sold.path_to_prefab).instantiate()
-			pepper.position = Globals.pepper_spawn_point
 			for idx in num_of_peppers_to_sell:
+				var pepper: Pepper = load(basket.pepper_sold.path_to_prefab).instantiate()
+				pepper.position = Globals.pepper_spawn_point
 				Globals.inside.add_child(pepper)
 			for idx in total_cost:
-				basket.basket_area.get_overlapping_bodies()[0].queue_free()
+				basket.basket_area.get_overlapping_bodies()[idx].queue_free()
 
 func toggle_basket_collider(value: bool) -> void:
 	for basket in baskets:

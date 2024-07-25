@@ -28,9 +28,9 @@ func _input(event: InputEvent) -> void:
 		unread_sprite.visible = false
 
 func _on_mouse_entered() -> void:
-	Globals.game_manager.tooltips.toggle_hint(1, true)
+	Globals.game_manager.tooltips.toggle_hint(1, true, properties.hint)
 	hovering = true
 
 func _on_mouse_exited() -> void:
-	Globals.game_manager.tooltips.toggle_hint(1, false)
+	Globals.game_manager.tooltips.toggle_hint(1, false, properties.hint)
 	hovering = false

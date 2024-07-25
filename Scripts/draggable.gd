@@ -1,11 +1,6 @@
 extends Area2D
 class_name DraggableObject
 
-const POINTER = preload("res://Assets/Art/Cursors/pointer.png")
-const HAND_OPEN = preload("res://Assets/Art/Cursors/hand_open.png")
-const HAND_CLOSED = preload("res://Assets/Art/Cursors/hand_closed.png")
-const DEFAULT = preload("res://Assets/Art/Cursors/pointer_c.png")
-
 var parent: RigidBody2D
 var hovered: bool = false
 var dragging: bool = false
@@ -47,11 +42,11 @@ func rotate_object(force: float) -> void:
 # script which has many instanced objects running the same code
 func set_cursor() -> void:
 	if dragging:
-		Input.set_custom_mouse_cursor(HAND_CLOSED, Input.CURSOR_ARROW, Vector2(32,32))
+		Input.set_custom_mouse_cursor(Globals.HAND_CLOSED, Input.CURSOR_ARROW, Vector2(32,32))
 	elif hovered and not dragging:
-		Input.set_custom_mouse_cursor(HAND_OPEN, Input.CURSOR_ARROW, Vector2(32,32))
+		Input.set_custom_mouse_cursor(Globals.HAND_OPEN, Input.CURSOR_ARROW, Vector2(32,32))
 	elif not hovered and not dragging:
-		Input.set_custom_mouse_cursor(DEFAULT, Input.CURSOR_ARROW, Vector2(4,4))
+		Input.set_custom_mouse_cursor(Globals.DEFAULT, Input.CURSOR_ARROW, Vector2(4,4))
 	
 func _on_mouse_entered() -> void:
 	hovered = true

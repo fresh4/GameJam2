@@ -22,5 +22,5 @@ func deactivate() -> void:
 	queue_free()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("exit"):
+	if event.is_action("exit") or event.is_action("click"):
 		deactivate()

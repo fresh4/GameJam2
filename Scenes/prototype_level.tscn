@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=73 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -16,11 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
 [ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="12_q31b7"]
 [ext_resource type="PackedScene" uid="uid://18r43rnq3a4w" path="res://Prefabs/Peppers/pepper_blue_prefab.tscn" id="14_2lq2j"]
+[ext_resource type="Script" path="res://Scripts/calendar.gd" id="14_grgwa"]
 [ext_resource type="PackedScene" uid="uid://sgf1mrx7htle" path="res://Prefabs/readable_area.tscn" id="14_xmhaq"]
 [ext_resource type="PackedScene" uid="uid://bnwrm2tptwr7b" path="res://Prefabs/Peppers/pepper_orange_prefab.tscn" id="15_2t1g6"]
 [ext_resource type="PackedScene" uid="uid://b5xmxlsinrtc2" path="res://Prefabs/Peppers/pepper_green_prefab.tscn" id="16_aeofj"]
+[ext_resource type="Texture2D" uid="uid://dwe4h05uom6uu" path="res://Assets/Art/UI/harvests_timings.png" id="16_t5su8"]
 [ext_resource type="PackedScene" uid="uid://dcw00oywkbrob" path="res://Prefabs/Peppers/pepper_purple_prefab.tscn" id="16_vq104"]
 [ext_resource type="PackedScene" uid="uid://mc1b6q72y3tb" path="res://Prefabs/Peppers/pepper_rainbow_prefab.tscn" id="17_eq17a"]
+[ext_resource type="Texture2D" uid="uid://b1ni7ykmj1c82" path="res://Assets/Art/UI/circle.png" id="17_l7yy5"]
 [ext_resource type="PackedScene" uid="uid://cjrwj8dd28vny" path="res://Prefabs/Peppers/pepper_white_prefab.tscn" id="18_ou18d"]
 [ext_resource type="PackedScene" uid="uid://bf8s8mk21u7ya" path="res://Prefabs/Peppers/pepper_yellow_prefab.tscn" id="19_un27w"]
 [ext_resource type="PackedScene" uid="uid://cshxev1010rce" path="res://Prefabs/Peppers/pepper_black_prefab.tscn" id="20_ukipr"]
@@ -34,6 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://chd5c4fjvcqr8" path="res://Assets/Art/UI/mouse_left_click.png" id="30_fmp4x"]
 [ext_resource type="Texture2D" uid="uid://c0ccswxhnqgp8" path="res://Assets/Art/UI/mouse_right_click.png" id="31_ddoa8"]
 [ext_resource type="Resource" uid="uid://bqujb5idppfkp" path="res://Resources/Readables/cauldron_tutorial.tres" id="31_owuli"]
+[ext_resource type="Script" path="res://Resources/readable_template.gd" id="32_6qb61"]
+[ext_resource type="Texture2D" uid="uid://cftr6tkqvfhja" path="res://Assets/Art/Letters/shop_tutorial.png" id="33_4ubbp"]
+[ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -173,6 +179,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
 size = Vector2(199, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8f4"]
+size = Vector2(84, 96)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_627a8"]
 size = Vector2(108, 81)
 
@@ -181,6 +190,19 @@ size = Vector2(111, 81)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
 size = Vector2(70, 55)
+
+[sub_resource type="Resource" id="Resource_essyl"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("33_4ubbp")
+hint = "Read Tutorial"
+
+[sub_resource type="Resource" id="Resource_ojy8l"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("37_3ftwe")
+hint = "Read Tutorial"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e6vk"]
+size = Vector2(82, 88)
 
 [node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point")]
 script = ExtResource("1_326k8")
@@ -264,6 +286,7 @@ position = Vector2(665, 496)
 
 [node name="Button" type="Button" parent="Inside"]
 unique_name_in_owner = true
+visible = false
 offset_left = 32.0
 offset_top = 16.0
 offset_right = 160.0
@@ -328,8 +351,9 @@ disabled = true
 text = "Mix"
 
 [node name="Calendar" type="Sprite2D" parent="Inside/Furniture"]
-position = Vector2(1139, 100)
+position = Vector2(1139, 135)
 texture = ExtResource("11_2py5e")
+script = ExtResource("14_grgwa")
 
 [node name="CalendarLabel" type="Label" parent="Inside/Furniture/Calendar"]
 unique_name_in_owner = true
@@ -343,6 +367,38 @@ theme_override_font_sizes/font_size = 51
 text = "30"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Inside/Furniture/Calendar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Calendar/Area2D"]
+shape = SubResource("RectangleShape2D_7r8f4")
+
+[node name="HarvestsTimings" type="Sprite2D" parent="Inside/Furniture/Calendar"]
+modulate = Color(1, 1, 1, 0.72549)
+position = Vector2(1, 5)
+texture = ExtResource("16_t5su8")
+
+[node name="Position1" type="Node2D" parent="Inside/Furniture/Calendar/HarvestsTimings"]
+position = Vector2(-12, -91)
+
+[node name="Position2" type="Node2D" parent="Inside/Furniture/Calendar/HarvestsTimings"]
+position = Vector2(76, -45)
+
+[node name="Position3" type="Node2D" parent="Inside/Furniture/Calendar/HarvestsTimings"]
+position = Vector2(67, 42)
+
+[node name="Position4" type="Node2D" parent="Inside/Furniture/Calendar/HarvestsTimings"]
+position = Vector2(-10, 78)
+
+[node name="Position5" type="Node2D" parent="Inside/Furniture/Calendar/HarvestsTimings"]
+position = Vector2(-85, 38)
+
+[node name="Position6" type="Node2D" parent="Inside/Furniture/Calendar/HarvestsTimings"]
+position = Vector2(-82, -39)
+
+[node name="Circle" type="Sprite2D" parent="Inside/Furniture/Calendar"]
+position = Vector2(-11, -86)
+texture = ExtResource("17_l7yy5")
 
 [node name="Bell" parent="Inside/Furniture" instance=ExtResource("29_27qd7")]
 position = Vector2(467, 633)
@@ -412,18 +468,46 @@ position = Vector2(96, 154)
 [node name="Pepper9" parent="Inside/Peppers" instance=ExtResource("21_egy4y")]
 position = Vector2(42, 155)
 
-[node name="Note" type="Sprite2D" parent="Inside"]
-position = Vector2(880, 643)
+[node name="Tutorials" type="Node2D" parent="Inside"]
+
+[node name="CauldronNote" type="Sprite2D" parent="Inside/Tutorials"]
+position = Vector2(927, 616)
+rotation = -0.509553
+scale = Vector2(0.68, 0.68)
 texture = ExtResource("30_7y2k1")
 
-[node name="ReadableArea" parent="Inside/Note" instance=ExtResource("14_xmhaq")]
+[node name="ReadableArea" parent="Inside/Tutorials/CauldronNote" instance=ExtResource("14_xmhaq")]
 position = Vector2(-46, 0)
 properties = ExtResource("31_owuli")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Note/ReadableArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/CauldronNote/ReadableArea"]
 visible = false
 position = Vector2(-9, 4.5)
 shape = SubResource("RectangleShape2D_2qhkc")
+
+[node name="ShopNote" type="Sprite2D" parent="Inside/Tutorials"]
+position = Vector2(403, 627)
+rotation = 0.320866
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("30_7y2k1")
+
+[node name="ReadableArea" parent="Inside/Tutorials/ShopNote" instance=ExtResource("14_xmhaq")]
+position = Vector2(-46, 0)
+properties = SubResource("Resource_essyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/ShopNote/ReadableArea"]
+visible = false
+position = Vector2(-9, 4.5)
+shape = SubResource("RectangleShape2D_2qhkc")
+
+[node name="CalendarNote" parent="Inside/Tutorials" instance=ExtResource("14_xmhaq")]
+position = Vector2(1147, 120)
+properties = SubResource("Resource_ojy8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/CalendarNote"]
+visible = false
+position = Vector2(-10, 15)
+shape = SubResource("RectangleShape2D_0e6vk")
 
 [node name="Tooltips" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -463,6 +547,11 @@ text = "Read Letter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CoinPrefab" parent="." instance=ExtResource("22_030br")]
+position = Vector2(227, 488)
+
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]
 [connection signal="pressed" from="Inside/Furniture/Cauldron/MixButton" to="Inside/Furniture/Cauldron" method="_on_mix_button_pressed"]
+[connection signal="mouse_entered" from="Inside/Furniture/Calendar/Area2D" to="Inside/Furniture/Calendar" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Inside/Furniture/Calendar/Area2D" to="Inside/Furniture/Calendar" method="_on_area_2d_mouse_exited"]
