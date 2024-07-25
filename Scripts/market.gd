@@ -44,6 +44,7 @@ func purchase() -> void:
 				var pepper: Pepper = load(basket.pepper_sold.path_to_prefab).instantiate()
 				pepper.position = Globals.pepper_spawn_point
 				Globals.inside.add_child(pepper)
+				AudioManager.play_random(AudioManager.POPS)
 			for idx in total_cost:
 				basket.basket_area.get_overlapping_bodies()[idx].queue_free()
 

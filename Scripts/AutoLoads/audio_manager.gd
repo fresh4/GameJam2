@@ -1,5 +1,6 @@
 extends Node
 
+#region Audio Imports
 const BUBBLING_CAULDRON = preload("res://Assets/SFX/Cauldron/bubbling_cauldron.ogg")
 const SAUCE_BREW_1 = preload("res://Assets/SFX/Cauldron/sauce_brew_1.ogg")
 const SAUCE_BREW_2 = preload("res://Assets/SFX/Cauldron/sauce_brew_2.ogg")
@@ -8,6 +9,21 @@ const SPLOOSH_1 = preload("res://Assets/SFX/Cauldron/sploosh_1.ogg")
 const SPLOOSH_2 = preload("res://Assets/SFX/Cauldron/sploosh_2.ogg")
 const SPLOOSH_3 = preload("res://Assets/SFX/Cauldron/sploosh_3.ogg")
 
+const BUTTON_A = preload("res://Assets/SFX/Pops/button_A.ogg")
+const BUTTON_B = preload("res://Assets/SFX/Pops/button_B.ogg")
+const BUTTON_C = preload("res://Assets/SFX/Pops/button_C.ogg")
+const BUTTON_CLICK_A = preload("res://Assets/SFX/Pops/button_click_A.ogg")
+const BUTTON_CLICK_B = preload("res://Assets/SFX/Pops/button_click_B.ogg")
+
+const POPS: Array[AudioStream] = [
+	BUTTON_A,
+	BUTTON_B,
+	BUTTON_C
+]
+const CLICKS: Array[AudioStream] = [
+	BUTTON_CLICK_A,
+	BUTTON_CLICK_B
+]
 const SFX_BREWS: Array[AudioStream] = [
 	SAUCE_BREW_1,
 	SAUCE_BREW_2
@@ -17,7 +33,7 @@ const SFX_SPLASHES: Array[AudioStream] = [
 	SPLOOSH_2,
 	SPLOOSH_3
 ]
-
+#endregion
 var menu_music_player: AudioStreamPlayer
 var game_music_player: AudioStreamPlayer
 var victory_music_player: AudioStreamPlayer

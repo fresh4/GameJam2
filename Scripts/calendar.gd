@@ -20,7 +20,6 @@ func set_hover(value: bool) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and hovering and not disabled:
-		print(Globals.game_manager.current_round)
 		Globals.game_manager._on_button_pressed()
 		var point = Globals.game_manager.current_round + 1
 		if point > 5: point = 0

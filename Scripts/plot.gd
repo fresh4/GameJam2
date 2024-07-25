@@ -48,6 +48,7 @@ func _input(event: InputEvent) -> void:
 		original_pepper = load(pepper_prefab_path).instantiate()
 		pepper_properties = pepper.properties
 		pepper.queue_free()
+		AudioManager.play_random(AudioManager.POPS)
 	# Harvest pepper if harvestable
 	elif event.is_action_pressed("click") and is_occupied and growth_stage == 3:
 		growth_stage = 0
@@ -62,6 +63,7 @@ func _input(event: InputEvent) -> void:
 			instance.position = Globals.pepper_spawn_point + idx*offset
 			instance.rotation = PI * randf_range(0, 2)
 			Globals.inside.add_child(instance)
+			AudioManager.play_random(AudioManager.CLICKS)
 			await get_tree().create_timer(0.085).timeout
 	# Handle crossbreeding if a flowering plant is applied a pepper
 	elif event.is_action_released("click") and pepper and is_occupied and growth_stage == 2 and not is_crossbred:
@@ -73,6 +75,7 @@ func _input(event: InputEvent) -> void:
 				for child in flower_points[0].get_children():
 					if child is Sprite2D:
 						child.modulate = pepper.properties.flower_color
+				AudioManager.play_random(AudioManager.POPS)
 				pepper.queue_free() # Delete the held pepper
 				is_crossbred = true
 				break
