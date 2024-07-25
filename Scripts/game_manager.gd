@@ -1,6 +1,8 @@
 extends Node
 class_name GameManager
 
+const MAIL = preload("res://Prefabs/mail.tscn")
+
 const MAX_ROUNDS = 6
 
 @export var gradient_texture: GradientTexture1D
@@ -23,6 +25,8 @@ var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
 
 func _ready() -> void:
+	#handle_new_day()
+	Globals.discovered_sauces.append(Globals.SAUCES[0])
 	Globals.game_manager = self
 	Globals.outside = outside
 	Globals.inside = inside
@@ -71,6 +75,31 @@ func handle_new_day() -> void:
 		await get_tree().create_timer(0.1).timeout
 	
 	# Spawn a letter for the day
+	if day % 2:
+		# Choose a sauce to reveal at random
+		var undiscovered_recipes: Array[SauceTemplate] = []
+		for sauce in Globals.SAUCES:
+			if sauce not in Globals.discovered_sauces:
+				undiscovered_recipes.append(sauce)
+		
+		var chosen_sauce: SauceTemplate = undiscovered_recipes.pick_random() as SauceTemplate
+		
+		# Generate the letter
+		var letter = MAIL.instantiate()
+		var readable: ReadableArea = null
+		for child in letter.get_children(): if child is ReadableArea: readable = child
+		
+		letter.position = Vector2(640, 360)
+		readable.properties = ReadableTemplate.new()
+		readable.properties.texture = load("res://Assets/Art/Letters/day_1.png")
+		readable.properties.has_recipe = true
+		readable.properties.sauce = chosen_sauce
+		Globals.discovered_sauces.append(chosen_sauce)
+		
+		inside.add_child(letter)
+	# If we want to give a recipe, get a random valid one from the list of all sauces
+	# that isn't already in their discovered list and set the recipe_card.properties to it
+	# Then add it to the list
 
 func calculate_gradient_value() -> float:
 	var x: float = PI * current_round * (1 / float(MAX_ROUNDS))

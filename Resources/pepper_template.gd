@@ -6,7 +6,7 @@ class_name PepperTemplate
 # To make a new pepper, create a new resource with the type 'Pepper Template' and fill out the values
 # This template can also be used to create non-peppers for the purpose of making sauces
 # ie, 'vinegar' can be a pepper with scoville 0, no recipe, etc.
-
+@export var name: String
 @export_range(0, 15000000) var max_scoville: int = 1000 ## Maximum potential Scoville value for the pepper
 @export_range(0, 100) var required_light: int = 100 ## Optimal light levels for this pepper's growth
 @export var recipe: Array[PepperTemplate] ## What peppers combined can create this pepper; empty if base pepper

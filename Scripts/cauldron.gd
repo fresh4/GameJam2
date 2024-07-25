@@ -51,6 +51,7 @@ func arrays_have_same_content(array1, array2):
 func _on_mix_button_pressed() -> void:
 	for sauce in Globals.SAUCES:
 		if not arrays_have_same_content(sauce.recipe, ingredients): continue
+		if sauce not in Globals.discovered_sauces: Globals.discovered_sauces.append(sauce)
 		var new_sauce: Sauce = Globals.SAUCE_PREFAB.instantiate()
 		new_sauce.global_position = ingredient_detection_area.global_position
 		new_sauce.properties = sauce

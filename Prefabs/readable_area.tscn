@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://sgf1mrx7htle"]
+[gd_scene load_steps=5 format=3 uid="uid://sgf1mrx7htle"]
 
 [ext_resource type="Script" path="res://Scripts/readable_area.gd" id="1_8ja4a"]
-[ext_resource type="Resource" uid="uid://na008tjb8qpw" path="res://Resources/Readables/notice.tres" id="2_yg2k8"]
 [ext_resource type="Texture2D" uid="uid://bulnf72mrpkcf" path="res://Assets/Art/UI/new_1.png" id="3_3cq6f"]
 [ext_resource type="Texture2D" uid="uid://bg5nierphkk24" path="res://Assets/Art/UI/new_2.png" id="4_rji1b"]
 
@@ -21,7 +20,6 @@ animations = [{
 
 [node name="ReadableArea" type="Area2D"]
 script = ExtResource("1_8ja4a")
-properties = ExtResource("2_yg2k8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.7, 0.7)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=81 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ni7ykmj1c82" path="res://Assets/Art/UI/circle.png" id="17_l7yy5"]
 [ext_resource type="PackedScene" uid="uid://cjrwj8dd28vny" path="res://Prefabs/Peppers/pepper_white_prefab.tscn" id="18_ou18d"]
 [ext_resource type="PackedScene" uid="uid://bf8s8mk21u7ya" path="res://Prefabs/Peppers/pepper_yellow_prefab.tscn" id="19_un27w"]
+[ext_resource type="PackedScene" uid="uid://blhxcyopw51fc" path="res://Prefabs/casette_player.tscn" id="20_ph76f"]
 [ext_resource type="PackedScene" uid="uid://cshxev1010rce" path="res://Prefabs/Peppers/pepper_black_prefab.tscn" id="20_ukipr"]
 [ext_resource type="PackedScene" uid="uid://cwetu0gpjql45" path="res://Prefabs/Peppers/pepper_brown_prefab.tscn" id="21_egy4y"]
 [ext_resource type="PackedScene" uid="uid://b8evs7c0sfjyp" path="res://Prefabs/coin_prefab.tscn" id="22_030br"]
@@ -40,7 +41,9 @@
 [ext_resource type="Resource" uid="uid://bqujb5idppfkp" path="res://Resources/Readables/cauldron_tutorial.tres" id="31_owuli"]
 [ext_resource type="Script" path="res://Resources/readable_template.gd" id="32_6qb61"]
 [ext_resource type="Texture2D" uid="uid://cftr6tkqvfhja" path="res://Assets/Art/Letters/shop_tutorial.png" id="33_4ubbp"]
+[ext_resource type="Resource" uid="uid://svrhh3bhgmae" path="res://Resources/Sauces/RGB.tres" id="35_m8vvw"]
 [ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
+[ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="37_orn1d"]
 [ext_resource type="AudioStream" uid="uid://4kaehbc5a1fi" path="res://Assets/SFX/Cauldron/bubbling_cauldron.ogg" id="41_d54nj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
@@ -192,10 +195,17 @@ size = Vector2(212, 4)
 size = Vector2(84, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_627a8"]
-size = Vector2(108, 81)
+size = Vector2(91, 59)
+
+[sub_resource type="Resource" id="Resource_3bcml"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("37_orn1d")
+hint = "Read Letter"
+has_recipe = true
+sauce = ExtResource("35_m8vvw")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
-size = Vector2(111, 81)
+size = Vector2(88, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
 size = Vector2(70, 55)
@@ -204,11 +214,13 @@ size = Vector2(70, 55)
 script = ExtResource("32_6qb61")
 texture = ExtResource("33_4ubbp")
 hint = "Read Tutorial"
+has_recipe = false
 
 [sub_resource type="Resource" id="Resource_ojy8l"]
 script = ExtResource("32_6qb61")
 texture = ExtResource("37_3ftwe")
 hint = "Read Tutorial"
+has_recipe = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e6vk"]
 size = Vector2(82, 88)
@@ -436,35 +448,16 @@ texture = ExtResource("17_l7yy5")
 [node name="Bell" parent="Inside/Furniture" instance=ExtResource("29_27qd7")]
 position = Vector2(467, 633)
 
+[node name="CasettePlayer" parent="Inside/Furniture" instance=ExtResource("20_ph76f")]
+position = Vector2(681, 600)
+
 [node name="Draggables" type="Node2D" parent="Inside"]
+
+[node name="CoinPrefab2" parent="Inside/Draggables" instance=ExtResource("22_030br")]
+position = Vector2(227, 488)
 
 [node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
 position = Vector2(225, 521)
-
-[node name="Notice" type="RigidBody2D" parent="Inside/Draggables"]
-position = Vector2(72, 614)
-collision_mask = 3
-contact_monitor = true
-
-[node name="Notice" type="Sprite2D" parent="Inside/Draggables/Notice"]
-texture = ExtResource("12_ah4ji")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Draggables/Notice"]
-visible = false
-polygon = PackedVector2Array(-56, -40, 56, -42, 58, 43, -49, 44)
-
-[node name="DraggableArea" parent="Inside/Draggables/Notice" instance=ExtResource("24_kpn4k")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Draggables/Notice/DraggableArea"]
-visible = false
-position = Vector2(2, 2.5)
-shape = SubResource("RectangleShape2D_627a8")
-
-[node name="ReadableArea" parent="Inside/Draggables/Notice" instance=ExtResource("14_xmhaq")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Draggables/Notice/ReadableArea"]
-position = Vector2(2.5, 2.5)
-shape = SubResource("RectangleShape2D_4lgaa")
 
 [node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
 position = Vector2(228, 601)
@@ -502,6 +495,32 @@ position = Vector2(96, 154)
 position = Vector2(42, 155)
 
 [node name="Tutorials" type="Node2D" parent="Inside"]
+
+[node name="Notice" type="RigidBody2D" parent="Inside/Tutorials"]
+position = Vector2(95, 614)
+collision_mask = 3
+contact_monitor = true
+
+[node name="Notice" type="Sprite2D" parent="Inside/Tutorials/Notice"]
+texture = ExtResource("12_ah4ji")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Tutorials/Notice"]
+visible = false
+polygon = PackedVector2Array(-56, -40, 56, -42, 58, 43, -49, 44)
+
+[node name="DraggableArea" parent="Inside/Tutorials/Notice" instance=ExtResource("24_kpn4k")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Notice/DraggableArea"]
+visible = false
+position = Vector2(2, 2.5)
+shape = SubResource("RectangleShape2D_627a8")
+
+[node name="ReadableArea" parent="Inside/Tutorials/Notice" instance=ExtResource("14_xmhaq")]
+properties = SubResource("Resource_3bcml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Notice/ReadableArea"]
+position = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_4lgaa")
 
 [node name="CauldronNote" type="Sprite2D" parent="Inside/Tutorials"]
 position = Vector2(927, 616)
@@ -579,9 +598,6 @@ theme_override_font_sizes/font_size = 20
 text = "Read Letter"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CoinPrefab" parent="." instance=ExtResource("22_030br")]
-position = Vector2(227, 488)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("41_d54nj")

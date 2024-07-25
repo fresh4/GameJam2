@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("1_2nw5i")
+name = "Green Pepper"
 max_scoville = 1000
 required_light = 100
 recipe = Array[ExtResource("1_2nw5i")]([ExtResource("2_luv83"), ExtResource("3_3bmxg")])

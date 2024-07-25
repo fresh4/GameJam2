@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjhlla3p3eg1"]
+
+[ext_resource type="Texture2D" uid="uid://bjsgnhj0ict51" path="res://Assets/Art/Misc/mail.png" id="1_4adsa"]
+[ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="2_3yf7g"]
+[ext_resource type="PackedScene" uid="uid://sgf1mrx7htle" path="res://Prefabs/readable_area.tscn" id="3_ddq3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_627a8"]
+size = Vector2(91, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
+size = Vector2(88, 58)
+
+[node name="Mail" type="RigidBody2D"]
+collision_mask = 3
+contact_monitor = true
+
+[node name="Notice" type="Sprite2D" parent="."]
+texture = ExtResource("1_4adsa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-50, -28, 39, -34, 48, 23, -46, 36)
+
+[node name="DraggableArea" parent="." instance=ExtResource("2_3yf7g")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableArea"]
+visible = false
+position = Vector2(-3.5, -1.5)
+shape = SubResource("RectangleShape2D_627a8")
+
+[node name="ReadableArea" parent="." instance=ExtResource("3_ddq3d")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReadableArea"]
+visible = false
+position = Vector2(-4, -3)
+shape = SubResource("RectangleShape2D_4lgaa")
