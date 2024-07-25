@@ -10,13 +10,12 @@ const YEET_STRENGTH: int = 750
 
 var ingredients: Array[PepperTemplate]
 var ingredients_sprites: Array[Sprite2D]
+var max_ingredients: int = 3
 
 func _ready() -> void:
 	for sprite in ingredients_added_sprites.get_children():
 		ingredients_sprites.append(sprite)
-
-func _process(_delta: float) -> void:
-	pass
+	max_ingredients = len(ingredients_sprites)
 
 func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 	# Stop momentum to ensure launch
@@ -28,18 +27,19 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 			child.dragging = false
 	
 	# If the item is invalid or cauldron is full, YEET the item
-	if not body is Pepper or (len(ingredients) >= 3 or not body.properties.is_pepper): 
+	if not body is Pepper or (len(ingredients) >= max_ingredients or not body.properties.is_pepper): 
 		body.apply_central_impulse(Vector2(-YEET_STRENGTH * body.mass, -YEET_STRENGTH * body.mass))
 		return
 	# Add to the current ingredients to track what's in the cauldron
 	ingredients.append((body as Pepper).properties)
-	if len(ingredients) >= 3: mix_button.disabled = false
+	if len(ingredients) >= max_ingredients: mix_button.disabled = false
 	# Delete the draggable instance of the ingredient
 	body.queue_free()
 	# Add a sprite of the ingredient to the cauldron for visual keeping track
 	ingredients_sprites[len(ingredients) - 1].texture = body.sprite.texture
 	ingredients_sprites[len(ingredients) - 1].scale = body.sprite.scale
 	animated_splash_sprite.play("default")
+	AudioManager.play_random(AudioManager.SFX_SPLASHES)
 
 func arrays_have_same_content(array1, array2):
 	if array1.size() != array2.size(): return false
@@ -56,4 +56,5 @@ func _on_mix_button_pressed() -> void:
 		new_sauce.properties = sauce
 		Globals.inside.add_child(new_sauce)
 		mix_button.disabled = true
+		AudioManager.play_random(AudioManager.SFX_BREWS)
 		break

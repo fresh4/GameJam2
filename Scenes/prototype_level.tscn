@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=77 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 [ext_resource type="Texture2D" uid="uid://bymg01au1m1fc" path="res://Assets/Art/Misc/calendar.png" id="11_2py5e"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
+[ext_resource type="Texture2D" uid="uid://b7x4wirnpmt88" path="res://Assets/Art/Misc/steam_particle.png" id="12_m5n2u"]
 [ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="12_q31b7"]
 [ext_resource type="PackedScene" uid="uid://18r43rnq3a4w" path="res://Prefabs/Peppers/pepper_blue_prefab.tscn" id="14_2lq2j"]
 [ext_resource type="Script" path="res://Scripts/calendar.gd" id="14_grgwa"]
@@ -40,6 +41,7 @@
 [ext_resource type="Script" path="res://Resources/readable_template.gd" id="32_6qb61"]
 [ext_resource type="Texture2D" uid="uid://cftr6tkqvfhja" path="res://Assets/Art/Letters/shop_tutorial.png" id="33_4ubbp"]
 [ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
+[ext_resource type="AudioStream" uid="uid://4kaehbc5a1fi" path="res://Assets/SFX/Cauldron/bubbling_cauldron.ogg" id="41_d54nj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -56,6 +58,9 @@ size = Vector2(42, 723)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8jre"]
 size = Vector2(42, 723)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv8pi"]
+size = Vector2(18, 109)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcolh"]
 size = Vector2(512, 40)
@@ -176,8 +181,12 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Curve" id="Curve_ul4km"]
+_data = [Vector2(0.0214286, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
-size = Vector2(199, 4)
+size = Vector2(212, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8f4"]
 size = Vector2(84, 96)
@@ -273,6 +282,11 @@ shape = SubResource("RectangleShape2D_vujse")
 position = Vector2(653, -337.5)
 shape = SubResource("RectangleShape2D_m8jre")
 
+[node name="CauldronRampCollider" type="CollisionShape2D" parent="Inside/Bounds"]
+position = Vector2(612, -138)
+rotation = 0.728996
+shape = SubResource("RectangleShape2D_jv8pi")
+
 [node name="StorageCollider" type="CollisionShape2D" parent="Inside/Bounds"]
 position = Vector2(24, -4)
 shape = SubResource("RectangleShape2D_wcolh")
@@ -315,6 +329,25 @@ sprite_frames = SubResource("SpriteFrames_m25pg")
 frame = 14
 frame_progress = 1.0
 
+[node name="SteamParticles" type="CPUParticles2D" parent="Inside/Furniture/Cauldron"]
+position = Vector2(-7, -114)
+amount = 100
+lifetime = 2.0
+randomness = 0.44
+lifetime_randomness = 0.81
+texture = ExtResource("12_m5n2u")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, -200)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+damping_min = 10.897
+damping_max = 40.385
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_ul4km")
+
 [node name="CauldronSprite" type="Sprite2D" parent="Inside/Furniture/Cauldron"]
 texture = ExtResource("9_bu2e7")
 
@@ -324,7 +357,7 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Cauldron/IngredientDetectionArea"]
-position = Vector2(-8, -64)
+position = Vector2(-9, -64)
 shape = SubResource("RectangleShape2D_cxyhx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Furniture/Cauldron"]
@@ -549,6 +582,14 @@ vertical_alignment = 1
 
 [node name="CoinPrefab" parent="." instance=ExtResource("22_030br")]
 position = Vector2(227, 488)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("41_d54nj")
+volume_db = -5.0
+autoplay = true
+attenuation = 1.41421
+panning_strength = 0.3
+bus = &"SFX"
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]

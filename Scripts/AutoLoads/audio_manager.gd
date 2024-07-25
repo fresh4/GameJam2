@@ -1,5 +1,23 @@
 extends Node
 
+const BUBBLING_CAULDRON = preload("res://Assets/SFX/Cauldron/bubbling_cauldron.ogg")
+const SAUCE_BREW_1 = preload("res://Assets/SFX/Cauldron/sauce_brew_1.ogg")
+const SAUCE_BREW_2 = preload("res://Assets/SFX/Cauldron/sauce_brew_2.ogg")
+
+const SPLOOSH_1 = preload("res://Assets/SFX/Cauldron/sploosh_1.ogg")
+const SPLOOSH_2 = preload("res://Assets/SFX/Cauldron/sploosh_2.ogg")
+const SPLOOSH_3 = preload("res://Assets/SFX/Cauldron/sploosh_3.ogg")
+
+const SFX_BREWS: Array[AudioStream] = [
+	SAUCE_BREW_1,
+	SAUCE_BREW_2
+]
+const SFX_SPLASHES: Array[AudioStream] = [
+	SPLOOSH_1,
+	SPLOOSH_2,
+	SPLOOSH_3
+]
+
 var menu_music_player: AudioStreamPlayer
 var game_music_player: AudioStreamPlayer
 var victory_music_player: AudioStreamPlayer
@@ -76,6 +94,10 @@ func play_audio(file: AudioStream, mixer: String = "SFX", volume: float = 1) -> 
 	await audio_player.finished
 	remove_child(audio_player)
 	audio_player.queue_free()
+
+func play_random(list: Array[AudioStream]) -> void:
+	var track = list.pick_random()
+	play_audio(track)
 
 #func on_scene_changed() -> void:
 	## Automatically handle audio shifting based on the current scene
