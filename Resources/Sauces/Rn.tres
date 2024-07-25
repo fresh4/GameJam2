@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SauceTemplate" load_steps=3 format=3 uid="uid://cb6kq6w0xrw6f"]
+
+[ext_resource type="Resource" uid="uid://bhfooibxsadkw" path="res://Resources/Peppers/rainbow_pepper.tres" id="1_pxp4h"]
+[ext_resource type="Script" path="res://Resources/sauce_template.gd" id="6_liq47"]
+
+[resource]
+script = ExtResource("6_liq47")
+scoville_value = 0
+recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_pxp4h"), ExtResource("1_pxp4h"), ExtResource("1_pxp4h"), ExtResource("1_pxp4h"), ExtResource("1_pxp4h")])
+value = 10
+research_value = 0

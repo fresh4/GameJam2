@@ -3,7 +3,10 @@ class_name Sauce
 
 @export var properties: SauceTemplate
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sauce: Sprite2D = $Sauce
 
 func _ready() -> void:
-	sprite.texture = properties.texture
+	var mixed_colors: Color = Color(0,0,0)
+	for pepper in properties.recipe:
+		mixed_colors = ((pepper.flower_color/len(properties.recipe)) + mixed_colors).clamp()
+	sauce.modulate = mixed_colors

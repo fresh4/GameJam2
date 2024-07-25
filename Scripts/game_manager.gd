@@ -66,16 +66,8 @@ func handle_new_day() -> void:
 	# Set the calendar to match the current new day
 	calendar_label.text = str(day)
 	
-	wage = 1 + len(Globals.discovered_sauces) / 2
-	
 	# Spawn a number of coins equal to the value of the wage
-	for idx in wage:
-		# TODO: Set position equal to some node where coins will spawn?
-		var coin_node: Node2D = coin_prefab.instantiate() as Node2D
-		coin_node.position = Vector2(640, 450)
-		coin_node.position.y -= idx * 20 
-		inside.add_child(coin_node)
-		await get_tree().create_timer(0.1).timeout
+	pay(wage)
 	
 	# Spawn a letter for the day
 	if day % 2:
@@ -101,6 +93,15 @@ func handle_new_day() -> void:
 		Globals.unread_letters.pop_front()
 		
 		inside.add_child(letter)
+
+func pay(amount: int) -> void:
+	for idx in amount:
+		# TODO: Set position equal to some node where coins will spawn?
+		var coin_node: Node2D = coin_prefab.instantiate() as Node2D
+		coin_node.position = Vector2(640, 450)
+		coin_node.position.y -= idx * 20 
+		inside.add_child(coin_node)
+		await get_tree().create_timer(0.1).timeout
 
 func calculate_gradient_value() -> float:
 	var x: float = PI * current_round * (1 / float(MAX_ROUNDS))

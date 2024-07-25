@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SauceTemplate" load_steps=7 format=3 uid="uid://b2y6e8ak6kqkj"]
+
+[ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="1_xen76"]
+[ext_resource type="Resource" uid="uid://deg5g8bg8kwxy" path="res://Resources/Peppers/white_pepper.tres" id="2_05cl0"]
+[ext_resource type="Resource" uid="uid://cqisun2qsfbpv" path="res://Resources/Peppers/orange_pepper.tres" id="3_f8t7j"]
+[ext_resource type="Resource" uid="uid://csh8y60vjtlow" path="res://Resources/Peppers/green_pepper.tres" id="4_oijd8"]
+[ext_resource type="Resource" uid="uid://rxc3gqwwvb74" path="res://Resources/Peppers/purple_pepper.tres" id="5_c80i4"]
+[ext_resource type="Script" path="res://Resources/sauce_template.gd" id="6_inwu0"]
+
+[resource]
+script = ExtResource("6_inwu0")
+scoville_value = 0
+recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_xen76"), ExtResource("2_05cl0"), ExtResource("3_f8t7j"), ExtResource("4_oijd8"), ExtResource("5_c80i4")])
+value = 2
+research_value = 3

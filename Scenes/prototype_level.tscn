@@ -41,7 +41,7 @@
 [ext_resource type="Resource" uid="uid://bqujb5idppfkp" path="res://Resources/Readables/cauldron_tutorial.tres" id="31_owuli"]
 [ext_resource type="Script" path="res://Resources/readable_template.gd" id="32_6qb61"]
 [ext_resource type="Texture2D" uid="uid://cftr6tkqvfhja" path="res://Assets/Art/Letters/shop_tutorial.png" id="33_4ubbp"]
-[ext_resource type="Resource" uid="uid://svrhh3bhgmae" path="res://Resources/Sauces/RGB.tres" id="35_m8vvw"]
+[ext_resource type="Resource" uid="uid://svrhh3bhgmae" path="res://Resources/Sauces/1_RGB.tres" id="35_m8vvw"]
 [ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
 [ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="37_orn1d"]
 [ext_resource type="AudioStream" uid="uid://4kaehbc5a1fi" path="res://Assets/SFX/Cauldron/bubbling_cauldron.ogg" id="41_d54nj"]
@@ -327,6 +327,9 @@ position = Vector2(165, 203)
 [node name="Shelf2" parent="Inside/Furniture" instance=ExtResource("7_gg2fo")]
 position = Vector2(165, 351)
 
+[node name="Shelf3" parent="Inside/Furniture" instance=ExtResource("7_gg2fo")]
+position = Vector2(1115, 348)
+
 [node name="Cauldron" type="StaticBody2D" parent="Inside/Furniture"]
 z_index = 2
 position = Vector2(1097, 718)
@@ -606,9 +609,6 @@ autoplay = true
 attenuation = 1.41421
 panning_strength = 0.3
 bus = &"SFX"
-
-[node name="Shelf" parent="." instance=ExtResource("7_gg2fo")]
-position = Vector2(1115, 348)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]
