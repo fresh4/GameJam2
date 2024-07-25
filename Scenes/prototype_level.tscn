@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=63 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -29,9 +29,11 @@
 [ext_resource type="PackedScene" uid="uid://bpgk7sd08y3fy" path="res://Prefabs/jar.tscn" id="23_lq5y0"]
 [ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="24_kpn4k"]
 [ext_resource type="PackedScene" uid="uid://7lei4j2ue8oi" path="res://Prefabs/bell.tscn" id="29_27qd7"]
+[ext_resource type="Texture2D" uid="uid://d302sntj31een" path="res://Assets/Art/Misc/note.png" id="30_7y2k1"]
 [ext_resource type="Script" path="res://Scripts/hint.gd" id="30_e4qss"]
 [ext_resource type="Texture2D" uid="uid://chd5c4fjvcqr8" path="res://Assets/Art/UI/mouse_left_click.png" id="30_fmp4x"]
 [ext_resource type="Texture2D" uid="uid://c0ccswxhnqgp8" path="res://Assets/Art/UI/mouse_right_click.png" id="31_ddoa8"]
+[ext_resource type="Resource" uid="uid://bqujb5idppfkp" path="res://Resources/Readables/cauldron_tutorial.tres" id="31_owuli"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -176,6 +178,9 @@ size = Vector2(108, 81)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
 size = Vector2(111, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
+size = Vector2(70, 55)
 
 [node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point")]
 script = ExtResource("1_326k8")
@@ -406,6 +411,19 @@ position = Vector2(96, 154)
 
 [node name="Pepper9" parent="Inside/Peppers" instance=ExtResource("21_egy4y")]
 position = Vector2(42, 155)
+
+[node name="Note" type="Sprite2D" parent="Inside"]
+position = Vector2(880, 643)
+texture = ExtResource("30_7y2k1")
+
+[node name="ReadableArea" parent="Inside/Note" instance=ExtResource("14_xmhaq")]
+position = Vector2(-46, 0)
+properties = ExtResource("31_owuli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Note/ReadableArea"]
+visible = false
+position = Vector2(-9, 4.5)
+shape = SubResource("RectangleShape2D_2qhkc")
 
 [node name="Tooltips" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

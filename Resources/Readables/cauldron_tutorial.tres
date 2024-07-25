@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ReadableTemplate" load_steps=3 format=3 uid="uid://bqujb5idppfkp"]
+
+[ext_resource type="Script" path="res://Resources/readable_template.gd" id="1_g01md"]
+[ext_resource type="Texture2D" uid="uid://bb2ieth3uu634" path="res://Assets/Art/Letters/cauldron_tutorial.png" id="2_w28w8"]
+
+[resource]
+script = ExtResource("1_g01md")
+texture = ExtResource("2_w28w8")
+hint = "Read Tutorial"

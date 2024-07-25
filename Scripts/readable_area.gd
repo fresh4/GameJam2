@@ -19,7 +19,12 @@ func _input(event: InputEvent) -> void:
 		Globals.game_manager.add_child(letter)
 		letter.activate(properties)
 		is_read = true
+		hovering = false
 		unread_sprite.stop()
+		Globals.game_manager.tooltips.toggle_hint(1, false)
+		for child in get_parent().get_children():
+			if child is DraggableObject:
+				child.dragging = false
 		unread_sprite.visible = false
 
 func _on_mouse_entered() -> void:
