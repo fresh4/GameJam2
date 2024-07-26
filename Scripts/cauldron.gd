@@ -54,19 +54,26 @@ func _on_mix_button_pressed() -> void:
 		if sauce not in Globals.discovered_sauces:
 			Globals.game_manager.pay(sauce.value)
 			Globals.discovered_sauces.append(sauce)
+		
 		var new_sauce: Sauce = Globals.SAUCE_PREFAB.instantiate()
 		new_sauce.global_position = ingredient_detection_area.global_position
 		new_sauce.properties = sauce
 		Globals.inside.add_child(new_sauce)
-		for idx in len(ingredients):
-			ingredients_sprites[idx].texture = null
-		ingredients = []
-		mix_button.disabled = true
+		
+		reset_cauldron()
 		AudioManager.play_random(AudioManager.SFX_BREWS)
 		return
 	# If the recipe is invalid
+	mix_button.disabled = true
 	for i in ingredients:
 		var pepper_prefab: Pepper = load(i.path_to_prefab).instantiate()
 		pepper_prefab.global_position = ingredient_detection_area.global_position
 		Globals.inside.add_child(pepper_prefab)
 		await get_tree().create_timer(0.5).timeout
+	reset_cauldron()
+
+func reset_cauldron() -> void:
+	for idx in len(ingredients):
+		ingredients_sprites[idx].texture = null
+		ingredients = []
+		mix_button.disabled = true
