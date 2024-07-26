@@ -37,7 +37,7 @@ func _ready() -> void:
 		plots.append(plot)
 
 func progress_time() -> void:
-	if current_round < MAX_ROUNDS:
+	if current_round < MAX_ROUNDS - 1:
 		current_round += 1
 	else:
 		current_round = 0
@@ -71,6 +71,7 @@ func handle_new_day() -> void:
 	
 	# Spawn a letter for the day
 	if day % 2:
+		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
 		var undiscovered_recipes: Array[SauceTemplate] = []
 		for sauce in Globals.SAUCES:
@@ -91,6 +92,7 @@ func handle_new_day() -> void:
 		readable.properties.sauce = chosen_sauce
 		Globals.discovered_sauces.append(chosen_sauce)
 		Globals.unread_letters.pop_front()
+		Globals.game_manager.tooltips.discovered_recipe()
 		
 		inside.add_child(letter)
 

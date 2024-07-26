@@ -54,6 +54,7 @@ func _on_mix_button_pressed() -> void:
 		if sauce not in Globals.discovered_sauces:
 			Globals.game_manager.pay(sauce.value)
 			Globals.discovered_sauces.append(sauce)
+			Globals.game_manager.tooltips.discovered_recipe()
 		
 		var new_sauce: Sauce = Globals.SAUCE_PREFAB.instantiate()
 		new_sauce.global_position = ingredient_detection_area.global_position

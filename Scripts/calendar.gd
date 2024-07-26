@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and hovering and not disabled:
 		Globals.game_manager._on_button_pressed()
 		var point = Globals.game_manager.current_round + 1
-		if point > 5: point = 0
+		if point >= Globals.game_manager.MAX_ROUNDS: point = 0
 		circle.position = clock_points[point].position
 		disabled = true
 		Input.set_custom_mouse_cursor(Globals.DEFAULT)

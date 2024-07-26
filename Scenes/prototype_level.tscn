@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
 [ext_resource type="PackedScene" uid="uid://by1oxtiv55xwi" path="res://Prefabs/Peppers/pepper_red_prefab.tscn" id="1_iiofd"]
-[ext_resource type="Texture2D" uid="uid://dbmp03xix420" path="res://Assets/Art/paper_texture.jpg" id="2_7dd4a"]
 [ext_resource type="Texture2D" uid="uid://m7eh4y3nfq08" path="res://Resources/daynightcycle-gradient-texture.tres" id="2_s4o85"]
 [ext_resource type="Texture2D" uid="uid://dbtbync1l7owp" path="res://Assets/Art/daynight_gradient.png" id="3_pouth"]
 [ext_resource type="PackedScene" uid="uid://dcq8rhm4my4js" path="res://Prefabs/plot_prefab.tscn" id="4_me6pj"]
+[ext_resource type="Texture2D" uid="uid://c88srrc3qs12" path="res://Assets/Art/background.png" id="5_c21g3"]
 [ext_resource type="PackedScene" uid="uid://c3k4s7e0as7yh" path="res://Prefabs/market.tscn" id="6_5j3qs"]
 [ext_resource type="PackedScene" uid="uid://c5ijkm3ufqoua" path="res://Prefabs/Furniture/shelf.tscn" id="7_gg2fo"]
 [ext_resource type="Texture2D" uid="uid://c7828f4hjhfry" path="res://Assets/Art/Furniture/cauldron_white.png" id="9_bu2e7"]
@@ -253,9 +253,8 @@ texture = ExtResource("3_pouth")
 z_index = -1
 
 [node name="PaperTexture" type="Sprite2D" parent="Outside"]
-position = Vector2(656, 672)
-scale = Vector2(0.29, 0.29)
-texture = ExtResource("2_7dd4a")
+position = Vector2(640, 360)
+texture = ExtResource("5_c21g3")
 
 [node name="Plots" type="Node2D" parent="Outside"]
 unique_name_in_owner = true
@@ -628,6 +627,19 @@ theme_override_colors/font_color = Color(0.347494, 0.260023, 0.20672, 1)
 theme_override_fonts/font = ExtResource("12_q31b7")
 theme_override_font_sizes/font_size = 20
 text = "Read Letter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiscoveryLabel" type="Label" parent="Tooltips"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_q31b7")
+theme_override_font_sizes/font_size = 64
+text = "Recipe Discovered!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
