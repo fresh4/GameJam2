@@ -75,6 +75,7 @@ exit={
 2d_physics/layer_4="Cauldron"
 2d_physics/layer_5="Coins"
 2d_physics/layer_6="Shop"
+2d_physics/layer_7="Sauce"
 
 [rendering]
 

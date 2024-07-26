@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3k4s7e0as7yh"]
+[gd_scene load_steps=14 format=3 uid="uid://c3k4s7e0as7yh"]
 
 [ext_resource type="Script" path="res://Scripts/market.gd" id="1_e7sx6"]
 [ext_resource type="Texture2D" uid="uid://bf5yop7ijvoy8" path="res://Assets/Art/Misc/shop.png" id="1_m17ro"]
@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c5sxcj0oeoro8" path="res://Prefabs/basket.tscn" id="7_oy3g8"]
 [ext_resource type="Resource" uid="uid://ds0oc74vbl0kv" path="res://Resources/Peppers/blue_pepper.tres" id="9_dxd0b"]
 [ext_resource type="Resource" uid="uid://ccpigr2fw5tas" path="res://Resources/Peppers/yellow_pepper.tres" id="10_5hfjy"]
+[ext_resource type="Script" path="res://Scripts/basket.gd" id="11_hi7tw"]
+[ext_resource type="Texture2D" uid="uid://chtfi3pfav2f2" path="res://Assets/Art/Misc/basket.png" id="12_vvpvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkwev"]
+size = Vector2(74, 36)
 
 [node name="Market" type="Node2D"]
 script = ExtResource("1_e7sx6")
@@ -44,15 +49,15 @@ theme_override_font_sizes/font_size = 35
 text = "1¢"
 
 [node name="Blue" type="Sprite2D" parent="Board"]
-position = Vector2(0.339622, -90)
+position = Vector2(-33, -87.75)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("5_x6vro")
 
 [node name="Label2" type="Label" parent="Board"]
-offset_left = -16.6604
-offset_top = -82.0
-offset_right = 23.3396
-offset_bottom = -45.0
+offset_left = -50.0
+offset_top = -79.75
+offset_right = -10.0
+offset_bottom = -42.75
 theme_override_colors/font_color = Color(0.863281, 0.722703, 0.0809326, 1)
 theme_override_colors/font_outline_color = Color(0.462745, 0.341176, 0.270588, 1)
 theme_override_constants/outline_size = 4
@@ -61,16 +66,16 @@ theme_override_font_sizes/font_size = 35
 text = "1¢"
 
 [node name="Yellow" type="Sprite2D" parent="Board"]
-position = Vector2(77.3396, -90)
+position = Vector2(27.3561, -88.5517)
 rotation = 0.644027
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("6_kxaxd")
 
 [node name="Label3" type="Label" parent="Board"]
-offset_left = 60.3396
-offset_top = -82.0
-offset_right = 100.34
-offset_bottom = -45.0
+offset_left = 10.3561
+offset_top = -80.5517
+offset_right = 50.3565
+offset_bottom = -43.5517
 theme_override_colors/font_color = Color(0.863281, 0.722703, 0.0809326, 1)
 theme_override_colors/font_outline_color = Color(0.462745, 0.341176, 0.270588, 1)
 theme_override_constants/outline_size = 4
@@ -78,20 +83,57 @@ theme_override_fonts/font = ExtResource("4_7iqog")
 theme_override_font_sizes/font_size = 35
 text = "1¢"
 
+[node name="Label4" type="Label" parent="Board"]
+offset_left = 97.0
+offset_top = 49.0
+offset_right = 165.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0.863281, 0.722703, 0.0809326, 1)
+theme_override_colors/font_outline_color = Color(0.462745, 0.341176, 0.270588, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_7iqog")
+theme_override_font_sizes/font_size = 35
+text = "Sell"
+
 [node name="Baskets" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="RedBasket" parent="Baskets" instance=ExtResource("7_oy3g8")]
-position = Vector2(-121, 31)
+position = Vector2(-139, 31)
+scale = Vector2(0.75, 1)
 pepper_sold = ExtResource("4_swaap")
 
 [node name="BlueBasket" parent="Baskets" instance=ExtResource("7_oy3g8")]
-position = Vector2(-7, 30)
+position = Vector2(-53, 29)
+scale = Vector2(0.75, 1)
 pepper_sold = ExtResource("9_dxd0b")
 
 [node name="YellowBasket" parent="Baskets" instance=ExtResource("7_oy3g8")]
-position = Vector2(105, 30)
+position = Vector2(37, 27)
+scale = Vector2(0.75, 1)
 pepper_sold = ExtResource("10_5hfjy")
+
+[node name="Sellbasket" type="StaticBody2D" parent="Baskets"]
+position = Vector2(121, 27)
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("11_hi7tw")
+is_sell_basket = true
+
+[node name="Collider" type="CollisionPolygon2D" parent="Baskets/Sellbasket"]
+visible = false
+polygon = PackedVector2Array(-39, -17, -38, -7, -34, 5, -28, 12, -16, 15, -5, 15, 12, 15, 22, 15, 32, 13, 37, 6, 39, -2, 39, -11, 39, -19, 43, -19, 43, -7, 41, 9, 36, 16, 20, 19, -19, 19, -30, 17, -39, 4, -43, -15)
+
+[node name="Basket" type="Sprite2D" parent="Baskets/Sellbasket"]
+texture = ExtResource("12_vvpvh")
+
+[node name="BasketArea" type="Area2D" parent="Baskets/Sellbasket"]
+unique_name_in_owner = true
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Baskets/Sellbasket/BasketArea"]
+position = Vector2(1, -5)
+shape = SubResource("RectangleShape2D_wkwev")
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
@@ -99,6 +141,6 @@ offset_left = -19.0
 offset_top = 65.0
 offset_right = 19.0
 offset_bottom = 96.0
-text = "Buy"
+text = "Trade"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

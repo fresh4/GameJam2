@@ -35,6 +35,9 @@ func unsummon() -> void:
 @warning_ignore("integer_division")
 func purchase() -> void:
 	for basket in baskets:
+		if basket.is_sell_basket:
+			sell(basket)
+			continue
 		var coins = len(basket.basket_area.get_overlapping_bodies())
 		if not coins: continue
 		if coins >= basket.pepper_sold.cost:
@@ -47,6 +50,12 @@ func purchase() -> void:
 				AudioManager.play_random(AudioManager.POPS)
 			for idx in total_cost:
 				basket.basket_area.get_overlapping_bodies()[idx].queue_free()
+
+func sell(basket: Basket) -> void:
+	for body in basket.basket_area.get_overlapping_bodies():
+		if body is Sauce:
+			Globals.game_manager.pay(body.properties.value)
+			body.queue_free()
 
 func toggle_basket_collider(value: bool) -> void:
 	for basket in baskets:
