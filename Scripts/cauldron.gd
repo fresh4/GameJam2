@@ -66,7 +66,6 @@ func _on_mix_button_pressed() -> void:
 		return
 	# If the recipe is invalid
 	for i in ingredients:
-		print(i.name)
 		var pepper_prefab: Pepper = load(i.path_to_prefab).instantiate()
 		pepper_prefab.global_position = ingredient_detection_area.global_position
 		Globals.inside.add_child(pepper_prefab)

@@ -16,7 +16,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if hovering and event.is_action_pressed("right_click"):
 		# THE OVERLAY OBJECT THAT YOU ACTUALLY READ
-		var letter: Letter = load(Globals.readables[readable_type]).instantiate()
+		var letter: Readable = load(Globals.readables[readable_type]).instantiate()
 		Globals.game_manager.add_child(letter)
 		if properties.has_recipe:
 			letter.recipe_card.set_sauce(properties.sauce)

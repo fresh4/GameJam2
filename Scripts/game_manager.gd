@@ -25,8 +25,8 @@ var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
 
 func _ready() -> void:
-	#handle_new_day()
 	Globals.discovered_sauces.append(Globals.SAUCES[0])
+	#Globals.discovered_sauces = Globals.SAUCES # Debug
 	Globals.game_manager = self
 	Globals.outside = outside
 	Globals.inside = inside

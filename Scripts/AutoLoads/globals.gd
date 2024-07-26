@@ -1,6 +1,6 @@
 extends Node
 
-enum READABLE_TYPE { LETTER }
+enum READABLE_TYPE { LETTER, JOURNAL }
 
 const SAUCE_PREFAB = preload("res://Prefabs/sauce_prefab.tscn")
 const POINTER = preload("res://Assets/Art/Cursors/hand_point.png")
@@ -13,7 +13,8 @@ var unread_letters: Array = [
 ]
 
 const readables: Dictionary = {
-	0: "res://Prefabs/Readables/Templates/letter.tscn"
+	0: "res://Prefabs/Readables/Templates/letter.tscn",
+	1: "res://Prefabs/Readables/Templates/journal.tscn"
 }
 
 var PEPPERS: Array[PepperTemplate]

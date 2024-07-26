@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://pyhw7j7tmlcf"]
+
+[ext_resource type="Script" path="res://Scripts/Readables/journal.gd" id="1_ux75v"]
+[ext_resource type="Texture2D" uid="uid://dnvlvml0x5wcf" path="res://Assets/Art/Misc/journal.png" id="2_2whal"]
+[ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="4_cgdn5"]
+
+[node name="JournalOverlay" type="Node2D"]
+script = ExtResource("1_ux75v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.105882, 0.105882, 0)
+
+[node name="Overlay" type="Sprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+texture = ExtResource("2_2whal")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Overlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -358.0
+offset_top = -215.0
+offset_right = -927.0
+offset_bottom = -559.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 145
+theme_override_constants/v_separation = 100
+columns = 6
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_cgdn5")
+theme_override_font_sizes/font_size = 30
+text = "( Click anywhere to dismiss )"
+horizontal_alignment = 1
+vertical_alignment = 1
