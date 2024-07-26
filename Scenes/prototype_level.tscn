@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=88 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="12_q31b7"]
 [ext_resource type="PackedScene" uid="uid://18r43rnq3a4w" path="res://Prefabs/Peppers/pepper_blue_prefab.tscn" id="14_2lq2j"]
 [ext_resource type="Script" path="res://Scripts/calendar.gd" id="14_grgwa"]
+[ext_resource type="PackedScene" uid="uid://cleo1ff7w2klu" path="res://Prefabs/candle.tscn" id="14_tbef6"]
 [ext_resource type="PackedScene" uid="uid://sgf1mrx7htle" path="res://Prefabs/readable_area.tscn" id="14_xmhaq"]
 [ext_resource type="PackedScene" uid="uid://bnwrm2tptwr7b" path="res://Prefabs/Peppers/pepper_orange_prefab.tscn" id="15_2t1g6"]
 [ext_resource type="PackedScene" uid="uid://b5xmxlsinrtc2" path="res://Prefabs/Peppers/pepper_green_prefab.tscn" id="16_aeofj"]
@@ -47,6 +48,17 @@
 [ext_resource type="AudioStream" uid="uid://4kaehbc5a1fi" path="res://Assets/SFX/Cauldron/bubbling_cauldron.ogg" id="41_d54nj"]
 [ext_resource type="Texture2D" uid="uid://c4bbrw0m0bcqs" path="res://Assets/Art/Misc/recipe_book.png" id="46_h7l3p"]
 [ext_resource type="Texture2D" uid="uid://dnvlvml0x5wcf" path="res://Assets/Art/Misc/journal.png" id="47_psyux"]
+
+[sub_resource type="Gradient" id="Gradient_faefq"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22, 0.41, 0.49, 0.72, 0.83, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1.00198, 0.870214, 0.866891, 1, 1, 0.767327, 0.769386, 1, 0.976576, 0.707551, 0.714179, 1, 0.850426, 0.654571, 0.714851, 1, 0.456285, 0.440845, 0.73206, 1, 0.414783, 0.440044, 0.696958, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 100
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b6gn8"]
+gradient = SubResource("Gradient_faefq")
+width = 2048
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
@@ -236,11 +248,13 @@ has_recipe = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e6vk"]
 size = Vector2(82, 88)
 
-[node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point")]
+[node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point", "candles")]
 script = ExtResource("1_326k8")
 gradient_texture = ExtResource("2_s4o85")
+inside_gradient_texture = SubResource("GradientTexture1D_b6gn8")
 pepper_spawn_point = NodePath("Inside/PepperSpawnPoint")
 coin_prefab = ExtResource("22_030br")
+candles = [NodePath("Inside/Furniture/Candle"), NodePath("Inside/Furniture/Candle2")]
 
 [node name="DaynightGradient" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -408,6 +422,12 @@ offset_bottom = -87.0
 disabled = true
 text = "Mix"
 
+[node name="Candle" parent="Inside/Furniture" instance=ExtResource("14_tbef6")]
+position = Vector2(390, 151)
+
+[node name="Candle2" parent="Inside/Furniture" instance=ExtResource("14_tbef6")]
+position = Vector2(962, 157)
+
 [node name="Calendar" type="Sprite2D" parent="Inside/Furniture"]
 position = Vector2(1139, 135)
 texture = ExtResource("11_2py5e")
@@ -529,6 +549,7 @@ position = Vector2(42, 155)
 
 [node name="Notice" type="RigidBody2D" parent="Inside/Tutorials"]
 position = Vector2(585, 610)
+collision_layer = 129
 collision_mask = 3
 contact_monitor = true
 
@@ -631,6 +652,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DiscoveryLabel" type="Label" parent="Tooltips"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

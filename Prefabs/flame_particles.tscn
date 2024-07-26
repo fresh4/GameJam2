@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3pq6lwfv2hm"]
+
+[ext_resource type="Texture2D" uid="uid://uc74e256yq20" path="res://Assets/Art/Misc/flame.png" id="1_mlwb6"]
+
+[sub_resource type="Curve" id="Curve_y4hkr"]
+max_value = 200.0
+_data = [Vector2(0.0107143, 200), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Node2D" type="CPUParticles2D"]
+amount = 50
+randomness = 0.43
+lifetime_randomness = 0.72
+texture = ExtResource("1_mlwb6")
+emission_shape = 1
+emission_sphere_radius = 45.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, -300)
+initial_velocity_max = 50.0
+damping_min = 24.0
+damping_max = 24.0
+scale_amount_min = 0.0
+scale_amount_max = 3.0
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+anim_speed_curve = SubResource("Curve_y4hkr")

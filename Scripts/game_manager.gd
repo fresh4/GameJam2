@@ -6,8 +6,10 @@ const MAIL = preload("res://Prefabs/mail.tscn")
 const MAX_ROUNDS = 6
 
 @export var gradient_texture: GradientTexture1D
+@export var inside_gradient_texture: GradientTexture1D
 @export var pepper_spawn_point: Node2D
 @export var coin_prefab: PackedScene
+@export var candles: Array[Candle]
 
 @onready var outside: Node2D = $Outside
 @onready var inside: Node2D = $Inside
@@ -44,6 +46,10 @@ func progress_time() -> void:
 		day += 1
 		handle_new_day()
 	
+	if current_round >= MAX_ROUNDS - 2:
+		for candle in candles: candle.light()
+	else: for candle in candles: candle.light(false)
+	
 	var value = calculate_gradient_value()
 	var radians = (PI * current_round * (1 / float(MAX_ROUNDS)))
 	
@@ -56,6 +62,7 @@ func progress_time() -> void:
 	
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(outside, "modulate", gradient_texture.gradient.sample(value), progress_delay).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(inside, "modulate", inside_gradient_texture.gradient.sample(value), progress_delay).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(daynight_gradient, "rotation", radians, progress_delay).set_ease(Tween.EASE_IN_OUT)
 	
 	await tween.finished
@@ -85,6 +92,7 @@ func handle_new_day() -> void:
 		var readable: ReadableArea = null
 		for child in letter.get_children(): if child is ReadableArea: readable = child
 		
+		letter.set_collision_layer_value(8, true)
 		letter.position = Vector2(640, 360)
 		readable.properties = ReadableTemplate.new()
 		readable.properties.texture = Globals.unread_letters[0]

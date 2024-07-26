@@ -25,6 +25,8 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 	for child in body.get_children():
 		if child is DraggableObject:
 			child.dragging = false
+		if child is CPUParticles2D:
+			child.queue_free()
 	
 	# If the item is invalid or cauldron is full, YEET the item
 	if not body is Pepper or (len(ingredients) >= max_ingredients or not body.properties.is_pepper): 

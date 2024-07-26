@@ -1,0 +1,159 @@
+[gd_scene load_steps=24 format=3 uid="uid://cleo1ff7w2klu"]
+
+[ext_resource type="Script" path="res://Scripts/candle.gd" id="1_jih2d"]
+[ext_resource type="Texture2D" uid="uid://ohxdhwl0emxe" path="res://Assets/Art/Furniture/candle_unlit.png" id="2_hc3f2"]
+[ext_resource type="Texture2D" uid="uid://brtivleelcd0e" path="res://Assets/Art/Furniture/candle_flame_spritesheet.png" id="3_r223i"]
+[ext_resource type="Texture2D" uid="uid://cj3crjixh6ydt" path="res://Assets/Art/Misc/light.png" id="4_fojko"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_muugp"]
+noise_type = 2
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1kd22"]
+seamless = true
+noise = SubResource("FastNoiseLite_muugp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xehh6"]
+atlas = ExtResource("3_r223i")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi77j"]
+atlas = ExtResource("3_r223i")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuk1v"]
+atlas = ExtResource("3_r223i")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j16id"]
+atlas = ExtResource("3_r223i")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xfo8"]
+atlas = ExtResource("3_r223i")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ngaj"]
+atlas = ExtResource("3_r223i")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh3vu"]
+atlas = ExtResource("3_r223i")
+region = Rect2(120, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2knis"]
+atlas = ExtResource("3_r223i")
+region = Rect2(140, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twrme"]
+atlas = ExtResource("3_r223i")
+region = Rect2(160, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqnku"]
+atlas = ExtResource("3_r223i")
+region = Rect2(180, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56h2o"]
+atlas = ExtResource("3_r223i")
+region = Rect2(200, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fd0m"]
+atlas = ExtResource("3_r223i")
+region = Rect2(220, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjp6d"]
+atlas = ExtResource("3_r223i")
+region = Rect2(240, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnfhf"]
+atlas = ExtResource("3_r223i")
+region = Rect2(260, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0hyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xehh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi77j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuk1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j16id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xfo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ngaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh3vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2knis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twrme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqnku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56h2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fd0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjp6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnfhf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4htmm"]
+size = Vector2(36, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqnli"]
+
+[node name="Candle" type="StaticBody2D"]
+script = ExtResource("1_jih2d")
+noise = SubResource("NoiseTexture2D_1kd22")
+
+[node name="CandleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_hc3f2")
+
+[node name="FlameSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -48)
+sprite_frames = SubResource("SpriteFrames_n0hyj")
+autoplay = "default"
+frame_progress = 0.825212
+
+[node name="CandleCollider" type="CollisionShape2D" parent="."]
+position = Vector2(1, 8.5)
+shape = SubResource("RectangleShape2D_4htmm")
+
+[node name="FlameArea" type="Area2D" parent="."]
+position = Vector2(-1, -48)
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlameArea"]
+shape = SubResource("RectangleShape2D_oqnli")
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(-1, -48)
+color = Color(1, 0.641113, 0.179688, 1)
+energy = 0.3
+texture = ExtResource("4_fojko")
+texture_scale = 1.31
+
+[connection signal="body_entered" from="FlameArea" to="." method="_on_flame_area_body_entered"]
