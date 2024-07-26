@@ -28,7 +28,8 @@ func light(value: bool = true) -> void:
 	candle_light.visible = value
 
 func _on_flame_area_body_entered(body: Node2D) -> void:
+	for i in body.get_children(): if i is CPUParticles2D: return
 	var flame_prefab = Globals.FLAME_PARTICLES.instantiate()
 	body.add_child(flame_prefab)
 	await get_tree().create_timer(5).timeout
-	if flame_prefab in body.get_children(): body.queue_free()
+	if is_instance_valid(flame_prefab): body.queue_free()

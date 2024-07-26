@@ -135,7 +135,7 @@ texture = ExtResource("2_hc3f2")
 position = Vector2(-1, -48)
 sprite_frames = SubResource("SpriteFrames_n0hyj")
 autoplay = "default"
-frame_progress = 0.825212
+frame_progress = 0.227806
 
 [node name="CandleCollider" type="CollisionShape2D" parent="."]
 position = Vector2(1, 8.5)
