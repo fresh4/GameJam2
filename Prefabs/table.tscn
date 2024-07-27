@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpmue4wrgb5gr"]
+
+[ext_resource type="Texture2D" uid="uid://yclx53rftswe" path="res://Assets/Art/Furniture/table.png" id="1_mxyta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shk7c"]
+size = Vector2(1112, 104)
+
+[node name="Table" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mxyta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -52)
+shape = SubResource("RectangleShape2D_shk7c")

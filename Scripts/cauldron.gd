@@ -30,11 +30,11 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 	
 	# If the item is invalid or cauldron is full, YEET the item
 	if not body is Pepper or (len(ingredients) >= max_ingredients or not body.properties.is_pepper): 
-		body.apply_central_impulse(Vector2(-YEET_STRENGTH * body.mass, -YEET_STRENGTH * body.mass))
+		yeet(body)
 		return
 	# Add to the current ingredients to track what's in the cauldron
 	ingredients.append((body as Pepper).properties)
-	if len(ingredients) >= max_ingredients: mix_button.disabled = false
+	if len(ingredients) >= 3: mix_button.disabled = false
 	# Delete the draggable instance of the ingredient
 	body.queue_free()
 	# Add a sprite of the ingredient to the cauldron for visual keeping track
@@ -50,6 +50,10 @@ func arrays_have_same_content(array1, array2):
 		if array1.count(item) != array2.count(item): return false
 	return true
 
+func yeet(body: RigidBody2D) -> void:
+	AudioManager.play_random(AudioManager.POPS)
+	body.apply_central_impulse(Vector2(-YEET_STRENGTH * body.mass, -YEET_STRENGTH * body.mass))
+
 func _on_mix_button_pressed() -> void:
 	for sauce in Globals.SAUCES:
 		if not arrays_have_same_content(sauce.recipe, ingredients): continue
@@ -62,7 +66,6 @@ func _on_mix_button_pressed() -> void:
 		new_sauce.global_position = ingredient_detection_area.global_position
 		new_sauce.properties = sauce
 		Globals.inside.add_child(new_sauce)
-		
 		reset_cauldron()
 		AudioManager.play_random(AudioManager.SFX_BREWS)
 		return
@@ -72,7 +75,10 @@ func _on_mix_button_pressed() -> void:
 		var pepper_prefab: Pepper = load(i.path_to_prefab).instantiate()
 		pepper_prefab.global_position = ingredient_detection_area.global_position
 		Globals.inside.add_child(pepper_prefab)
+		ingredient_detection_area.monitoring = false
+		yeet(pepper_prefab)
 		await get_tree().create_timer(0.5).timeout
+		ingredient_detection_area.monitoring = true
 	reset_cauldron()
 
 func reset_cauldron() -> void:

@@ -22,8 +22,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and hovering and not disabled:
 		Globals.game_manager._on_button_pressed()
 		var point = Globals.game_manager.current_round + 1
+		var tween = get_tree().create_tween()
 		if point >= Globals.game_manager.MAX_ROUNDS: point = 0
-		circle.position = clock_points[point].position
+		tween.tween_property(circle, "position", clock_points[point].position, Globals.game_manager.progress_delay)
 		disabled = true
 		Input.set_custom_mouse_cursor(Globals.DEFAULT)
 		await get_tree().create_timer(Globals.game_manager.progress_delay).timeout

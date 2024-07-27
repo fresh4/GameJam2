@@ -12,8 +12,8 @@ collision_mask = 16
 script = ExtResource("1_l83oq")
 
 [node name="Collider" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(-39, -17, -38, -7, -34, 5, -28, 12, -16, 15, -5, 15, 12, 15, 22, 15, 32, 13, 37, 6, 39, -2, 39, -11, 39, -19, 43, -19, 43, -7, 41, 9, 36, 16, 20, 19, -19, 19, -30, 17, -39, 4, -43, -15)
+one_way_collision = true
 
 [node name="Basket" type="Sprite2D" parent="."]
 texture = ExtResource("3_d40h2")

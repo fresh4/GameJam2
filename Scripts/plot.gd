@@ -37,6 +37,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not is_hovered: return
+	if Globals.game_manager.shop_opened: return
 	# Plant pepper if released over plot, under certain logical conditions
 	if event.is_action_released("click") and pepper and not is_occupied:
 		is_occupied = true
@@ -95,7 +96,7 @@ func progress_growth() -> void:
 		particles.emitting = true
 	else: return
 
-	if harvest_yield > 1:
+	if not is_crossbred:
 		harvest_yield = 3 if randi_range(0, 10) <= 0.1 else 2
 	if plant_sprite.frame == growth_stages_count - 2:
 		add_flower(flower_sprite_texture)

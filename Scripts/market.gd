@@ -15,6 +15,7 @@ func _ready() -> void:
 		if basket is Basket: baskets.append(basket)
 
 func summon() -> void:
+	Globals.game_manager.shop_opened = true
 	summoned = true
 	var tween = get_tree().create_tween()
 	
@@ -24,6 +25,7 @@ func summon() -> void:
 	toggle_basket_collider(true)
 	
 func unsummon() -> void:
+	Globals.game_manager.shop_opened = false
 	summoned = false
 	var tween = get_tree().create_tween()
 	

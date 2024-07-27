@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5ijkm3ufqoua" path="res://Prefabs/Furniture/shelf.tscn" id="7_gg2fo"]
 [ext_resource type="Texture2D" uid="uid://c7828f4hjhfry" path="res://Assets/Art/Furniture/cauldron_white.png" id="9_bu2e7"]
 [ext_resource type="Texture2D" uid="uid://d2htbp6q6mi47" path="res://Assets/Art/Misc/splash.png" id="9_dk2dq"]
+[ext_resource type="PackedScene" uid="uid://cpmue4wrgb5gr" path="res://Prefabs/table.tscn" id="9_xbdl4"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="10_3prk6"]
 [ext_resource type="Texture2D" uid="uid://bymg01au1m1fc" path="res://Assets/Art/Misc/calendar.png" id="11_2py5e"]
 [ext_resource type="Texture2D" uid="uid://pgrslf0alx5i" path="res://Assets/Art/Misc/notice.png" id="12_ah4ji"]
@@ -80,10 +81,7 @@ size = Vector2(42, 723)
 size = Vector2(18, 109)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcolh"]
-size = Vector2(512, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgtae"]
-size = Vector2(292, 32)
+size = Vector2(400, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0jno"]
 atlas = ExtResource("9_dk2dq")
@@ -208,6 +206,15 @@ size = Vector2(212, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8f4"]
 size = Vector2(84, 96)
 
+[sub_resource type="Resource" id="Resource_essyl"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("33_4ubbp")
+hint = "Read Tutorial"
+has_recipe = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
+size = Vector2(70, 55)
+
 [sub_resource type="Resource" id="Resource_tn3br"]
 script = ExtResource("32_6qb61")
 texture = ExtResource("47_psyux")
@@ -229,15 +236,6 @@ sauce = ExtResource("35_m8vvw")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
 size = Vector2(88, 58)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
-size = Vector2(70, 55)
-
-[sub_resource type="Resource" id="Resource_essyl"]
-script = ExtResource("32_6qb61")
-texture = ExtResource("33_4ubbp")
-hint = "Read Tutorial"
-has_recipe = false
 
 [sub_resource type="Resource" id="Resource_ojy8l"]
 script = ExtResource("32_6qb61")
@@ -267,12 +265,12 @@ texture = ExtResource("3_pouth")
 z_index = -1
 
 [node name="PaperTexture" type="Sprite2D" parent="Outside"]
-position = Vector2(640, 360)
+position = Vector2(640, 296)
 texture = ExtResource("5_c21g3")
 
 [node name="Plots" type="Node2D" parent="Outside"]
 unique_name_in_owner = true
-position = Vector2(672, 352)
+position = Vector2(672, 296)
 
 [node name="Plot" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
 position = Vector2(0, -8)
@@ -287,6 +285,54 @@ plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 
 [node name="Plot4" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
 position = Vector2(0, 72)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot5" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(-112, 72)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot6" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(-56, 112)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot7" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(0, 152)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot8" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(56, 112)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot9" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(112, 72)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot10" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(168, 112)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot11" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(120, 152)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot12" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(64, 184)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot13" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(-168, 112)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot14" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(-112, 152)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot15" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(-56, 192)
+plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
+
+[node name="Plot16" parent="Outside/Plots" instance=ExtResource("4_me6pj")]
+position = Vector2(8, 224)
 plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 
 [node name="Inside" type="Node2D" parent="."]
@@ -324,12 +370,9 @@ rotation = 0.728996
 shape = SubResource("RectangleShape2D_jv8pi")
 
 [node name="StorageCollider" type="CollisionShape2D" parent="Inside/Bounds"]
-position = Vector2(24, -4)
+position = Vector2(72, -92)
 shape = SubResource("RectangleShape2D_wcolh")
-
-[node name="ShelfCollider" type="CollisionShape2D" parent="Inside/Bounds"]
-position = Vector2(-486, -8)
-shape = SubResource("RectangleShape2D_rgtae")
+one_way_collision = true
 
 [node name="PepperSpawnPoint" type="Node2D" parent="Inside"]
 position = Vector2(665, 496)
@@ -344,6 +387,9 @@ offset_bottom = 56.0
 text = "Progress Time"
 
 [node name="Furniture" type="Node2D" parent="Inside"]
+
+[node name="Table" parent="Inside/Furniture" instance=ExtResource("9_xbdl4")]
+position = Vector2(464, 792)
 
 [node name="Shelf" parent="Inside/Furniture" instance=ExtResource("7_gg2fo")]
 position = Vector2(165, 203)
@@ -388,31 +434,38 @@ scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_ul4km")
 
 [node name="CauldronSprite" type="Sprite2D" parent="Inside/Furniture/Cauldron"]
+modulate = Color(0.647217, 0.662952, 0.6875, 1)
 texture = ExtResource("9_bu2e7")
 
 [node name="IngredientDetectionArea" type="Area2D" parent="Inside/Furniture/Cauldron"]
-position = Vector2(7, -30)
+position = Vector2(-1, -102)
 collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Cauldron/IngredientDetectionArea"]
-position = Vector2(-9, -64)
 shape = SubResource("RectangleShape2D_cxyhx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Furniture/Cauldron"]
+visible = false
 polygon = PackedVector2Array(-128, -140, -131, -125, -121, -116, -113, -104, -115, -92, -133, -77, -149, -70, -165, -60, -171, -44, -171, -30, -166, -17, -167, 10, -166, 25, -160, 49, -148, 71, -131, 100, -117, 114, -77, 134, -40, 143, -11, 145, 31, 142, 55, 139, 81, 132, 114, 116, 133, 99, 151, 69, 160, 36, 162, 1, 164, -15, 172, -28, 171, -46, 167, -58, 149, -69, 132, -78, 118, -84, 113, -92, 114, -105, 124, -121, 126, -138, 114, -140, 97, -55, -104, -57, -110, -105)
 
 [node name="IngredientsAdded" type="Node2D" parent="Inside/Furniture/Cauldron"]
 position = Vector2(0, -44)
 
 [node name="Ingredient1" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
-position = Vector2(-73, -14)
+position = Vector2(-105, -34)
 
 [node name="Ingredient2" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
-position = Vector2(-9, -14)
+position = Vector2(-65, -18)
 
 [node name="Ingredient3" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
-position = Vector2(55, -14)
+position = Vector2(-9, -10)
+
+[node name="Ingredient4" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
+position = Vector2(47, -18)
+
+[node name="Ingredient5" type="Sprite2D" parent="Inside/Furniture/Cauldron/IngredientsAdded"]
+position = Vector2(87, -34)
 
 [node name="MixButton" type="Button" parent="Inside/Furniture/Cauldron"]
 offset_left = 127.0
@@ -479,10 +532,26 @@ position = Vector2(-11, -86)
 texture = ExtResource("17_l7yy5")
 
 [node name="Bell" parent="Inside/Furniture" instance=ExtResource("29_27qd7")]
-position = Vector2(467, 633)
+position = Vector2(464, 584)
+
+[node name="ShopNote" type="Sprite2D" parent="Inside/Furniture/Bell"]
+position = Vector2(-64, 6.10352e-05)
+rotation = 0.320866
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("30_7y2k1")
+
+[node name="ReadableArea" parent="Inside/Furniture/Bell/ShopNote" instance=ExtResource("14_xmhaq")]
+position = Vector2(-46, 0)
+properties = SubResource("Resource_essyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Bell/ShopNote/ReadableArea"]
+visible = false
+position = Vector2(-9, 4.5)
+shape = SubResource("RectangleShape2D_2qhkc")
 
 [node name="CasettePlayer" parent="Inside/Furniture" instance=ExtResource("20_ph76f")]
-position = Vector2(99, 601)
+position = Vector2(99, 456)
+collision_mask = 83
 
 [node name="RecipeBook" type="RigidBody2D" parent="Inside/Furniture"]
 position = Vector2(1200, 283)
@@ -505,13 +574,13 @@ shape = SubResource("RectangleShape2D_bb2bm")
 [node name="Draggables" type="Node2D" parent="Inside"]
 
 [node name="CoinPrefab2" parent="Inside/Draggables" instance=ExtResource("22_030br")]
-position = Vector2(821, 502)
+position = Vector2(840, 488)
 
 [node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
-position = Vector2(828, 527)
+position = Vector2(840, 464)
 
 [node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
-position = Vector2(820, 603)
+position = Vector2(848, 536)
 
 [node name="Peppers" type="Node2D" parent="Inside"]
 
@@ -548,7 +617,7 @@ position = Vector2(42, 155)
 [node name="Tutorials" type="Node2D" parent="Inside"]
 
 [node name="Notice" type="RigidBody2D" parent="Inside/Tutorials"]
-position = Vector2(585, 610)
+position = Vector2(672, 488)
 collision_layer = 129
 collision_mask = 3
 contact_monitor = true
@@ -585,21 +654,6 @@ position = Vector2(-46, 0)
 properties = ExtResource("31_owuli")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/CauldronNote/ReadableArea"]
-visible = false
-position = Vector2(-9, 4.5)
-shape = SubResource("RectangleShape2D_2qhkc")
-
-[node name="ShopNote" type="Sprite2D" parent="Inside/Tutorials"]
-position = Vector2(403, 627)
-rotation = 0.320866
-scale = Vector2(0.68, 0.68)
-texture = ExtResource("30_7y2k1")
-
-[node name="ReadableArea" parent="Inside/Tutorials/ShopNote" instance=ExtResource("14_xmhaq")]
-position = Vector2(-46, 0)
-properties = SubResource("Resource_essyl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/ShopNote/ReadableArea"]
 visible = false
 position = Vector2(-9, 4.5)
 shape = SubResource("RectangleShape2D_2qhkc")
@@ -652,10 +706,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DiscoveryLabel" type="Label" parent="Tooltips"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 721.0
+offset_bottom = 721.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

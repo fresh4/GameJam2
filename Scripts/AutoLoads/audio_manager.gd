@@ -15,6 +15,18 @@ const BUTTON_C = preload("res://Assets/SFX/Pops/button_C.ogg")
 const BUTTON_CLICK_A = preload("res://Assets/SFX/Pops/button_click_A.ogg")
 const BUTTON_CLICK_B = preload("res://Assets/SFX/Pops/button_click_B.ogg")
 
+const CASSETTE_PRESS = preload("res://Assets/SFX/Cassette/cassette_press.ogg")
+const CASSETTE_PRESS_2 = preload("res://Assets/SFX/Cassette/cassette_press_2.ogg")
+const CASSETTE_PRESS_3 = preload("res://Assets/SFX/Cassette/cassette_press_3.ogg")
+
+const PAPER_CLOSE_1 = preload("res://Assets/SFX/Paper/paper_close_1.ogg")
+const PAPER_OPEN_1 = preload("res://Assets/SFX/Paper/paper_open_1.ogg")
+
+const CASSETTE_CLICKS: Array[AudioStream] = [
+	CASSETTE_PRESS,
+	CASSETTE_PRESS_2,
+	CASSETTE_PRESS_3
+]
 const POPS: Array[AudioStream] = [
 	BUTTON_A,
 	BUTTON_B,

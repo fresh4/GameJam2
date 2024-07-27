@@ -31,9 +31,9 @@ func _input(_event: InputEvent) -> void:
 		dragging = false
 		set_cursor()
 	if Input.is_action_pressed("scroll_up") and dragging:
-		rotate_object(3500)
+		rotate_object(3500 * parent.mass)
 	elif Input.is_action_pressed("scroll_down") and dragging:
-		rotate_object(-3500)
+		rotate_object(-3500 * parent.mass)
 
 func rotate_object(force: float) -> void:
 	parent.apply_torque(force * parent.mass)

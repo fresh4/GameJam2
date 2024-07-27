@@ -25,6 +25,7 @@ var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
+var shop_opened: bool = false
 
 func _ready() -> void:
 	Globals.discovered_sauces.append(Globals.SAUCES[0])

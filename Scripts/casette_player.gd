@@ -17,8 +17,10 @@ func _input(event: InputEvent) -> void:
 		toggle_player()
 
 func toggle_player() -> void:
+	AudioManager.play_random(AudioManager.CASSETTE_CLICKS)
 	if not playing:
 		button_animation_player.play("button_click")
+		await button_animation_player.animation_finished
 		wheels_animation_player.play("spin")
 		playing = true
 		# TODO: Play the music audio stream

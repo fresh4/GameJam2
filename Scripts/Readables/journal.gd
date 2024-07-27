@@ -27,6 +27,7 @@ func activate(properties: ReadableTemplate) -> void:
 	tween.tween_property(overlay, "position:y", 360, 0.25)
 
 func deactivate() -> void:
+	AudioManager.play_audio(AudioManager.PAPER_CLOSE_1)
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(background, "color:a", 0, 0.1).set_ease(Tween.EASE_OUT_IN)
 	tween.tween_property(overlay, "position:y", 1440, 0.25)
@@ -34,5 +35,5 @@ func deactivate() -> void:
 	queue_free()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("exit") or event.is_action("click"):
+	if event.is_action_pressed("exit") or event.is_action_pressed("click"):
 		deactivate()

@@ -29,6 +29,7 @@ func _input(event: InputEvent) -> void:
 			if child is DraggableObject:
 				child.dragging = false
 		unread_sprite.visible = false
+		AudioManager.play_audio(AudioManager.PAPER_OPEN_1)
 
 func _on_mouse_entered() -> void:
 	Globals.game_manager.tooltips.toggle_hint(1, true, properties.hint)
