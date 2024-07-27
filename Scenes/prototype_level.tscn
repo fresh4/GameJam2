@@ -728,6 +728,9 @@ attenuation = 1.41421
 panning_strength = 0.3
 bus = &"SFX"
 
+[node name="Pepper" parent="." instance=ExtResource("16_vq104")]
+position = Vector2(288, 464)
+
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]
 [connection signal="pressed" from="Inside/Furniture/Cauldron/MixButton" to="Inside/Furniture/Cauldron" method="_on_mix_button_pressed"]

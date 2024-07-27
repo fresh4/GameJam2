@@ -5,6 +5,7 @@ class_name Pepper
 
 @onready var tooltip: Label = %Tooltip
 @onready var sprite: Sprite2D = %Icon
+@onready var draggable: DraggableObject = $DetectionArea
 
 func _ready() -> void:
 	tooltip.text = properties.tooltip_text

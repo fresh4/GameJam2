@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="PepperTemplate" load_steps=3 format=3 uid="uid://deg5g8bg8kwxy"]
+[gd_resource type="Resource" script_class="PepperTemplate" load_steps=6 format=3 uid="uid://deg5g8bg8kwxy"]
 
 [ext_resource type="Texture2D" uid="uid://3yh4p8k28gvj" path="res://Assets/Art/Peppers/pepper_white_chalk.png" id="1_gdl53"]
 [ext_resource type="Script" path="res://Resources/pepper_template.gd" id="2_gj75k"]
+[ext_resource type="Resource" uid="uid://cqisun2qsfbpv" path="res://Resources/Peppers/orange_pepper.tres" id="2_r1cgy"]
+[ext_resource type="Resource" uid="uid://csh8y60vjtlow" path="res://Resources/Peppers/green_pepper.tres" id="3_tq6xj"]
+[ext_resource type="Resource" uid="uid://rxc3gqwwvb74" path="res://Resources/Peppers/purple_pepper.tres" id="4_u7ddt"]
 
 [resource]
 script = ExtResource("2_gj75k")
 name = "White Pepper"
 max_scoville = 30000
 required_light = 100
-recipe = Array[ExtResource("2_gj75k")]([])
+recipe = Array[ExtResource("2_gj75k")]([ExtResource("2_r1cgy"), ExtResource("3_tq6xj"), ExtResource("3_tq6xj"), ExtResource("4_u7ddt"), ExtResource("2_r1cgy"), ExtResource("4_u7ddt")])
 tooltip_text = ""
 is_pepper = true
 path_to_prefab = "res://Prefabs/Peppers/pepper_white_prefab.tscn"

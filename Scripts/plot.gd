@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 	if not is_hovered: return
 	if Globals.game_manager.shop_opened: return
 	# Plant pepper if released over plot, under certain logical conditions
-	if event.is_action_released("click") and pepper and not is_occupied:
+	if event.is_action_released("click") and pepper and pepper.draggable.dragging and not is_occupied:
 		is_occupied = true
 		is_hovered = false
 		plant_sprite.frame = 1
@@ -61,7 +61,7 @@ func _input(event: InputEvent) -> void:
 		var offset: Vector2 = Vector2(50,0)
 		for idx in harvest_yield:
 			var instance: Pepper = prefab.instantiate() as Pepper
-			instance.position = Globals.pepper_spawn_point + idx*offset
+			instance.position = Globals.pepper_spawn_point + Vector2(0, -100) + idx*offset
 			instance.rotation = PI * randf_range(0, 2)
 			Globals.inside.add_child(instance)
 			AudioManager.play_random(AudioManager.CLICKS)
@@ -69,7 +69,7 @@ func _input(event: InputEvent) -> void:
 	# Handle crossbreeding if a flowering plant is applied a pepper
 	elif event.is_action_released("click") and pepper and is_occupied and growth_stage == 2 and not is_crossbred:
 		for pepper_item in Globals.PEPPERS:
-			if pepper.properties in pepper_item.recipe and original_pepper.properties in pepper_item.recipe:
+			if is_crossbreed_recipe_valid([pepper.properties, original_pepper.properties], pepper_item):
 				pepper_prefab_path = pepper_item.path_to_prefab
 				pepper_texture = pepper_item.pepper_texture
 				harvest_yield = 1 # Only yield one pepper of the new pepper if crossbreeding
@@ -123,6 +123,23 @@ func clean_up() -> void:
 	for position_node in flower_positions.get_children():
 		for child in position_node.get_children():
 			child.queue_free()
+
+func is_crossbreed_recipe_valid(ingredients: Array[PepperTemplate], pepper_to_check: PepperTemplate) -> bool:
+	for idx in len(pepper_to_check.recipe):
+		if idx%2 != 0: continue
+		var ingredient_1 = pepper_to_check.recipe[idx]
+		var ingredient_2 = pepper_to_check.recipe[idx + 1]
+		if arrays_have_same_content(ingredients, [ingredient_1, ingredient_2]):
+			return true
+		if idx+2 >= len(pepper_to_check.recipe) - 1: return false
+	return false
+
+func arrays_have_same_content(array1, array2):
+	if array1.size() != array2.size(): return false
+	for item in array1:
+		if !array2.has(item): return false
+		if array1.count(item) != array2.count(item): return false
+	return true
 
 func _on_area_2d_body_entered(body: Pepper) -> void:
 	pepper = body

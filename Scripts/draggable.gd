@@ -28,6 +28,7 @@ func _input(_event: InputEvent) -> void:
 		dragging = true
 		set_cursor()
 	elif Input.is_action_just_released("click"):
+		await get_tree().create_timer(0.01).timeout
 		dragging = false
 		set_cursor()
 	if Input.is_action_pressed("scroll_up") and dragging:

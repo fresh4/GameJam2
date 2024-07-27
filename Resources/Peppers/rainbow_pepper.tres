@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="PepperTemplate" load_steps=4 format=3 uid="uid://bhfooibxsadkw"]
+[gd_resource type="Resource" script_class="PepperTemplate" load_steps=5 format=3 uid="uid://bhfooibxsadkw"]
 
 [ext_resource type="Texture2D" uid="uid://42day47cqjlu" path="res://Assets/Art/Peppers/pepper_rainbow_chalk.png" id="1_ihjfj"]
 [ext_resource type="Script" path="res://Resources/pepper_template.gd" id="2_lcho5"]
 [ext_resource type="Resource" uid="uid://cnq3nnmkcpvjm" path="res://Resources/Peppers/black_pepper.tres" id="2_noquo"]
+[ext_resource type="Resource" uid="uid://deg5g8bg8kwxy" path="res://Resources/Peppers/white_pepper.tres" id="3_bt0tk"]
 
 [resource]
 script = ExtResource("2_lcho5")
 name = "Rainbow Pepper"
 max_scoville = 30000
 required_light = 100
-recipe = Array[ExtResource("2_lcho5")]([ExtResource("2_noquo")])
+recipe = Array[ExtResource("2_lcho5")]([ExtResource("2_noquo"), ExtResource("3_bt0tk")])
 tooltip_text = ""
 is_pepper = true
 path_to_prefab = "res://Prefabs/Peppers/pepper_rainbow_prefab.tscn"

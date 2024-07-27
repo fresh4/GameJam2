@@ -7,7 +7,7 @@ class_name Shop
 var summoned: bool = false
 var baskets: Array[Basket]
 var starting_pos: Vector2 = Vector2(673, 800)
-var selling_pos: Vector2 = Vector2(673, 500)
+var selling_pos: Vector2 = Vector2(673, 433)
 
 func _ready() -> void:
 	position = starting_pos
