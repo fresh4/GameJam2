@@ -6,8 +6,14 @@ extends RigidBody2D
 
 var hovered: bool = false
 var playing: bool = false
+var music_player: AudioStreamPlayer2D
 
 func _ready() -> void:
+	music_player = AudioStreamPlayer2D.new()
+	add_child(music_player)
+	music_player.stream = AudioManager.OST
+	music_player.bus = "Music"
+	music_player.play()
 	button_area.mouse_entered.connect(button_hover)
 	button_area.mouse_exited.connect(button_exit)
 	toggle_player()
@@ -23,13 +29,13 @@ func toggle_player() -> void:
 		await button_animation_player.animation_finished
 		wheels_animation_player.play("spin")
 		playing = true
-		# TODO: Play the music audio stream
+		music_player.stream_paused = false
 	else:
 		button_animation_player.play_backwards("button_click")
 		await button_animation_player.animation_finished
 		wheels_animation_player.pause()
 		playing = false
-		# TODO: Stop the music audio stream
+		music_player.stream_paused = true
 
 func button_hover():
 	hovered = true

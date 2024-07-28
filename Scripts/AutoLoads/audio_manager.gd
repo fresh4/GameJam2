@@ -1,6 +1,8 @@
 extends Node
 
 #region Audio Imports
+const OST = preload("res://Assets/Music/super_rough_ost_sampler.ogg")
+
 const BUBBLING_CAULDRON = preload("res://Assets/SFX/Cauldron/bubbling_cauldron.ogg")
 const SAUCE_BREW_1 = preload("res://Assets/SFX/Cauldron/sauce_brew_1.ogg")
 const SAUCE_BREW_2 = preload("res://Assets/SFX/Cauldron/sauce_brew_2.ogg")
@@ -21,6 +23,10 @@ const CASSETTE_PRESS_3 = preload("res://Assets/SFX/Cassette/cassette_press_3.ogg
 
 const PAPER_CLOSE_1 = preload("res://Assets/SFX/Paper/paper_close_1.ogg")
 const PAPER_OPEN_1 = preload("res://Assets/SFX/Paper/paper_open_1.ogg")
+
+const BELL_1 = preload("res://Assets/SFX/bell_1.ogg")
+const IGNITE = preload("res://Assets/SFX/ignite.ogg")
+const SIZZLE = preload("res://Assets/SFX/sizzle.ogg")
 
 const CASSETTE_CLICKS: Array[AudioStream] = [
 	CASSETTE_PRESS,

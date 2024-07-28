@@ -14,6 +14,7 @@ func ring() -> void:
 	else: 
 		Globals.game_manager.market.unsummon()
 	animation_player.play("ring")
+	AudioManager.play_audio(AudioManager.BELL_1)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and hovering:

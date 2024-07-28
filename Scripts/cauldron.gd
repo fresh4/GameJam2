@@ -26,6 +26,7 @@ func _on_ingredient_detection_area_body_entered(body: RigidBody2D) -> void:
 		if child is DraggableObject:
 			child.dragging = false
 		if child is CPUParticles2D:
+			AudioManager.play_audio(AudioManager.SIZZLE)
 			child.queue_free()
 	
 	# If the item is invalid or cauldron is full, YEET the item

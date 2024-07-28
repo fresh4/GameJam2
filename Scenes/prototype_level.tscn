@@ -576,11 +576,14 @@ shape = SubResource("RectangleShape2D_bb2bm")
 [node name="CoinPrefab2" parent="Inside/Draggables" instance=ExtResource("22_030br")]
 position = Vector2(840, 488)
 
+[node name="CoinPrefab3" parent="Inside/Draggables" instance=ExtResource("22_030br")]
+position = Vector2(840, 440)
+
 [node name="CoinPrefab" parent="Inside/Draggables" instance=ExtResource("22_030br")]
 position = Vector2(840, 464)
 
 [node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
-position = Vector2(848, 536)
+position = Vector2(848, 528)
 
 [node name="Peppers" type="Node2D" parent="Inside"]
 
