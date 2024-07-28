@@ -28,6 +28,7 @@ func _input(event: InputEvent) -> void:
 		for child in get_parent().get_children():
 			if child is DraggableObject:
 				child.dragging = false
+				child.set_hovered(false)
 		unread_sprite.visible = false
 		AudioManager.play_audio(AudioManager.PAPER_OPEN_1)
 

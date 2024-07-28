@@ -48,7 +48,11 @@ func set_cursor() -> void:
 		Input.set_custom_mouse_cursor(Globals.HAND_OPEN, Input.CURSOR_ARROW, Vector2(32,32))
 	elif not hovered and not dragging:
 		Input.set_custom_mouse_cursor(Globals.DEFAULT, Input.CURSOR_ARROW, Vector2(4,4))
-	
+
+func set_hovered(value: bool):
+	hovered = value
+	set_cursor()
+
 func _on_mouse_entered() -> void:
 	hovered = true
 	set_cursor()
