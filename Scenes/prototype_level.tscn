@@ -550,7 +550,7 @@ position = Vector2(-9, 4.5)
 shape = SubResource("RectangleShape2D_2qhkc")
 
 [node name="CasettePlayer" parent="Inside/Furniture" instance=ExtResource("20_ph76f")]
-position = Vector2(99, 456)
+position = Vector2(96, 608)
 collision_mask = 83
 
 [node name="RecipeBook" type="RigidBody2D" parent="Inside/Furniture"]
@@ -603,7 +603,7 @@ position = Vector2(265, 162)
 position = Vector2(221, 151)
 
 [node name="Pepper5" parent="Inside/Peppers" instance=ExtResource("17_eq17a")]
-position = Vector2(205, 301)
+position = Vector2(200, 296)
 
 [node name="Pepper6" parent="Inside/Peppers" instance=ExtResource("18_ou18d")]
 position = Vector2(142, 151)
@@ -730,9 +730,6 @@ autoplay = true
 attenuation = 1.41421
 panning_strength = 0.3
 bus = &"SFX"
-
-[node name="Pepper" parent="." instance=ExtResource("16_vq104")]
-position = Vector2(288, 464)
 
 [connection signal="pressed" from="Inside/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="Inside/Furniture/Cauldron/IngredientDetectionArea" to="Inside/Furniture/Cauldron" method="_on_ingredient_detection_area_body_entered"]

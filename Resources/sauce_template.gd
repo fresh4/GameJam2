@@ -12,3 +12,4 @@ class_name SauceTemplate
 #@export var sauce_texture: Texture2D
 @export var value: int = 1 ## Payout for making the sauce 
 @export var research_value: int = 1 ## Research points
+@export var is_rainbow: bool = false
