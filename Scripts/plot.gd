@@ -75,7 +75,11 @@ func _input(event: InputEvent) -> void:
 				harvest_yield = 1 # Only yield one pepper of the new pepper if crossbreeding
 				for child in flower_points[0].get_children():
 					if child is Sprite2D:
-						child.modulate = pepper.properties.flower_color
+						# If the pepper dragged in is the same as the one planted (and is also a valid recipe)
+						if pepper_properties.name == pepper.properties.name:
+							child.modulate *= pepper.properties.flower_color
+						else:
+							child.modulate = pepper.properties.flower_color
 				AudioManager.play_random(AudioManager.POPS)
 				pepper.queue_free() # Delete the held pepper
 				is_crossbred = true
