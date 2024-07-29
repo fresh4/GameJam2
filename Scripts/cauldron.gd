@@ -58,7 +58,10 @@ func yeet(body: RigidBody2D) -> void:
 func _on_mix_button_pressed() -> void:
 	for sauce in Globals.SAUCES:
 		if not arrays_have_same_content(sauce.recipe, ingredients): continue
+		# Handle discovering new sauce
+		# TODO: Extract to a global function
 		if sauce not in Globals.discovered_sauces:
+			Globals.game_manager.research_points += sauce.research_value
 			Globals.game_manager.pay(sauce.value)
 			Globals.discovered_sauces.append(sauce)
 			Globals.game_manager.tooltips.discovered_recipe()

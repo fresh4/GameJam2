@@ -4,6 +4,7 @@ class_name GameManager
 const MAIL = preload("res://Prefabs/mail.tscn")
 
 const MAX_ROUNDS = 6
+const RESEARCH_THRESHOLD = 50 ## How many points are needed before the final recipe is automatically discovered
 
 @export var gradient_texture: GradientTexture1D
 @export var inside_gradient_texture: GradientTexture1D
@@ -25,7 +26,8 @@ var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
-var shop_opened: bool = false
+var shop_opened: bool = false ## The state of the shop's summoned status
+var research_points: int = 49
 
 func _ready() -> void:
 	Globals.discovered_sauces.append(Globals.SAUCES[0])
@@ -77,8 +79,14 @@ func handle_new_day() -> void:
 	# Spawn a number of coins equal to the value of the wage
 	pay(wage)
 	
-	# Spawn a letter for the day
-	if day % 2:
+	# Spawn a letter for the day, every other day
+	if research_points >= RESEARCH_THRESHOLD:
+		var rainbow_sauce: SauceTemplate = null
+		for sauce in Globals.SAUCES:
+			if sauce.is_rainbow: rainbow_sauce = sauce
+		# TODO: Empty the unread letters and use the special 'final' letter.
+		generate_letter(rainbow_sauce)
+	elif day % 2:
 		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
 		var undiscovered_recipes: Array[SauceTemplate] = []
@@ -87,23 +95,10 @@ func handle_new_day() -> void:
 				undiscovered_recipes.append(sauce)
 		
 		var chosen_sauce: SauceTemplate = undiscovered_recipes.pick_random() as SauceTemplate
+		while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
 		
 		# Generate the letter
-		var letter = MAIL.instantiate()
-		var readable: ReadableArea = null
-		for child in letter.get_children(): if child is ReadableArea: readable = child
-		
-		letter.set_collision_layer_value(8, true)
-		letter.position = Vector2(640, 360)
-		readable.properties = ReadableTemplate.new()
-		readable.properties.texture = Globals.unread_letters[0]
-		readable.properties.has_recipe = true
-		readable.properties.sauce = chosen_sauce
-		Globals.discovered_sauces.append(chosen_sauce)
-		Globals.unread_letters.pop_front()
-		Globals.game_manager.tooltips.discovered_recipe()
-		
-		inside.add_child(letter)
+		generate_letter(chosen_sauce)
 
 func pay(amount: int) -> void:
 	for idx in amount:
@@ -119,7 +114,23 @@ func calculate_gradient_value() -> float:
 	var value = ( sin( x - PI/2 ) + 1.0 ) / 2.0
 	return snappedf(value, 0.1)
 
-# WARNING: Temporary debug button to progress time
+func generate_letter(attached_sauce: SauceTemplate = null) -> void:
+	var letter = MAIL.instantiate()
+	var readable: ReadableArea = null
+	for child in letter.get_children(): if child is ReadableArea: readable = child
+	
+	letter.set_collision_layer_value(8, true)
+	letter.position = Vector2(640, 360)
+	readable.properties = ReadableTemplate.new()
+	readable.properties.texture = Globals.unread_letters[0]
+	readable.properties.has_recipe = true
+	readable.properties.sauce = attached_sauce
+	Globals.discovered_sauces.append(attached_sauce)
+	Globals.unread_letters.pop_front()
+	Globals.game_manager.tooltips.discovered_recipe()
+	
+	inside.add_child(letter)
+
 func _on_button_pressed() -> void:
 	progress_time()
 	for plot in plots:
