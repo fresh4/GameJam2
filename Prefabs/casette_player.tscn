@@ -89,6 +89,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_0ure2"]
 resource_name = "button_click"
 length = 0.4
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

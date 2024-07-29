@@ -28,6 +28,20 @@ const BELL_1 = preload("res://Assets/SFX/bell_1.ogg")
 const IGNITE = preload("res://Assets/SFX/ignite.ogg")
 const SIZZLE = preload("res://Assets/SFX/sizzle.ogg")
 
+const GLASS_CLACK = preload("res://Assets/SFX/glass_clack.ogg")
+const GLASS_CLACK_2 = preload("res://Assets/SFX/glass_clack_2.ogg")
+const GLASS_CLACK_3 = preload("res://Assets/SFX/glass_clack_3.ogg")
+const GLASS_CLACK_4 = preload("res://Assets/SFX/glass_clack_4.ogg")
+const GLASS_CLACK_5 = preload("res://Assets/SFX/glass_clack_5.ogg")
+
+const COIN_CLACKS: Array[AudioStream] = [
+	GLASS_CLACK,
+	GLASS_CLACK_2,
+	GLASS_CLACK_3,
+	GLASS_CLACK_4,
+	GLASS_CLACK_5
+]
+
 const CASSETTE_CLICKS: Array[AudioStream] = [
 	CASSETTE_PRESS,
 	CASSETTE_PRESS_2,
@@ -61,17 +75,6 @@ var tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	#menu_music_player = initialize_player(OST_BGM_0_DAWN)
-	#game_music_player = initialize_player(OST_BGM_1_RIME)
-	#victory_music_player = initialize_player(OST_BGM_MATCH_END)
-	
-	#if get_tree().current_scene.name == "MainMenu":
-		#current_player = menu_music_player
-	#else:
-		#current_player = game_music_player
-	#current_player.stream_paused = false
-	#current_player.volume_db = 0 # 0db = full volume
 
 func initialize_player(stream: Resource) -> AudioStreamPlayer:
 	var player = AudioStreamPlayer.new()

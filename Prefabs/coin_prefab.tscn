@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8evs7c0sfjyp"]
+[gd_scene load_steps=5 format=3 uid="uid://b8evs7c0sfjyp"]
 
 [ext_resource type="Texture2D" uid="uid://bxr2deqi0y1ga" path="res://Assets/Art/Misc/coin.png" id="1_80120"]
+[ext_resource type="Script" path="res://Scripts/coin.gd" id="1_ye513"]
 [ext_resource type="PackedScene" uid="uid://ddktg6351ag7b" path="res://Prefabs/draggable.tscn" id="2_0f284"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4yn3p"]
@@ -12,6 +13,10 @@ collision_layer = 49
 collision_mask = 35
 mass = 0.2
 can_sleep = false
+continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_ye513")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_80120")
@@ -26,3 +31,5 @@ polygon = PackedVector2Array(8, -7, 15, -5, 18, -1, 17, 2, 13, 5, 8, 7, -10, 7, 
 visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4yn3p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
