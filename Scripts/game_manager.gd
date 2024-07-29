@@ -99,7 +99,7 @@ func handle_new_day() -> void:
 		
 		var chosen_sauce: SauceTemplate = undiscovered_recipes.pick_random() as SauceTemplate
 		while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
-		add_research_points(chosen_sauce.research_value)
+		#add_research_points(chosen_sauce.research_value)
 		
 		# Generate the letter
 		generate_letter(Globals.unread_letters[0], chosen_sauce)

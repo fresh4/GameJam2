@@ -61,10 +61,12 @@ func _on_mix_button_pressed() -> void:
 		# Handle discovering new sauce
 		# TODO: Extract to a global function
 		if sauce not in Globals.discovered_sauces:
-			Globals.game_manager.add_research_points(sauce.research_value)
 			Globals.game_manager.pay(sauce.value)
 			Globals.discovered_sauces.append(sauce)
 			Globals.game_manager.tooltips.discovered_recipe()
+		if sauce not in Globals.brewed_sauces:
+			Globals.brewed_sauces.append(sauce)
+			Globals.game_manager.add_research_points(sauce.research_value)
 		if sauce.is_rainbow:
 			Globals.game_manager.generate_letter(Globals.VICTORY_LETTER)
 		var new_sauce: Sauce = Globals.SAUCE_PREFAB.instantiate()

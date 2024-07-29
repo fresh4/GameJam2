@@ -26,6 +26,7 @@ var SAUCES: Array[SauceTemplate]
 
 var discovered_peppers: Array[PepperTemplate] = []
 var discovered_sauces: Array[SauceTemplate] = []
+var brewed_sauces: Array[SauceTemplate] = []
 
 var game_manager: GameManager
 var outside: Node2D
