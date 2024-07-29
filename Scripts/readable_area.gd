@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 		# THE OVERLAY OBJECT THAT YOU ACTUALLY READ
 		var letter: Readable = load(Globals.readables[readable_type]).instantiate()
 		Globals.game_manager.add_child(letter)
-		if properties.has_recipe:
+		if properties.has_recipe and properties.sauce:
 			letter.recipe_card.set_sauce(properties.sauce)
 		letter.activate(properties)
 		is_read = true

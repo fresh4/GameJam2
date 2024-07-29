@@ -65,7 +65,8 @@ func _on_mix_button_pressed() -> void:
 			Globals.game_manager.pay(sauce.value)
 			Globals.discovered_sauces.append(sauce)
 			Globals.game_manager.tooltips.discovered_recipe()
-		
+		if sauce.is_rainbow:
+			Globals.game_manager.generate_letter(Globals.VICTORY_LETTER)
 		var new_sauce: Sauce = Globals.SAUCE_PREFAB.instantiate()
 		new_sauce.global_position = ingredient_detection_area.global_position
 		new_sauce.properties = sauce

@@ -2,6 +2,8 @@ extends Node
 
 enum READABLE_TYPE { LETTER, JOURNAL }
 
+const VICTORY_LETTER = preload("res://Assets/Art/Letters/victory_letter.png")
+
 const FLAME_PARTICLES = preload("res://Prefabs/flame_particles.tscn")
 const SAUCE_PREFAB = preload("res://Prefabs/sauce_prefab.tscn")
 const POINTER = preload("res://Assets/Art/Cursors/hand_point.png")

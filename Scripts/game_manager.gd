@@ -84,8 +84,8 @@ func handle_new_day() -> void:
 		var rainbow_sauce: SauceTemplate = null
 		for sauce in Globals.SAUCES:
 			if sauce.is_rainbow: rainbow_sauce = sauce
-		# TODO: Empty the unread letters and use the special 'final' letter.
-		generate_letter(rainbow_sauce)
+		# TODO: Empty the unread letters and use the special 'final' letter. Current is placeholder
+		generate_letter(Globals.unread_letters[0], rainbow_sauce)
 	elif day % 2:
 		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
@@ -98,7 +98,8 @@ func handle_new_day() -> void:
 		while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
 		
 		# Generate the letter
-		generate_letter(chosen_sauce)
+		generate_letter(Globals.unread_letters[0], chosen_sauce)
+		Globals.unread_letters.pop_front()
 
 func pay(amount: int) -> void:
 	for idx in amount:
@@ -114,7 +115,7 @@ func calculate_gradient_value() -> float:
 	var value = ( sin( x - PI/2 ) + 1.0 ) / 2.0
 	return snappedf(value, 0.1)
 
-func generate_letter(attached_sauce: SauceTemplate = null) -> void:
+func generate_letter(letter_texture, attached_sauce: SauceTemplate = null) -> void:
 	var letter = MAIL.instantiate()
 	var readable: ReadableArea = null
 	for child in letter.get_children(): if child is ReadableArea: readable = child
@@ -122,11 +123,12 @@ func generate_letter(attached_sauce: SauceTemplate = null) -> void:
 	letter.set_collision_layer_value(8, true)
 	letter.position = Vector2(640, 360)
 	readable.properties = ReadableTemplate.new()
-	readable.properties.texture = Globals.unread_letters[0]
-	readable.properties.has_recipe = true
-	readable.properties.sauce = attached_sauce
-	Globals.discovered_sauces.append(attached_sauce)
-	Globals.unread_letters.pop_front()
+	readable.properties.texture = letter_texture
+	if attached_sauce:
+		readable.properties.has_recipe = true
+		readable.properties.sauce = attached_sauce
+	if attached_sauce:
+		Globals.discovered_sauces.append(attached_sauce)
 	Globals.game_manager.tooltips.discovered_recipe()
 	
 	inside.add_child(letter)
