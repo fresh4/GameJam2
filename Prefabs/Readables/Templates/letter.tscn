@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ibmoytt47fb7"]
+[gd_scene load_steps=6 format=3 uid="uid://ibmoytt47fb7"]
 
 [ext_resource type="Script" path="res://Scripts/Readables/letter.gd" id="1_q2mw7"]
-[ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="2_wtrje"]
+[ext_resource type="Texture2D" uid="uid://t1qgq8ng3k3s" path="res://Assets/Art/Letters/blank_note.png" id="2_217pk"]
 [ext_resource type="PackedScene" uid="uid://d2422nyu3t2dq" path="res://Prefabs/recipe_card.tscn" id="3_c2hnj"]
 [ext_resource type="FontFile" uid="uid://q4t82jgy6i18" path="res://Assets/EraserDust.ttf" id="3_k2l55"]
+[ext_resource type="FontFile" uid="uid://be4nppedsdrc" path="res://Assets/ink-free.ttf" id="4_dmflc"]
 
 [node name="LetterOverlay" type="Node2D"]
 script = ExtResource("1_q2mw7")
@@ -22,11 +23,40 @@ color = Color(0.105882, 0.105882, 0.105882, 0)
 [node name="Overlay" type="Sprite2D" parent="CanvasLayer"]
 unique_name_in_owner = true
 position = Vector2(640, 360)
-texture = ExtResource("2_wtrje")
+texture = ExtResource("2_217pk")
 
 [node name="RecipeCard" parent="CanvasLayer/Overlay" instance=ExtResource("3_c2hnj")]
 unique_name_in_owner = true
 position = Vector2(-97, 253)
+
+[node name="Content" type="Label" parent="CanvasLayer/Overlay"]
+unique_name_in_owner = true
+offset_left = -261.0
+offset_top = -241.0
+offset_right = 291.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.314316, 0.314316, 0.314316, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_dmflc")
+theme_override_font_sizes/font_size = 20
+text = "Welcome to the Secret Cabal of Chili Connoisseurs.
+To complete your induction, you have been tasked with 
+the research and development of 'The Philosopher's Sauce';
+a hot sauce recipe lost to time.
+
+Your workstation has been outfitted with the necessary
+equipment and reference documents to get started, as well
+as a few starter peppers, courtesy of The Cabal. 
+
+You will be given a daily wage to purchase certain peppers
+from the market should you need it. The more sauce recipes 
+you develop, the more we will be able to afford to invest in you. 
+
+We will also send you recipes that we discover in parallel, to
+aid your research. Best of luck,
+                                                    - The Secret Cabal of
+                                                       Chili Connoisseurs"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 10

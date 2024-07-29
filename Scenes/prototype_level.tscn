@@ -207,6 +207,7 @@ script = ExtResource("32_6qb61")
 texture = ExtResource("33_4ubbp")
 hint = "Read Tutorial"
 has_recipe = false
+content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
 size = Vector2(70, 55)
@@ -219,6 +220,7 @@ script = ExtResource("32_6qb61")
 texture = ExtResource("47_psyux")
 hint = "Read Recipes"
 has_recipe = false
+content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb2bm"]
 size = Vector2(70, 88)
@@ -228,6 +230,7 @@ script = ExtResource("32_6qb61")
 texture = ExtResource("37_3ftwe")
 hint = "Read Tutorial"
 has_recipe = false
+content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e6vk"]
 size = Vector2(82, 88)
@@ -237,6 +240,7 @@ script = ExtResource("32_6qb61")
 texture = ExtResource("46_g2yr5")
 hint = "Read Farming Tutorial"
 has_recipe = false
+content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_orv63"]
 size = Vector2(640, 640)
@@ -249,6 +253,7 @@ script = ExtResource("32_6qb61")
 texture = ExtResource("33_iieg0")
 hint = "Read Farming Tutorial"
 has_recipe = false
+content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22lpe"]
 size = Vector2(112, 112)
@@ -262,6 +267,7 @@ texture = ExtResource("37_orn1d")
 hint = "Read Letter"
 has_recipe = true
 sauce = ExtResource("35_m8vvw")
+content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
 size = Vector2(88, 58)

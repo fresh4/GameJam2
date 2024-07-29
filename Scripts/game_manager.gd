@@ -127,7 +127,10 @@ func generate_letter(letter_texture, attached_sauce: SauceTemplate = null) -> vo
 	letter.set_collision_layer_value(8, true)
 	letter.position = Vector2(640, 360)
 	readable.properties = ReadableTemplate.new()
-	readable.properties.texture = letter_texture
+	if letter_texture is Resource:
+		readable.properties.texture = letter_texture
+	elif letter_texture is String:
+		readable.properties.content = letter_texture
 	if attached_sauce:
 		readable.properties.has_recipe = true
 		readable.properties.sauce = attached_sauce

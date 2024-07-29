@@ -4,12 +4,15 @@ class_name Letter
 @onready var background: ColorRect = %Background
 @onready var overlay: Sprite2D = %Overlay
 @onready var recipe_card: RecipeCard = %RecipeCard
+@onready var content: Label = %Content
 
 func _ready() -> void:
+	content.text = ""
 	background.color.a = 0
 	overlay.position.y = 1440
 
 func activate(properties: ReadableTemplate) -> void:
+	if properties.content: content.text = properties.content
 	recipe_card.visible = properties.has_recipe
 	overlay.texture = properties.texture
 	var tween = get_tree().create_tween().set_parallel(true)
