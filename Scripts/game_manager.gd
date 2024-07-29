@@ -19,6 +19,7 @@ const RESEARCH_THRESHOLD = 50 ## How many points are needed before the final rec
 @onready var calendar_label: Label = %CalendarLabel
 @onready var market: Shop = %Market
 @onready var tooltips: Hint = %Tooltips
+@onready var research_point_counter_label: Label = %ResearchPointCounterLabel
 
 var wage: int = 1 ## How much gold to pay per day
 var current_round: int = 0 ## The time of day, ranges from 0-6
@@ -37,6 +38,7 @@ func _ready() -> void:
 	Globals.outside = outside
 	Globals.inside = inside
 	Globals.pepper_spawn_point = pepper_spawn_point.position
+	add_research_points(0)
 	outside.modulate = gradient_texture.gradient.sample(calculate_gradient_value())
 	calendar_label.text = "0"
 	for plot in %Plots.get_children() as Array[Plot]:
@@ -97,6 +99,7 @@ func handle_new_day() -> void:
 		
 		var chosen_sauce: SauceTemplate = undiscovered_recipes.pick_random() as SauceTemplate
 		while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
+		add_research_points(chosen_sauce.research_value)
 		
 		# Generate the letter
 		generate_letter(Globals.unread_letters[0], chosen_sauce)
@@ -133,6 +136,10 @@ func generate_letter(letter_texture, attached_sauce: SauceTemplate = null) -> vo
 	Globals.game_manager.tooltips.discovered_recipe()
 	
 	inside.add_child(letter)
+
+func add_research_points(value: int) -> void:
+	research_points += value
+	research_point_counter_label.text = str(research_points) + "/50"
 
 func _on_button_pressed() -> void:
 	progress_time()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=90 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://Resources/readable_template.gd" id="32_6qb61"]
 [ext_resource type="Texture2D" uid="uid://cftr6tkqvfhja" path="res://Assets/Art/Letters/shop_tutorial.png" id="33_4ubbp"]
 [ext_resource type="Texture2D" uid="uid://c4f7rec618m4g" path="res://Assets/Art/Letters/farming_tutorial.png" id="33_iieg0"]
+[ext_resource type="Texture2D" uid="uid://d1pkhqgx6gcoc" path="res://Assets/Art/Misc/paper_stack.png" id="34_r8fvm"]
 [ext_resource type="Resource" uid="uid://svrhh3bhgmae" path="res://Resources/Sauces/1_RGB.tres" id="35_m8vvw"]
 [ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
 [ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="37_orn1d"]
@@ -647,6 +648,24 @@ properties = SubResource("Resource_w14b1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Farming/ReadableArea"]
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_22lpe")
+
+[node name="PaperStack" type="Sprite2D" parent="Inside"]
+position = Vector2(1072, 320)
+scale = Vector2(0.46, 0.46)
+texture = ExtResource("34_r8fvm")
+
+[node name="ResearchPointCounterLabel" type="Label" parent="Inside/PaperStack"]
+unique_name_in_owner = true
+offset_left = -21.7391
+offset_top = -65.2174
+offset_right = 31.2609
+offset_bottom = -13.2174
+theme_override_colors/font_color = Color(0.18988, 0.641021, 0.714844, 1)
+theme_override_fonts/font = ExtResource("12_q31b7")
+theme_override_font_sizes/font_size = 50
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Notice" type="RigidBody2D" parent="Inside"]
 position = Vector2(672, 488)
