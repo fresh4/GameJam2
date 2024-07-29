@@ -359,6 +359,7 @@ plant_growth_progress_sprite = SubResource("CompressedTexture2D_okuf2")
 
 [node name="Market" parent="Inside" instance=ExtResource("6_5j3qs")]
 unique_name_in_owner = true
+z_index = -1
 position = Vector2(687, 785)
 
 [node name="Foreground" type="Sprite2D" parent="Inside"]

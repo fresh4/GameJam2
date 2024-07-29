@@ -40,6 +40,7 @@ func _input(event: InputEvent) -> void:
 	if Globals.game_manager.shop_opened: return
 	# Plant pepper if released over plot, under certain logical conditions
 	if event.is_action_released("click") and pepper and pepper.draggable.dragging and not is_occupied:
+		if pepper.properties.name == "Rainbow Pepper": return
 		is_occupied = true
 		is_hovered = false
 		plant_sprite.frame = 1

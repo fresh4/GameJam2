@@ -47,7 +47,7 @@ func purchase() -> void:
 			var total_cost = num_of_peppers_to_sell * basket.pepper_sold.cost
 			for idx in num_of_peppers_to_sell:
 				var pepper: Pepper = load(basket.pepper_sold.path_to_prefab).instantiate()
-				pepper.position = Globals.pepper_spawn_point
+				pepper.position = Globals.pepper_spawn_point + Vector2(idx*-10, 0)
 				Globals.inside.add_child(pepper)
 				AudioManager.play_random(AudioManager.POPS)
 			for idx in total_cost:

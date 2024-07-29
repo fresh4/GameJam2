@@ -28,6 +28,7 @@ var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
 var shop_opened: bool = false ## The state of the shop's summoned status
 var research_points: int = 49
+var rainbow_sauce: SauceTemplate = null
 
 func _ready() -> void:
 	Globals.discovered_sauces.append(Globals.SAUCES[0])
@@ -80,12 +81,12 @@ func handle_new_day() -> void:
 	pay(wage)
 	
 	# Spawn a letter for the day, every other day
-	if research_points >= RESEARCH_THRESHOLD:
-		var rainbow_sauce: SauceTemplate = null
+	if research_points >= RESEARCH_THRESHOLD and not rainbow_sauce:
 		for sauce in Globals.SAUCES:
 			if sauce.is_rainbow: rainbow_sauce = sauce
+			Globals.discovered_sauces.append(rainbow_sauce)
 		# TODO: Empty the unread letters and use the special 'final' letter. Current is placeholder
-		generate_letter(Globals.unread_letters[0], rainbow_sauce)
+		generate_letter(Globals.RAINBOW_RECIPE_LETTER, rainbow_sauce)
 	elif day % 2:
 		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
