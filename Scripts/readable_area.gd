@@ -10,6 +10,8 @@ var is_read: bool = false
 var hovering: bool = false
 
 func _ready() -> void:
+	if get_parent().scale < Vector2(0.3, 0.3):
+		unread_sprite.scale = Vector2.ONE / get_parent().scale
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
 

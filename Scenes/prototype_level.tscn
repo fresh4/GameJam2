@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=89 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -36,6 +36,7 @@
 [ext_resource type="Resource" uid="uid://bqujb5idppfkp" path="res://Resources/Readables/cauldron_tutorial.tres" id="31_owuli"]
 [ext_resource type="Script" path="res://Resources/readable_template.gd" id="32_6qb61"]
 [ext_resource type="Texture2D" uid="uid://cftr6tkqvfhja" path="res://Assets/Art/Letters/shop_tutorial.png" id="33_4ubbp"]
+[ext_resource type="Texture2D" uid="uid://c4f7rec618m4g" path="res://Assets/Art/Letters/farming_tutorial.png" id="33_iieg0"]
 [ext_resource type="Resource" uid="uid://svrhh3bhgmae" path="res://Resources/Sauces/1_RGB.tres" id="35_m8vvw"]
 [ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
 [ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="37_orn1d"]
@@ -233,11 +234,23 @@ size = Vector2(82, 88)
 [sub_resource type="Resource" id="Resource_0amkp"]
 script = ExtResource("32_6qb61")
 texture = ExtResource("46_g2yr5")
-hint = "Read Crossbreeding Sheet"
+hint = "Read Farming Tutorial"
 has_recipe = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_orv63"]
 size = Vector2(640, 640)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_js4p2"]
+load_path = "res://.godot/imported/farming_poster.png-a03cf88fcf7ee5bb11675d5d5787050d.ctex"
+
+[sub_resource type="Resource" id="Resource_w14b1"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("33_iieg0")
+hint = "Read Farming Tutorial"
+has_recipe = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22lpe"]
+size = Vector2(112, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_627a8"]
 size = Vector2(91, 59)
@@ -622,6 +635,17 @@ properties = SubResource("Resource_0amkp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Chart/ReadableArea"]
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_orv63")
+
+[node name="Farming" type="Sprite2D" parent="Inside/Tutorials"]
+position = Vector2(104, 80)
+texture = SubResource("CompressedTexture2D_js4p2")
+
+[node name="ReadableArea" parent="Inside/Tutorials/Farming" instance=ExtResource("14_xmhaq")]
+properties = SubResource("Resource_w14b1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Farming/ReadableArea"]
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_22lpe")
 
 [node name="Notice" type="RigidBody2D" parent="Inside"]
 position = Vector2(672, 488)
