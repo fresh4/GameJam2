@@ -27,7 +27,7 @@ var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
 var progress_delay: int = 3 ## Time in seconds to run the time change animation
 var shop_opened: bool = false ## The state of the shop's summoned status
-var research_points: int = 49
+var research_points: int = 0
 var rainbow_sauce: SauceTemplate = null
 
 func _ready() -> void:
