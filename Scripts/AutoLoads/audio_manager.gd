@@ -1,7 +1,7 @@
 extends Node
 
 #region Audio Imports
-const OST = preload("res://Assets/Music/super_rough_ost_sampler.ogg")
+const OST = preload("res://Assets/Music/Pepper_Meister_OST.ogg")
 
 const BUBBLING_CAULDRON = preload("res://Assets/SFX/Cauldron/bubbling_cauldron.ogg")
 const SAUCE_BREW_1 = preload("res://Assets/SFX/Cauldron/sauce_brew_1.ogg")
