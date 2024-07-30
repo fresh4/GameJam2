@@ -89,7 +89,7 @@ func handle_new_day() -> void:
 			Globals.discovered_sauces.append(rainbow_sauce)
 		# TODO: Empty the unread letters and use the special 'final' letter. Current is placeholder
 		generate_letter(Globals.RAINBOW_RECIPE_LETTER, rainbow_sauce)
-	elif day % 3 != 0: # If the day is divisble by 3 (every three days)
+	elif day % 3 == 0: # If the day is divisble by 3 (every three days)
 		print(day, " ", day % 3)
 		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
