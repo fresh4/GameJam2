@@ -27,6 +27,8 @@ const PAPER_OPEN_1 = preload("res://Assets/SFX/Paper/paper_open_1.ogg")
 const BELL_1 = preload("res://Assets/SFX/bell_1.ogg")
 const IGNITE = preload("res://Assets/SFX/ignite.ogg")
 const SIZZLE = preload("res://Assets/SFX/sizzle.ogg")
+const TIME = preload("res://Assets/SFX/time.ogg")
+const MAIL_CHIME = preload("res://Assets/SFX/mail_chime.ogg")
 
 const GLASS_CLACK = preload("res://Assets/SFX/glass_clack.ogg")
 const GLASS_CLACK_2 = preload("res://Assets/SFX/glass_clack_2.ogg")

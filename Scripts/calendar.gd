@@ -21,6 +21,7 @@ func set_hover(value: bool) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and hovering and not disabled:
 		Globals.game_manager._on_button_pressed()
+		AudioManager.play_audio(AudioManager.TIME)
 		var point = Globals.game_manager.current_round + 1
 		var tween = get_tree().create_tween()
 		if point >= Globals.game_manager.MAX_ROUNDS: point = 0
