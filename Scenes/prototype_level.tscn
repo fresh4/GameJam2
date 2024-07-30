@@ -760,6 +760,9 @@ position = Vector2(848, 528)
 [node name="PepperBasket" type="RigidBody2D" parent="Inside/Draggables"]
 z_index = 1
 position = Vector2(274, 591)
+collision_mask = 83
+can_sleep = false
+continuous_cd = 1
 
 [node name="PepperBasket" type="Sprite2D" parent="Inside/Draggables/PepperBasket"]
 texture = ExtResource("39_bqbmy")
