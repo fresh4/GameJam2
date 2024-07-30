@@ -2,6 +2,8 @@ extends Node
 
 enum READABLE_TYPE { LETTER, JOURNAL }
 
+const RAINBOW_SHADER = preload("res://Shaders/rainbow.gdshader")
+
 const VICTORY_LETTER = "
 	You've successfully created the Philosophers Sauce. 
 	Unfortunately, it does indeed seem to burn eternally. It seems as 
@@ -36,7 +38,10 @@ var unread_letters: Array = [
 	Try it out once you've grown the proper peppers.
 	
 	WE HAVE SPOKEN!
- 		-The Secret Cabal of Chili Connoisseurs",
+ 		-The Secret Cabal of Chili Connoisseurs
+	
+	P.S. Careful with these letters by the way. They're awfully
+	flammable...",
 	# Day 3
 	"Your test was a rousing success and the sauce, er, potion that you 
 	made has warmed our core most adequately. However such a potion 
@@ -47,8 +52,8 @@ var unread_letters: Array = [
 	Do not get complacent, though. To succeed you must contribute your
 	own discoveries in kind.
 
-		Thus Sayeth the council.
-	  		-The Super Secret Cabal of Chili Connoisseurs",
+	Thus Sayeth the council.
+ 		-The Super Secret Cabal of Chili Connoisseurs",
 	# Day 4
 	"Your concoctions are quite good hermit. We hope you've been
 	crossbreeding peppers to get a wider variety of recipes. They
@@ -56,7 +61,8 @@ var unread_letters: Array = [
 	
 	We've attached another recipe of ours. Be sure that you're crafting
 	these, we gain no research benefit without testing. Your 
-	recipes book is a valuable resource.
+	recipes book is a valuable resource. At the very least it doesn't
+	catch fire... unlike these letters.
 
 	Warm regards.
 		-The Super Duper Secret Cabal of Chili Connoisseurs",
@@ -66,8 +72,8 @@ var unread_letters: Array = [
 	
 	Try this recipe! We're certain it will be a hit! 
 	
-		Later, hot stuff.
-			  -The Ultra Super Duper Secret Cabal of Chili Connoisseurs",
+	Later, hot stuff.
+		-The Ultra Super Duper Secret Cabal of Chili Connoisseurs",
 	# Day 6
 	"Holy habanero, that stuff is amazing on tacos. Continue what 
 	you're doing you madman! This time try mixing this one; we're

@@ -59,6 +59,7 @@ func yeet(body: RigidBody2D) -> void:
 func _on_mix_button_pressed() -> void:
 	for sauce in Globals.SAUCES:
 		if not arrays_have_same_content(sauce.recipe, ingredients): continue
+		burst_particles.material = null
 		# Handle discovering new sauce
 		# TODO: Extract to a global function
 		if sauce not in Globals.discovered_sauces:
@@ -69,12 +70,14 @@ func _on_mix_button_pressed() -> void:
 			Globals.brewed_sauces.append(sauce)
 			Globals.game_manager.add_research_points(sauce.research_value)
 		if sauce.is_rainbow:
+			burst_particles.material = ShaderMaterial.new()
+			burst_particles.material.shader = Globals.RAINBOW_SHADER
+			burst_particles.material.set_shader_parameter("angle", 70)
 			Globals.game_manager.generate_letter(Globals.VICTORY_LETTER)
 		
 		burst_particles.color_ramp = Gradient.new()
 		burst_particles.color_ramp.remove_point(0)
 		for idx in len(ingredients):
-			print(float(idx)/float(len(ingredients)))
 			burst_particles.color_ramp.add_point(float(idx)/float(len(ingredients)), ingredients[idx].flower_color)
 		burst_particles.emitting = true
 		

@@ -1,8 +1,6 @@
 extends RigidBody2D
 class_name Sauce
 
-const RAINBOW_SHADER = preload("res://Shaders/rainbow.gdshader")
-
 @export var properties: SauceTemplate
 
 @onready var sauce: Sprite2D = $Sauce
@@ -13,5 +11,5 @@ func _ready() -> void:
 	sauce.modulate = mixed_colors
 	if properties.is_rainbow:
 		sauce.material = ShaderMaterial.new()
-		sauce.material.shader = RAINBOW_SHADER
+		sauce.material.shader = Globals.RAINBOW_SHADER
 		sauce.material.set_shader_parameter("angle", 70)
