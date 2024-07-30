@@ -2,7 +2,19 @@ extends Node
 
 enum READABLE_TYPE { LETTER, JOURNAL }
 
-const VICTORY_LETTER = preload("res://Assets/Art/Letters/victory_letter.png")
+const VICTORY_LETTER = "
+	You've successfully created the Philosophers Sauce. 
+	Unfortunately, it does indeed seem to burn eternally. It seems as 
+	though we now need to go after the Philosopher's Ice Cream. 
+	
+	You don't know anything about churning do you?
+
+	Eternally aflame.
+		-The Forever Burning Outrageous Ultra Super Duper Secret 
+		Fiery Cabal of Awesome Spicy Chili Connoisseurs
+	
+	P.S. (Thanks for playing!) <3 - Devs
+	"
 const RAINBOW_RECIPE_LETTER = preload("res://Assets/Art/Letters/rainbow_recipe_letter.png")
 
 const FLAME_PARTICLES = preload("res://Prefabs/flame_particles.tscn")

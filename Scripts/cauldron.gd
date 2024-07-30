@@ -7,6 +7,7 @@ const YEET_STRENGTH: int = 750
 @onready var mix_button: Button = $MixButton
 @onready var animated_splash_sprite: AnimatedSprite2D = %AnimatedSplashSprite
 @onready var ingredient_detection_area: Area2D = $IngredientDetectionArea
+@onready var burst_particles: CPUParticles2D = $BurstParticles
 
 var ingredients: Array[PepperTemplate]
 var ingredients_sprites: Array[Sprite2D]
@@ -69,6 +70,14 @@ func _on_mix_button_pressed() -> void:
 			Globals.game_manager.add_research_points(sauce.research_value)
 		if sauce.is_rainbow:
 			Globals.game_manager.generate_letter(Globals.VICTORY_LETTER)
+		
+		burst_particles.color_ramp = Gradient.new()
+		burst_particles.color_ramp.remove_point(0)
+		for idx in len(ingredients):
+			print(float(idx)/float(len(ingredients)))
+			burst_particles.color_ramp.add_point(float(idx)/float(len(ingredients)), ingredients[idx].flower_color)
+		burst_particles.emitting = true
+		
 		var new_sauce: Sauce = Globals.SAUCE_PREFAB.instantiate()
 		new_sauce.global_position = ingredient_detection_area.global_position
 		new_sauce.properties = sauce
