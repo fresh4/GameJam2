@@ -380,6 +380,7 @@ position = Vector2(687, 785)
 [node name="Foreground" type="Sprite2D" parent="Inside"]
 z_index = -1
 position = Vector2(640, 360)
+scale = Vector2(1.005, 1.005)
 texture = ExtResource("1_hh70o")
 
 [node name="Tutorials" type="Node2D" parent="Inside"]

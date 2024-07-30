@@ -87,10 +87,9 @@ func handle_new_day() -> void:
 		for sauce in Globals.SAUCES:
 			if sauce.is_rainbow: rainbow_sauce = sauce
 			Globals.discovered_sauces.append(rainbow_sauce)
-		# TODO: Empty the unread letters and use the special 'final' letter. Current is placeholder
+		# TODO: Empty the unread letters
 		generate_letter(Globals.RAINBOW_RECIPE_LETTER, rainbow_sauce)
 	elif day % 3 == 0 or day == 1: # If the day is divisble by 3 (every three days)
-		print(day, " ", day % 3)
 		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
 		var undiscovered_recipes: Array[SauceTemplate] = []
@@ -98,8 +97,12 @@ func handle_new_day() -> void:
 			if sauce not in Globals.discovered_sauces:
 				undiscovered_recipes.append(sauce)
 		
-		var chosen_sauce: SauceTemplate = undiscovered_recipes.pick_random() as SauceTemplate
-		while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
+		var chosen_sauce: SauceTemplate = null
+		if day <= 9:
+			chosen_sauce = undiscovered_recipes[0] as SauceTemplate
+		else:
+			chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
+			while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
 		#add_research_points(chosen_sauce.research_value)
 		
 		# Generate the letter
@@ -135,7 +138,6 @@ func generate_letter(letter_texture, attached_sauce: SauceTemplate = null) -> vo
 	if attached_sauce:
 		readable.properties.has_recipe = true
 		readable.properties.sauce = attached_sauce
-	if attached_sauce:
 		Globals.discovered_sauces.append(attached_sauce)
 	Globals.game_manager.tooltips.discovered_recipe()
 	
