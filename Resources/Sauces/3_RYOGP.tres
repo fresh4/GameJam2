@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="SauceTemplate" load_steps=4 format=3 uid="uid://clt0fy7nmxa6e"]
+[gd_resource type="Resource" script_class="SauceTemplate" load_steps=7 format=3 uid="uid://clt0fy7nmxa6e"]
 
-[ext_resource type="Resource" uid="uid://cnq3nnmkcpvjm" path="res://Resources/Peppers/black_pepper.tres" id="1_6tmd4"]
-[ext_resource type="Resource" uid="uid://deg5g8bg8kwxy" path="res://Resources/Peppers/white_pepper.tres" id="2_wx1ce"]
+[ext_resource type="Resource" uid="uid://ywxrxgue1bq3" path="res://Resources/Peppers/red_pepper.tres" id="1_fogup"]
+[ext_resource type="Resource" uid="uid://ccpigr2fw5tas" path="res://Resources/Peppers/yellow_pepper.tres" id="2_v7qog"]
+[ext_resource type="Resource" uid="uid://cqisun2qsfbpv" path="res://Resources/Peppers/orange_pepper.tres" id="3_2rfv6"]
 [ext_resource type="Script" path="res://Resources/sauce_template.gd" id="3_y4lwj"]
+[ext_resource type="Resource" uid="uid://csh8y60vjtlow" path="res://Resources/Peppers/green_pepper.tres" id="4_f6luf"]
+[ext_resource type="Resource" uid="uid://rxc3gqwwvb74" path="res://Resources/Peppers/purple_pepper.tres" id="5_lk4cg"]
 
 [resource]
 script = ExtResource("3_y4lwj")
 scoville_value = 0
-recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_6tmd4"), ExtResource("2_wx1ce"), ExtResource("2_wx1ce"), ExtResource("2_wx1ce")])
+recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_fogup"), ExtResource("2_v7qog"), ExtResource("3_2rfv6"), ExtResource("4_f6luf"), ExtResource("5_lk4cg")])
 value = 4
 research_value = 2
+is_rainbow = false

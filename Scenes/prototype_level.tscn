@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://duvrl5ydfww6n"]
+[gd_scene load_steps=92 format=3 uid="uid://duvrl5ydfww6n"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_326k8"]
 [ext_resource type="Texture2D" uid="uid://btdpnrjsfr5dl" path="res://Assets/Art/foreground.png" id="1_hh70o"]
@@ -41,6 +41,7 @@
 [ext_resource type="Resource" uid="uid://svrhh3bhgmae" path="res://Resources/Sauces/1_RGB.tres" id="35_m8vvw"]
 [ext_resource type="Texture2D" uid="uid://dsu6wexd53il" path="res://Assets/Art/Letters/calendar_tutorial.png" id="37_3ftwe"]
 [ext_resource type="Texture2D" uid="uid://b88sdqu6v7r0l" path="res://Assets/Art/Letters/notice.png" id="37_orn1d"]
+[ext_resource type="Texture2D" uid="uid://4a3qal0ox7x8" path="res://Assets/Art/Misc/pepper_basket.png" id="39_bqbmy"]
 [ext_resource type="AudioStream" uid="uid://4kaehbc5a1fi" path="res://Assets/SFX/Cauldron/bubbling_cauldron.ogg" id="41_d54nj"]
 [ext_resource type="Texture2D" uid="uid://cp0dphmrf7roa" path="res://Assets/Art/Letters/crossbreeding_reference_chart.png" id="46_g2yr5"]
 [ext_resource type="Texture2D" uid="uid://c4bbrw0m0bcqs" path="res://Assets/Art/Misc/recipe_book.png" id="46_h7l3p"]
@@ -60,6 +61,29 @@ width = 2048
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iy5j"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_okuf2"]
+
+[sub_resource type="Resource" id="Resource_0amkp"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("46_g2yr5")
+hint = "Read Farming Tutorial"
+has_recipe = false
+content = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orv63"]
+size = Vector2(640, 640)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_js4p2"]
+load_path = "res://.godot/imported/farming_poster.png-a03cf88fcf7ee5bb11675d5d5787050d.ctex"
+
+[sub_resource type="Resource" id="Resource_w14b1"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("33_iieg0")
+hint = "Read Farming Tutorial"
+has_recipe = false
+content = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22lpe"]
+size = Vector2(112, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6ltq"]
 size = Vector2(1312, 52)
@@ -199,8 +223,21 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxyhx"]
 size = Vector2(212, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
+size = Vector2(70, 55)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r8f4"]
 size = Vector2(84, 96)
+
+[sub_resource type="Resource" id="Resource_ojy8l"]
+script = ExtResource("32_6qb61")
+texture = ExtResource("37_3ftwe")
+hint = "Read Tutorial"
+has_recipe = false
+content = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e6vk"]
+size = Vector2(82, 88)
 
 [sub_resource type="Resource" id="Resource_essyl"]
 script = ExtResource("32_6qb61")
@@ -208,9 +245,6 @@ texture = ExtResource("33_4ubbp")
 hint = "Read Tutorial"
 has_recipe = false
 content = ""
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qhkc"]
-size = Vector2(70, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vmxv"]
 size = Vector2(64, 90)
@@ -225,39 +259,6 @@ content = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb2bm"]
 size = Vector2(70, 88)
 
-[sub_resource type="Resource" id="Resource_ojy8l"]
-script = ExtResource("32_6qb61")
-texture = ExtResource("37_3ftwe")
-hint = "Read Tutorial"
-has_recipe = false
-content = ""
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e6vk"]
-size = Vector2(82, 88)
-
-[sub_resource type="Resource" id="Resource_0amkp"]
-script = ExtResource("32_6qb61")
-texture = ExtResource("46_g2yr5")
-hint = "Read Farming Tutorial"
-has_recipe = false
-content = ""
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_orv63"]
-size = Vector2(640, 640)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_js4p2"]
-load_path = "res://.godot/imported/farming_poster.png-a03cf88fcf7ee5bb11675d5d5787050d.ctex"
-
-[sub_resource type="Resource" id="Resource_w14b1"]
-script = ExtResource("32_6qb61")
-texture = ExtResource("33_iieg0")
-hint = "Read Farming Tutorial"
-has_recipe = false
-content = ""
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_22lpe"]
-size = Vector2(112, 112)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_627a8"]
 size = Vector2(91, 59)
 
@@ -271,6 +272,9 @@ content = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lgaa"]
 size = Vector2(88, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdu1r"]
+size = Vector2(30, 60)
 
 [node name="PrototypeLevel" type="Node2D" node_paths=PackedStringArray("pepper_spawn_point", "candles")]
 script = ExtResource("1_326k8")
@@ -373,6 +377,31 @@ position = Vector2(687, 785)
 z_index = -1
 position = Vector2(640, 360)
 texture = ExtResource("1_hh70o")
+
+[node name="Tutorials" type="Node2D" parent="Inside"]
+
+[node name="Chart" type="Sprite2D" parent="Inside/Tutorials"]
+position = Vector2(1120, 456)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("46_g2yr5")
+
+[node name="ReadableArea" parent="Inside/Tutorials/Chart" instance=ExtResource("14_xmhaq")]
+properties = SubResource("Resource_0amkp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Chart/ReadableArea"]
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_orv63")
+
+[node name="Farming" type="Sprite2D" parent="Inside/Tutorials"]
+position = Vector2(104, 80)
+texture = SubResource("CompressedTexture2D_js4p2")
+
+[node name="ReadableArea" parent="Inside/Tutorials/Farming" instance=ExtResource("14_xmhaq")]
+properties = SubResource("Resource_w14b1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Farming/ReadableArea"]
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_22lpe")
 
 [node name="Bounds" type="StaticBody2D" parent="Inside"]
 position = Vector2(640, 696)
@@ -504,6 +533,21 @@ offset_bottom = -87.0
 disabled = true
 text = "Mix"
 
+[node name="CauldronNote" type="Sprite2D" parent="Inside/Furniture/Cauldron"]
+position = Vector2(-170, -102)
+rotation = -0.509553
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("30_7y2k1")
+
+[node name="ReadableArea" parent="Inside/Furniture/Cauldron/CauldronNote" instance=ExtResource("14_xmhaq")]
+position = Vector2(-46, 0)
+properties = ExtResource("31_owuli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Cauldron/CauldronNote/ReadableArea"]
+visible = false
+position = Vector2(-9, 4.5)
+shape = SubResource("RectangleShape2D_2qhkc")
+
 [node name="Candle" parent="Inside/Furniture" instance=ExtResource("14_tbef6")]
 position = Vector2(390, 151)
 
@@ -560,6 +604,15 @@ position = Vector2(-82, -39)
 position = Vector2(-11, -86)
 texture = ExtResource("17_l7yy5")
 
+[node name="CalendarNote" parent="Inside/Furniture/Calendar" instance=ExtResource("14_xmhaq")]
+position = Vector2(8, -15)
+properties = SubResource("Resource_ojy8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Furniture/Calendar/CalendarNote"]
+visible = false
+position = Vector2(-10, 15)
+shape = SubResource("RectangleShape2D_0e6vk")
+
 [node name="Bell" parent="Inside/Furniture" instance=ExtResource("29_27qd7")]
 position = Vector2(464, 584)
 
@@ -606,55 +659,6 @@ readable_type = 1
 visible = false
 shape = SubResource("RectangleShape2D_bb2bm")
 
-[node name="Tutorials" type="Node2D" parent="Inside"]
-
-[node name="CauldronNote" type="Sprite2D" parent="Inside/Tutorials"]
-position = Vector2(927, 616)
-rotation = -0.509553
-scale = Vector2(0.68, 0.68)
-texture = ExtResource("30_7y2k1")
-
-[node name="ReadableArea" parent="Inside/Tutorials/CauldronNote" instance=ExtResource("14_xmhaq")]
-position = Vector2(-46, 0)
-properties = ExtResource("31_owuli")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/CauldronNote/ReadableArea"]
-visible = false
-position = Vector2(-9, 4.5)
-shape = SubResource("RectangleShape2D_2qhkc")
-
-[node name="CalendarNote" parent="Inside/Tutorials" instance=ExtResource("14_xmhaq")]
-position = Vector2(1147, 120)
-properties = SubResource("Resource_ojy8l")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/CalendarNote"]
-visible = false
-position = Vector2(-10, 15)
-shape = SubResource("RectangleShape2D_0e6vk")
-
-[node name="Chart" type="Sprite2D" parent="Inside/Tutorials"]
-position = Vector2(1120, 456)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("46_g2yr5")
-
-[node name="ReadableArea" parent="Inside/Tutorials/Chart" instance=ExtResource("14_xmhaq")]
-properties = SubResource("Resource_0amkp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Chart/ReadableArea"]
-scale = Vector2(0.999999, 0.999999)
-shape = SubResource("RectangleShape2D_orv63")
-
-[node name="Farming" type="Sprite2D" parent="Inside/Tutorials"]
-position = Vector2(104, 80)
-texture = SubResource("CompressedTexture2D_js4p2")
-
-[node name="ReadableArea" parent="Inside/Tutorials/Farming" instance=ExtResource("14_xmhaq")]
-properties = SubResource("Resource_w14b1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Tutorials/Farming/ReadableArea"]
-scale = Vector2(0.999999, 0.999999)
-shape = SubResource("RectangleShape2D_22lpe")
-
 [node name="PaperStack" type="Sprite2D" parent="Inside"]
 position = Vector2(1072, 320)
 scale = Vector2(0.46, 0.46)
@@ -700,6 +704,17 @@ properties = SubResource("Resource_3bcml")
 position = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_4lgaa")
 
+[node name="Peppers" type="Node2D" parent="Inside"]
+
+[node name="Pepper" parent="Inside/Peppers" instance=ExtResource("1_iiofd")]
+position = Vector2(282, 457)
+
+[node name="Pepper2" parent="Inside/Peppers" instance=ExtResource("19_un27w")]
+position = Vector2(258, 522)
+
+[node name="Pepper3" parent="Inside/Peppers" instance=ExtResource("14_2lq2j")]
+position = Vector2(303, 533)
+
 [node name="Draggables" type="Node2D" parent="Inside"]
 
 [node name="CoinPrefab2" parent="Inside/Draggables" instance=ExtResource("22_030br")]
@@ -714,16 +729,20 @@ position = Vector2(840, 464)
 [node name="Jar" parent="Inside/Draggables" instance=ExtResource("23_lq5y0")]
 position = Vector2(848, 528)
 
-[node name="Peppers" type="Node2D" parent="Inside"]
+[node name="PepperBasket" type="RigidBody2D" parent="Inside/Draggables"]
+position = Vector2(274, 591)
 
-[node name="Pepper" parent="Inside/Peppers" instance=ExtResource("1_iiofd")]
-position = Vector2(64, 304)
+[node name="PepperBasket" type="Sprite2D" parent="Inside/Draggables/PepperBasket"]
+texture = ExtResource("39_bqbmy")
 
-[node name="Pepper2" parent="Inside/Peppers" instance=ExtResource("19_un27w")]
-position = Vector2(112, 304)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inside/Draggables/PepperBasket"]
+polygon = PackedVector2Array(-66, -27, -73, 11, -76, 63, -32, 71, 14, 72, 48, 69, 67, 64, 71, 25, 69, -6, 63, -32, 68, -31, 73, -6, 75, 25, 72, 65, 70, 74, 27, 82, -35, 80, -80, 73, -79, 24, -71, -26)
 
-[node name="Pepper3" parent="Inside/Peppers" instance=ExtResource("14_2lq2j")]
-position = Vector2(160, 312)
+[node name="DraggableArea" parent="Inside/Draggables/PepperBasket" instance=ExtResource("24_kpn4k")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside/Draggables/PepperBasket/DraggableArea"]
+position = Vector2(5, -49)
+shape = SubResource("RectangleShape2D_kdu1r")
 
 [node name="Tooltips" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

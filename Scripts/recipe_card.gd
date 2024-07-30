@@ -3,6 +3,7 @@ class_name RecipeCard
 
 @export var sauce_properties: SauceTemplate
 @onready var positions: Node2D = $Positions
+@onready var check_sprite: Sprite2D = $CheckSprite
 
 var scale_factor: float = 0.6
 
@@ -15,6 +16,7 @@ func get_recipe() -> Array[PepperTemplate]:
 
 func set_sauce(sauce: SauceTemplate) -> void:
 	sauce_properties = sauce
+	if sauce in Globals.brewed_sauces: check_sprite.visible = true
 	var position_nodes: Array[Node] = positions.get_children()
 	var idx = 0
 	for pepper in sauce_properties.recipe:

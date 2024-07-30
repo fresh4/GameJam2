@@ -10,7 +10,7 @@ size = Vector2(22, 83)
 
 [node name="SaucePrefab" type="RigidBody2D"]
 collision_layer = 97
-collision_mask = 97
+collision_mask = 99
 script = ExtResource("1_rxl1m")
 
 [node name="Bottle" type="Sprite2D" parent="."]

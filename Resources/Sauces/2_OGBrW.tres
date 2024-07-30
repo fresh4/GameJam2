@@ -2,13 +2,14 @@
 
 [ext_resource type="Resource" uid="uid://cqisun2qsfbpv" path="res://Resources/Peppers/orange_pepper.tres" id="1_ah12d"]
 [ext_resource type="Resource" uid="uid://csh8y60vjtlow" path="res://Resources/Peppers/green_pepper.tres" id="2_silal"]
-[ext_resource type="Resource" uid="uid://rxc3gqwwvb74" path="res://Resources/Peppers/purple_pepper.tres" id="3_r0lqm"]
+[ext_resource type="Resource" uid="uid://deg5g8bg8kwxy" path="res://Resources/Peppers/white_pepper.tres" id="3_5garo"]
 [ext_resource type="Resource" uid="uid://4t4uqserpda8" path="res://Resources/Peppers/brown_pepper.tres" id="4_pot0r"]
 [ext_resource type="Script" path="res://Resources/sauce_template.gd" id="5_t4ijc"]
 
 [resource]
 script = ExtResource("5_t4ijc")
 scoville_value = 0
-recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_ah12d"), ExtResource("2_silal"), ExtResource("3_r0lqm"), ExtResource("4_pot0r")])
+recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_ah12d"), ExtResource("2_silal"), ExtResource("3_5garo"), ExtResource("4_pot0r")])
 value = 2
 research_value = 2
+is_rainbow = false

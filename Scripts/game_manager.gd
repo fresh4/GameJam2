@@ -26,7 +26,7 @@ var current_round: int = 0 ## The time of day, ranges from 0-6
 var day: int = 0 ## The current day
 var plots: Array[Plot] ## Array of plots on the field
 var current_sunlight: int ## Sunlight value, between 1 and 100?
-var progress_delay: int = 3 ## Time in seconds to run the time change animation
+var progress_delay: int = 2 ## Time in seconds to run the time change animation
 var shop_opened: bool = false ## The state of the shop's summoned status
 var research_points: int = 0
 var rainbow_sauce: SauceTemplate = null
@@ -89,7 +89,8 @@ func handle_new_day() -> void:
 			Globals.discovered_sauces.append(rainbow_sauce)
 		# TODO: Empty the unread letters and use the special 'final' letter. Current is placeholder
 		generate_letter(Globals.RAINBOW_RECIPE_LETTER, rainbow_sauce)
-	elif day % 2:
+	elif day % 3 != 0: # If the day is divisble by 3 (every three days)
+		print(day, " ", day % 3)
 		if not Globals.unread_letters: return
 		# Choose a sauce to reveal at random
 		var undiscovered_recipes: Array[SauceTemplate] = []

@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("3_mj8pm")
 scoville_value = 0
-recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_88dkp"), ExtResource("2_eh8hb"), ExtResource("2_eh8hb")])
+recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_88dkp"), ExtResource("1_88dkp"), ExtResource("2_eh8hb")])
 value = 1
 research_value = 1
+is_rainbow = false

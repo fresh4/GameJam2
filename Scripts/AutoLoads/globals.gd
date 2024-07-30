@@ -13,7 +13,87 @@ const HAND_CLOSED = preload("res://Assets/Art/Cursors/hand_closed.png")
 const DEFAULT = preload("res://Assets/Art/Cursors/pointer_c.png")
 
 var unread_letters: Array = [
-	preload("res://Assets/Art/Letters/day_1.png")
+	preload("res://Assets/Art/Letters/day_1.png"),
+	# Day 2
+	"We desire a single potion that burns eternally. -Don't ask why. 
+	However this potion is currently outside of our grasp. 
+	
+	It is up to you to rediscover the recipe. With our help 
+	of course, though our production facilities are limited.
+	We've attached a recipe of our own design for you to brew. 
+	Try it out once you've grown the proper peppers.
+	
+	WE HAVE SPOKEN!
+ 		-The Secret Cabal of Chili Connoisseurs",
+	# Day 3
+	"Your test was a rousing success and the sauce, er, potion that you 
+	made has warmed our core most adequately. However such a potion 
+	is mere child's play. Your research will lead you to much greater 
+	heights. 
+	
+	Consider making another recipe from our coffers. 
+	Do not get complacent, though. To succeed you must contribute your
+	own discoveries in kind.
+
+		Thus Sayeth the council.
+	  		-The Super Secret Cabal of Chili Connoisseurs",
+	# Day 4
+	"Your concoctions are quite good hermit. We hope you've been
+	crossbreeding peppers to get a wider variety of recipes. They
+	may be more difficult to grow, but the flavors are well worth it.
+	
+	We've attached another recipe of ours. Be sure that you're crafting
+	these, we gain no research benefit without testing. Your 
+	recipes book is a valuable resource.
+
+	Warm regards.
+		-The Super Duper Secret Cabal of Chili Connoisseurs",
+	# Day 5
+	"That last sauce was incredible. If you continue in this manner 
+	then the philosophers sauce will be ours in no time! 
+	
+	Try this recipe! We're certain it will be a hit! 
+	
+		Later, hot stuff.
+			  -The Ultra Super Duper Secret Cabal of Chili Connoisseurs",
+	# Day 6
+	"Holy habanero, that stuff is amazing on tacos. Continue what 
+	you're doing you madman! This time try mixing this one; we're
+	on a roll here!
+	
+	The guys over at the artic base are loving that recipe, we 
+	gotta try it!
+	
+	Spicy Sendoffs.
+		-The Ultra Super Duper Secret Cabal of Awesome Chili 
+		Connoisseurs",
+	# Day 7
+	"Are these getting hotter? That last batch of hot sauce had us 
+	chasing cows for some milk. Picture some dark robes chasing 
+	after farm animals, you'll laugh for sure! 
+	
+	Keep up the good work and don't forget that even though you 
+	have new peppers, the old ones can provide just as much 
+	value to your hot sauce recipes as the fancy new peppers.
+
+	Warmed to the core.
+		-The Ultra Super Duper Secret Fiery 
+		Cabal of Awesome Chili Connoisseurs",
+	# Day 8
+	"Send more hot sauce. We must try it. Use more peppers.
+	We're reaching the limit of our own research.
+	
+	*Hiccup*
+  		-The Outrageous Ultra Super Duper Secret 
+		Fiery Cabal of Awesome Chili Connoisseurs",
+	# Day 9
+	"Make more fire drink for belly. Taste good, make poops hurt.
+	......
+	Wethinks we hit block. New recipes up to you now. *hic*
+	Enjoy last help.
+	
+	  -The Outrageous Ultra Super Duper Secret 
+	Fiery Cabal of Awesome Spicy Chili Connoisseurs"
 ]
 
 const readables: Dictionary = {

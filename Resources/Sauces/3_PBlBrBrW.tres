@@ -12,3 +12,4 @@ scoville_value = 0
 recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_hho2b"), ExtResource("4_lek8w"), ExtResource("3_673c6"), ExtResource("3_673c6"), ExtResource("2_lhth1")])
 value = 4
 research_value = 5
+is_rainbow = false

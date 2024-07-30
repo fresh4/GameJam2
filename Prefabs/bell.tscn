@@ -98,14 +98,17 @@ _data = {
 script = ExtResource("1_8cofr")
 
 [node name="BellTop" type="Sprite2D" parent="."]
+modulate = Color(0.878906, 0.750563, 0.312424, 1)
 texture = ExtResource("1_nndmn")
 
 [node name="BellMiddle" type="Sprite2D" parent="."]
+modulate = Color(0.878906, 0.750563, 0.312424, 1)
 position = Vector2(0, -10)
 texture = ExtResource("2_svqc2")
 offset = Vector2(0, 10)
 
 [node name="BellBottom" type="Sprite2D" parent="."]
+modulate = Color(0.878906, 0.750563, 0.312424, 1)
 texture = ExtResource("3_wt2xn")
 
 [node name="BellArea" type="Area2D" parent="."]

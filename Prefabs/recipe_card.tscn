@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2422nyu3t2dq"]
+[gd_scene load_steps=4 format=3 uid="uid://d2422nyu3t2dq"]
 
 [ext_resource type="Script" path="res://Scripts/recipe_card.gd" id="1_s4d4t"]
 [ext_resource type="Texture2D" uid="uid://8ga3cc37xl8n" path="res://Assets/Art/UI/recipe_card.png" id="2_hg3cf"]
+[ext_resource type="Texture2D" uid="uid://burutrfrt7vkh" path="res://Assets/Art/Misc/check.png" id="3_ex4gy"]
 
 [node name="RecipeCard" type="Node2D"]
 script = ExtResource("1_s4d4t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hg3cf")
+
+[node name="CheckSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ex4gy")
 
 [node name="Positions" type="Node2D" parent="."]
 
