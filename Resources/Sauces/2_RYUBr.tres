@@ -10,6 +10,6 @@
 script = ExtResource("5_i1mcd")
 scoville_value = 0
 recipe = Array[Resource("res://Resources/pepper_template.gd")]([ExtResource("1_amsml"), ExtResource("2_qpgey"), ExtResource("3_rvgpy"), ExtResource("4_7r3jv")])
-value = 1
-research_value = 1
+value = 2
+research_value = 2
 is_rainbow = false
