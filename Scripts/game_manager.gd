@@ -4,7 +4,7 @@ class_name GameManager
 const MAIL = preload("res://Prefabs/mail.tscn")
 
 const MAX_ROUNDS = 6
-const RESEARCH_THRESHOLD = 50 ## How many points are needed before the final recipe is automatically discovered
+const RESEARCH_THRESHOLD = 25 ## How many points are needed before the final recipe is automatically discovered
 
 @export var gradient_texture: GradientTexture1D
 @export var inside_gradient_texture: GradientTexture1D
@@ -43,7 +43,6 @@ func _ready() -> void:
 	calendar_label.text = "0"
 	for plot in %Plots.get_children() as Array[Plot]:
 		plots.append(plot)
-	
 
 func progress_time() -> void:
 	if current_round < MAX_ROUNDS - 1:
@@ -100,12 +99,12 @@ func handle_new_day() -> void:
 				undiscovered_recipes.append(sauce)
 		
 		var chosen_sauce: SauceTemplate = null
-		if day <= 9:
-			chosen_sauce = undiscovered_recipes[0] as SauceTemplate
-		else:
-			chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
-			while chosen_sauce.is_rainbow: chosen_sauce = undiscovered_recipes.pick_random() as SauceTemplate
-		#add_research_points(chosen_sauce.research_value)
+		var valid_sauces_to_mail: Array[SauceTemplate] = []
+		for sauce in undiscovered_recipes:
+			if sauce.is_rainbow: continue
+			if len(sauce.recipe) < 4: continue
+			valid_sauces_to_mail.append(sauce)
+		chosen_sauce = valid_sauces_to_mail.pick_random() as SauceTemplate
 		
 		# Generate the letter
 		generate_letter(Globals.unread_letters[0], chosen_sauce)
@@ -148,7 +147,7 @@ func generate_letter(letter_texture, attached_sauce: SauceTemplate = null) -> vo
 
 func add_research_points(value: int) -> void:
 	research_points += value
-	research_point_counter_label.text = str(research_points) + "/50"
+	research_point_counter_label.text = str(research_points) + "/" + str(RESEARCH_THRESHOLD)
 
 func _on_button_pressed() -> void:
 	progress_time()
