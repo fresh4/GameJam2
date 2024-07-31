@@ -27,8 +27,11 @@ const PAPER_OPEN_1 = preload("res://Assets/SFX/Paper/paper_open_1.ogg")
 const BELL_1 = preload("res://Assets/SFX/bell_1.ogg")
 const IGNITE = preload("res://Assets/SFX/ignite.ogg")
 const SIZZLE = preload("res://Assets/SFX/sizzle.ogg")
-const TIME = preload("res://Assets/SFX/time.ogg")
 const MAIL_CHIME = preload("res://Assets/SFX/mail_chime.ogg")
+
+const TIME = preload("res://Assets/SFX/time.ogg")
+const TIME_2 = preload("res://Assets/SFX/time_2.ogg")
+const TIME_3 = preload("res://Assets/SFX/time_3.ogg")
 
 const GLASS_CLACK = preload("res://Assets/SFX/glass_clack.ogg")
 const GLASS_CLACK_2 = preload("res://Assets/SFX/glass_clack_2.ogg")
@@ -36,12 +39,24 @@ const GLASS_CLACK_3 = preload("res://Assets/SFX/glass_clack_3.ogg")
 const GLASS_CLACK_4 = preload("res://Assets/SFX/glass_clack_4.ogg")
 const GLASS_CLACK_5 = preload("res://Assets/SFX/glass_clack_5.ogg")
 
+const COIN_1 = preload("res://Assets/SFX/Coin/coin_1.ogg")
+const COIN_2 = preload("res://Assets/SFX/Coin/coin_2.ogg")
+const COIN_3 = preload("res://Assets/SFX/Coin/coin_3.ogg")
+const COIN_4 = preload("res://Assets/SFX/Coin/coin_4.ogg")
+const COIN_ON_CERAMIC = preload("res://Assets/SFX/Coin/coin_on_ceramic.ogg")
+
 const COIN_CLACKS: Array[AudioStream] = [
-	GLASS_CLACK,
-	GLASS_CLACK_2,
-	GLASS_CLACK_3,
-	GLASS_CLACK_4,
-	GLASS_CLACK_5
+	COIN_1,
+	COIN_2,
+	COIN_3,
+	COIN_4,
+	COIN_ON_CERAMIC
+]
+
+const TICKING: Array[AudioStream] = [
+	TIME,
+	TIME_2,
+	TIME_3
 ]
 
 const CASSETTE_CLICKS: Array[AudioStream] = [
