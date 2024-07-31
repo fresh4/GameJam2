@@ -43,6 +43,7 @@ func _ready() -> void:
 	calendar_label.text = "0"
 	for plot in %Plots.get_children() as Array[Plot]:
 		plots.append(plot)
+	
 
 func progress_time() -> void:
 	if current_round < MAX_ROUNDS - 1:
@@ -85,8 +86,9 @@ func handle_new_day() -> void:
 	# Spawn a letter for the day, every other day
 	if research_points >= RESEARCH_THRESHOLD and not rainbow_sauce:
 		for sauce in Globals.SAUCES:
-			if sauce.is_rainbow: rainbow_sauce = sauce
-			Globals.discovered_sauces.append(rainbow_sauce)
+			if sauce.is_rainbow: 
+				rainbow_sauce = sauce
+				break
 		# TODO: Empty the unread letters
 		generate_letter(Globals.RAINBOW_RECIPE_LETTER, rainbow_sauce)
 	elif day % 3 == 0 or day == 1: # If the day is divisble by 3 (every three days)
